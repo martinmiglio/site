@@ -1,0 +1,23 @@
+{
+  "name": "marmig0404githubio",
+  "version": "1.0.0",
+  "description": "Martin Miglio portfolio",
+  "main": "index.js",
+  "dependencies": {
+    "create-react-app": "^3.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
+  },
+  "author": "marmig0404",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marmig0404/marmig0404.github.io/issues"
+  },
+  "homepage": "https://github.com/marmig0404/marmig0404.github.io#readme"
+}
