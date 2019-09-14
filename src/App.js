@@ -1,20 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Landing from "./components/Landing";
+import About from "./components/About";
 
 function App() {
-  return React.createElement(
-    "div",
-    { className: "App" },
-    React.createElement("header", { className: "App-header" }, [
-      React.createElement("img", {
-        src: logo,
-        className: "App-logo",
-        alt: "logo"
-      }),
-      React.createElement("h", {}, "Welcome to my page"),
-      React.createElement("p", { className: "Signiature" }, "-Martin")
-    ])
+  return (
+    <div>
+      <Landing />
+      <About />
+    </div>
   );
 }
 
