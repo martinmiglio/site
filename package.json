@@ -10,17 +10,25 @@
     "gh-pages": "^2.1.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5",
+    "react-scripts": "^3.1.1",
     "yarn": "^1.13.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.3.0",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.18.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "dev": "parcel src/index.html",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier \"src/**/*.{js,html}\" --write",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "eslintConfig": {
     "extends": "react-app"

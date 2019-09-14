@@ -1,20 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h>
-          Welcome to my page
-        </h>
-        <p>
-            -Martin
-        </p>
-      </header>
-    </div>
+  return React.createElement(
+    "div",
+    { className: "App" },
+    React.createElement("header", { className: "App-header" }, [
+      React.createElement("img", {
+        src: logo,
+        className: "App-logo",
+        alt: "logo"
+      }),
+      React.createElement("h", {}, "Welcome to my page"),
+      React.createElement("p", { className: "Signiature" }, "-Martin")
+    ])
   );
 }
 
