@@ -1,0 +1,40 @@
+.Landing {
+  text-align: center;
+}
+
+.Landing-logo {
+  margin-top: 5vh;
+  animation: Landing-logo-spin infinite 20s linear;
+  height: 25vh;
+  pointer-events: none;
+}
+
+.Landing-header {
+
+  background-color: #282c34;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(8px + 2vmin);
+  color: white;
+}
+
+
+.Landing-Signiature {
+  color: #00ffffff;
+  text-align: right;
+}
+
+@keyframes Landing-logo-spin {
+  0% {
+    transform: rotate(0deg) translateY(-25px);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg) translateY(-25px);
+  }
+}
