@@ -31,12 +31,14 @@ export default class ExpandableBox extends Component {
         </header>
         <CSSTransition
           in={this.state.contentVisibility}
-          classNames="content-wrapper"
+          classNames="content-transition"
           mountOnEnter={true}
           unmountOnExit={true}
           timeout={0}
         >
-          {content}
+          <div className="content-wrapper">
+            {content}
+          </div>
         </CSSTransition>
       </div>
     );

@@ -1,0 +1,18 @@
+.wrapper-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.wrapper-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  height: 50px;
+  width: 50px;
+}
+
+.text {
+  font-size: 16pt;
+}
