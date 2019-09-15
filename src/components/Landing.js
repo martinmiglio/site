@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Landing.css";
-import logo from "./logo.svg";
+import logo from "./assets/logo.svg";
 
 export default class Landing extends Component {
   render() {
