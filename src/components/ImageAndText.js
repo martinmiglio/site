@@ -9,7 +9,7 @@ export default class ImageAndText extends Component {
 
     return (
       <div className={"wrapper-" + orientation}>
-        <img className="image" src={imageSource} alt={String(imageSource)}/>
+        <img className="image" src={imageSource} alt={String(imageSource)} />
         <div className="text">{text}</div>
       </div>
     );

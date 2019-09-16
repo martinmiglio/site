@@ -7,3 +7,13 @@
     sans-serif;
   text-indent: 10vw;
 }
+
+.tab-education{
+  display: flex;
+  flex-direction: row;
+}
+
+.tab-body{
+  display: flex;
+  flex-direction: column;
+}
