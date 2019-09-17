@@ -1,5 +1,5 @@
 import React from "react";
-import ReactGA from "react-ga";
+import {initialize, pageview} from "react-ga";
 import Collapsible from "react-collapsible";
 import "./App.css";
 import Landing from "./components/Landing";
@@ -9,17 +9,11 @@ import KULogo from "./components/assets/ketteringlogo.png";
 import IAMLogo from "./components/assets/iamlogo.png";
 import Experience from "./components/Experience";
 import Portfolio from "./components/Portfolio";
-//import { useScrollPosition } from "./components/useScrollPosition";
-//import ExpandableList from "./components/ExpandableList";
 import SocialBar from "./components/SocialBar";
 
-function initializeReactGA() {
-  ReactGA.initialize("UA-148190769-1");
-  ReactGA.pageview("/portfolio");
-}
-
-function App() {
-  initializeReactGA();
+export default function App() {
+  initialize("UA-148190769-1");
+  pageview("/portfolio");
   const educationContent = [
     {
       imageSource: KULogo,
@@ -76,4 +70,4 @@ function App() {
   );
 }
 
-export default App;
+
