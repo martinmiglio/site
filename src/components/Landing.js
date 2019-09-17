@@ -8,8 +8,8 @@ export default class Landing extends Component {
       <div className="Landing">
         <header className="Landing-header">
           <img src={logo} className="Landing-logo" alt="logo" />
-          <h1>Welcome to my page</h1>
-          <p className="Landing-Signiature">-Martin</p>
+          <h1>Martin Miglio</h1>
+          <p className="Landing-Signiature">Welcome to my page, currently a WIP</p>
         </header>
       </div>
     );
