@@ -8,7 +8,6 @@ import KULogo from "./components/assets/ketteringlogo.png";
 import IAMLogo from "./components/assets/iamlogo.png";
 import Experience from "./components/Experience";
 import Portfolio from "./components/Portfolio";
-import Contact from "./components/Contact";
 //import { useScrollPosition } from "./components/useScrollPosition";
 //import ExpandableList from "./components/ExpandableList";
 import SocialBar from "./components/SocialBar";
@@ -43,6 +42,10 @@ function App() {
     {
       contactType: "linkedin",
       contactLink: "https://www.linkedin.com/in/martinmiglio"
+    },
+    {
+      contactType: "cube",
+      contactLink: "https://www.thingiverse.com/marmig0404/"
     }
   ];
 
@@ -65,9 +68,6 @@ function App() {
       </Collapsible>
       <Collapsible trigger={"Portfolio"}>
         <Portfolio />
-      </Collapsible>
-      <Collapsible trigger={"Contact"}>
-        <Contact contentList={contactContent} />
       </Collapsible>
     </div>
   );

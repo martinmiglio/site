@@ -14,9 +14,9 @@ export default class Education extends Component {
               src={item.imageSource}
               alt={item.header}
             />
-            <div className="tab-body">
+            <div className="tab-text">
               <header className="tab-header">{item.header}</header>
-              {item.body}
+              <div className="tab-body">{item.body}</div>
             </div>
           </div>
         ))}
