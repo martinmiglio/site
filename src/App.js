@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from 'react-ga';
 import Collapsible from "react-collapsible";
 import "./App.css";
 import Landing from "./components/Landing";
@@ -12,7 +13,13 @@ import Portfolio from "./components/Portfolio";
 //import ExpandableList from "./components/ExpandableList";
 import SocialBar from "./components/SocialBar";
 
+function initializeReactGA() {
+    ReactGA.initialize('UA-148190769-1');
+    ReactGA.pageview('/portfolio');
+}
+
 function App() {
+  initializeReactGA();
   const educationContent = [
     {
       imageSource: KULogo,
@@ -51,10 +58,6 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      />
       <Landing />
       <SocialBar contentList={contactContent} className="social" />
       <Collapsible trigger={"About"}>
