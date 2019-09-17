@@ -1,5 +1,5 @@
 import React from "react";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
 import Collapsible from "react-collapsible";
 import "./App.css";
 import Landing from "./components/Landing";
@@ -14,8 +14,8 @@ import Portfolio from "./components/Portfolio";
 import SocialBar from "./components/SocialBar";
 
 function initializeReactGA() {
-    ReactGA.initialize('UA-148190769-1');
-    ReactGA.pageview('/portfolio');
+  ReactGA.initialize("UA-148190769-1");
+  ReactGA.pageview("/portfolio");
 }
 
 function App() {
