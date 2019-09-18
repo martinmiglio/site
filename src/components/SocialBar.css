@@ -1,18 +1,18 @@
-.wrapper{
-display: flex;
-flex-direction: row;
+.wrapper {
+    display: flex;
+    flex-direction: row;
 }
 
 .fa {
-  color:white;
-  padding: 10px;
-  font-size: 50px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
+    color: white;
+    padding: 10px;
+    font-size: 50px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
 }
 
 /* Add a hover effect if you want */
 .fa:hover {
-  opacity: 0.7;
+    opacity: 0.7;
 }

@@ -14,7 +14,7 @@ export default class SocialBar extends Component {
                 href={item.contactLink}
                 className={"fa fa-" + item.contactType}
               >
-                <div />
+                <div/>
               </a>
             </span>
           </div>

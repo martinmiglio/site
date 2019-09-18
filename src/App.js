@@ -1,9 +1,9 @@
 import React from "react";
-import {initialize, pageview} from "react-ga";
+import { initialize, pageview } from "react-ga";
 import Collapsible from "react-collapsible";
 import "./App.css";
 import Landing from "./components/Landing";
-import About from "./components/About";
+import About from "./components/About"; /* */
 import Education from "./components/Education";
 import KULogo from "./components/assets/ketteringlogo.png";
 import IAMLogo from "./components/assets/iamlogo.png";
@@ -52,19 +52,19 @@ export default function App() {
 
   return (
     <div className="app-wrapper">
-      <Landing />
-      <SocialBar contentList={contactContent} className="social" />
+      <Landing/>
+      <SocialBar contentList={contactContent} className="social"/>
       <Collapsible trigger={"About"}>
-        <About />
+        <About/>
       </Collapsible>
       <Collapsible trigger={"Education"}>
-        <Education contentList={educationContent} />
+        <Education contentList={educationContent}/>
       </Collapsible>
       <Collapsible trigger={"Experience"}>
-        <Experience />
+        <Experience/>
       </Collapsible>
       <Collapsible trigger={"Portfolio"}>
-        <Portfolio />
+        <Portfolio/>
       </Collapsible>
     </div>
   );
