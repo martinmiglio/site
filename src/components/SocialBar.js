@@ -6,7 +6,7 @@ export default class SocialBar extends Component {
     const uuidv4 = require("uuid/v4");
     const contentList = this.props.contentList;
     return (
-      <div className="wrapper">
+      <div className="sb-wrapper">
         {contentList.map(item => (
           <div className="cell" key={uuidv4()}>
             <span role="img" aria-labelledby={item.contactType}>
@@ -14,7 +14,7 @@ export default class SocialBar extends Component {
                 href={item.contactLink}
                 className={"fa fa-" + item.contactType}
               >
-                <div/>
+                <div />
               </a>
             </span>
           </div>

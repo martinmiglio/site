@@ -1,6 +1,7 @@
 import React from "react";
 import { initialize, pageview } from "react-ga";
-import Collapsible from "react-collapsible";
+
+import CollapsibleList from "./components/CollapsibleList";
 import "./App.css";
 import Landing from "./components/Landing";
 import About from "./components/About"; /* */
@@ -26,11 +27,13 @@ export default function App() {
       body: "IAM Body"
     }
   ];
-  // const aboutContent = {
-  //   imageSource:ProfilePic,
-  //   header:"Martin Miglio",
-  //   body:"About Body"
-  // };
+
+  const aboutContent = {
+    //imageSource:ProfilePic,
+    header:"Martin Miglio",
+    body:"About Body"
+  };
+
   const contactContent = [
     {
       contactType: "github",
@@ -50,24 +53,30 @@ export default function App() {
     }
   ];
 
+  const collapsibleListContent = [
+    {
+      trigger: "About",
+      content: <About contentList={aboutContent} />
+    },
+    {
+      trigger: "Education",
+      content: <Education contentList={educationContent} />
+    },
+    {
+      trigger: "Experience",
+      content: <Experience />
+    },
+    {
+      trigger: "Portfolio",
+      content: <Portfolio />
+    }
+  ];
+
   return (
     <div className="app-wrapper">
-      <Landing/>
-      <SocialBar contentList={contactContent} className="social"/>
-      <Collapsible trigger={"About"}>
-        <About/>
-      </Collapsible>
-      <Collapsible trigger={"Education"}>
-        <Education contentList={educationContent}/>
-      </Collapsible>
-      <Collapsible trigger={"Experience"}>
-        <Experience/>
-      </Collapsible>
-      <Collapsible trigger={"Portfolio"}>
-        <Portfolio/>
-      </Collapsible>
+      <Landing />
+      <SocialBar contentList={contactContent} className="social" />
+      <CollapsibleList contentList={collapsibleListContent} className="list" />
     </div>
   );
 }
-
-
