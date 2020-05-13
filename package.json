@@ -1,63 +1,63 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
-  "main": "index.js",
-  "homepage": "https://marmig0404.github.io/portfolio",
-  "private": true,
-  "dependencies": {
-    "create-react-app": "^3.1.1",
-    "gh-pages": "^2.1.1",
-    "react": "^16.12.0",
-    "react-addons-transition-group": "^15.6.2",
-    "react-collapsible": "^2.6.0",
-    "react-dom": "^16.8.3",
-    "react-ga": "^2.6.0",
-    "react-reveal": "^1.2.2",
-    "react-scripts": "^3.1.1",
-    "react-transition-group": "^4.3.0",
-    "semantic-ui-react": "^0.88.1",
-    "typescript": "^3.6.3",
-    "uuid": "^3.3.3",
-    "yarn": "^1.21.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.7.2",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1",
-    "prettier": "^1.18.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "dev": "parcel src/index.html",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "format": "prettier \"src/**/*.{js,html}\" --write",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
-  },
-  "author": "marmig0404",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "portfolio",
+    "version": "0.1.0",
+    "main": "index.js",
+    "homepage": "https://marmig0404.github.io/portfolio",
+    "private": true,
+    "dependencies": {
+        "create-react-app": "^3.4.1",
+        "gh-pages": "^2.2.0",
+        "react": "^16.13.1",
+        "react-addons-transition-group": "^15.6.2",
+        "react-collapsible": "^2.7.0",
+        "react-dom": "^16.13.1",
+        "react-ga": "^2.7.0",
+        "react-reveal": "^1.2.2",
+        "react-scripts": "^3.4.1",
+        "react-transition-group": "^4.4.1",
+        "semantic-ui-react": "^0.88.2",
+        "typescript": "^3.9.2",
+        "uuid": "^3.4.0",
+        "yarn": "^1.22.4"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-react": "^7.20.0",
+        "eslint-plugin-react-hooks": "^2.5.1",
+        "prettier": "^1.19.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "dev": "parcel src/index.html",
+        "predeploy": "yarn run build",
+        "deploy": "gh-pages -d build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "format": "prettier \"src/**/*.{js,html}\" --write",
+        "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
+    },
+    "author": "marmig0404",
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
