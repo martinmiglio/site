@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./SocialBar.css";
+import "./../../../stylesheets/SocialBar.css";
 
 export default class SocialBar extends Component {
   render() {

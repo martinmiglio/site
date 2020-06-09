@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Collapsible from "react-collapsible";
-import "./CollapsibleList.css";
+import "./../../../stylesheets/CollapsibleList.css";
 
-export default class SocialBar extends Component {
+export default class CollapsibleList extends Component {
   render() {
     const uuidv4 = require("uuid/v4");
     const contentList = this.props.contentList;

@@ -1,4 +1,4 @@
-.cl-wrapper{
+.cl-wrapper {
     display: flex;
     flex-direction: column;
     flex-flow: column;
@@ -14,28 +14,22 @@
     text-indent: 5vw;
 }
 
-/*noinspection CssUnusedSymbol*/
 .Collapsible__trigger {
     color: white;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-size: 20pt;
     transition: all 0.3s;
 }
 
-/*noinspection CssUnusedSymbol*/
 .Collapsible__trigger:hover {
     color: #00ffffff;
     text-indent: 5vw;
 }
 
-/*noinspection CssUnusedSymbol*/
 .Collapsible__contentOuter {
     width: 80vw;
 }
 
-/*noinspection CssUnusedSymbol*/
 .Collapsible__contentInner {
     text-align: left;
 }
