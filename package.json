@@ -2,7 +2,7 @@
     "name": "portfolio",
     "version": "0.1.0",
     "main": "index.js",
-    "homepage": "https://marmig0404.github.io/portfolio",
+    "homepage": "https://martinmiglio.dev/",
     "private": true,
     "dependencies": {
         "@types/react-transition-group": "^4.4.0",
