@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import "./../../../stylesheets/PortfolioHome.css";
 import Landing from "../common/Landing";
 import SocialBar from "../common/SocialBar";
@@ -13,11 +13,8 @@ import IAMLogo from "./assets/iamlogo.png";
 import Experience from "./Experience";
 */
 
-
-export default class PortfolioHome extends Component
-{
-  render()
-  {
+export default class PortfolioHome extends Component {
+  render() {
     const contactContent = [
       {
         contactType: "github",
@@ -73,11 +70,16 @@ export default class PortfolioHome extends Component
     */
 
     return (
-      <div className="portfolio-wrapper" >
+      <div className="portfolio-wrapper">
         <Helmet>
           <title>{"Martin Miglio"}</title>
         </Helmet>
-        <Landing className="portfolio-landing" logo={logo} header="Martin Miglio" signature="Welcome to my page" />
+        <Landing
+          className="portfolio-landing"
+          logo={logo}
+          header="Martin Miglio"
+          signature="Welcome to my page"
+        />
         <SocialBar contentList={contactContent} className="social" />
         {/*<CollapsibleList contentList={collapsibleListContent} className="list" />*/}
       </div>
