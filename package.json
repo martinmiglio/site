@@ -7,7 +7,10 @@
     "dependencies": {
         "@types/react-transition-group": "^4.4.0",
         "create-react-app": "^3.4.1",
+        "fibers": "^5.0.0",
         "gh-pages": "^2.2.0",
+        "node-sass": "^4.14.1",
+        "prop-types": "^15.5.8",
         "react": "^16.13.1",
         "react-collapsible": "^2.8.0",
         "react-dom": "^16.13.1",
@@ -17,7 +20,9 @@
         "react-router-dom": "^5.2.0",
         "react-scripts": "^3.4.1",
         "react-transition-group": "^4.4.1",
+        "sass": "^1.26.10",
         "semantic-ui-react": "^0.88.2",
+        "serialize-javascript": "5.0.1",
         "typescript": "^3.9.5",
         "uuid": "^3.4.0",
         "yarn": "^1.22.4"
