@@ -10,12 +10,12 @@ export default class CompanyHome extends Component {
     const contactContent = [
       {
         contactType: "twitter",
-        contactLink: "https://twitter.com/digidevllc"
+        contactLink: "https://twitter.com/digidevllc",
       },
       {
         contactType: "envelope",
-        contactLink: "mailto:mail@digidev.lcc"
-      }
+        contactLink: "mailto:mail@digidev.lcc",
+      },
     ];
     return (
       <div className="company-wrapper">
