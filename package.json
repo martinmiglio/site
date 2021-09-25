@@ -35,7 +35,7 @@
         "build": "react-scripts build",
         "dev": "parcel src/index.html",
         "predeploy": "yarn run build",
-        "deploy": "gh-pages -d build",
+        "deploy": "yarn run build && echo martinmiglio.dev > ./build/CNAME && gh-pages -d build",
         "test": "react-scripts test --passWithNoTests",
         "eject": "react-scripts eject",
         "format": "prettier \"src/**/*.{js,html}\" --write",
