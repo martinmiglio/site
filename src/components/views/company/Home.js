@@ -14,7 +14,7 @@ export default class CompanyHome extends Component {
       },
       {
         contactType: "envelope",
-        contactLink: "mailto:mail@digidev.lcc",
+        contactLink: "mailto:mail@digidev.llc",
       },
     ];
     return (
