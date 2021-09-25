@@ -1,3 +1,13 @@
+.gallery-landing-div {
+    text-align: center;
+}
+
+.gallery-landing-logo {
+    margin-top: 5vh;
+    height: 75vh;
+    pointer-events: none;
+}
+
 .company-landing-div {
     text-align: center;
 }
