@@ -11,9 +11,9 @@ export default function App() {
     <Router basename="/">
       <div className="app-wrapper">
         <Routes>
-          <Route path="/company" element={<CompanyHome/>} />
-          <Route path="/gallery" element={<GalleryHome/>} />
-          <Route exact path="/" element={<PortfolioHome/>} />
+          <Route path="/company" element={<CompanyHome />} />
+          <Route path="/gallery" element={<GalleryHome />} />
+          <Route exact path="/" element={<PortfolioHome />} />
         </Routes>
       </div>
     </Router>

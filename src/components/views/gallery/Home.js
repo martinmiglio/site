@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import Landing from "../common/Landing";
+import SourceLink from "../common/SourceLink";
 //import logo from "../../assets/temp_gallery.png";
 // import Carousel from 'react-instagram-carousel';
 import "./../../../stylesheets/GalleryHome.css";
@@ -30,6 +31,7 @@ export default class GalleryHome extends Component {
           signature="Check Twitter for updates"
           className="gallery-landing"
         />
+        <SourceLink />
       </div>
     );
   }

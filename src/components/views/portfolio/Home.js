@@ -3,8 +3,8 @@ import { Helmet } from "react-helmet";
 import "./../../../stylesheets/PortfolioHome.css";
 import Landing from "../common/Landing";
 import SocialBar from "../common/SocialBar";
+import SourceLink from "../common/SourceLink";
 import logo from "../../assets/PortfolioLogo.svg";
-
 export default class PortfolioHome extends Component {
   render() {
     const contactContent = [
@@ -35,9 +35,10 @@ export default class PortfolioHome extends Component {
           className="portfolio-landing"
           logo={logo}
           header="Martin Miglio"
-          signature="Welcome to my page"
+          signature="Check out my links"
         />
         <SocialBar contentList={contactContent} className="social" />
+        <SourceLink />
       </div>
     );
   }

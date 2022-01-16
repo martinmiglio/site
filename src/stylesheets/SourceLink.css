@@ -1,0 +1,14 @@
+.sourcelink {
+    color: slategray;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.sourcelink:hover {
+    opacity: 0.7;
+}
+
+#bottom {
+    position: absolute;
+    bottom: 10px;
+}
