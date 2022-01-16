@@ -10,12 +10,12 @@ export default class SocialBar extends Component {
         {contentList.map((item) => (
           <div className="cell" key={uuidv4()}>
             <span role="img" aria-labelledby={item.contactType}>
-              <a
+              <i
                 href={item.contactLink}
                 className={"fa fa-" + item.contactType}
               >
                 <div />
-              </a>
+              </i>
             </span>
           </div>
         ))}
