@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./../stylesheets/App.css";
 import PortfolioHome from "./views/portfolio/Home";
@@ -10,11 +10,11 @@ export default function App() {
   return (
     <Router basename="/">
       <div className="app-wrapper">
-        <Switch>
-          <Route path="/company" component={CompanyHome} />
-          <Route path="/gallery" component={GalleryHome} />
-          <Route exact path="/" component={PortfolioHome} />
-        </Switch>
+        <Routes>
+          <Route path="/company" element={<CompanyHome/>} />
+          <Route path="/gallery" element={<GalleryHome/>} />
+          <Route exact path="/" element={<PortfolioHome/>} />
+        </Routes>
       </div>
     </Router>
   );
