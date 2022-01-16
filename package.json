@@ -1,54 +1,44 @@
 {
     "name": "portfolio",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "main": "index.js",
     "homepage": "https://martinmiglio.dev/",
-    "private": true,
-    "dependencies": {
-        "@babel/core": "^7.13.0",
-        "babel-eslint": "^10.1.0",
-        "create-react-app": "^4.0.3",
-        "eslint-config-react-app": "^6.0.0",
-        "eslint-plugin-flowtype": "^5.10.0",
-        "gh-pages": "^3.2.3",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-helmet": "^6.1.0",
-        "react-router-dom": "^5.3.0",
-        "react-scripts": "^4.0.3",
-        "tar": "^6.1.11",
-        "typescript": "^4.4.3",
-        "uuid": "^8.3.2",
-        "yarn": "^1.22.11"
-    },
-    "devDependencies": {
-        "eslint": "^7.32.0",
-        "eslint-config-prettier": "^7.2.0",
-        "eslint-plugin-import": "^2.24.2",
-        "eslint-plugin-jsx-a11y": "^6.4.1",
-        "eslint-plugin-react": "^7.26.0",
-        "eslint-plugin-react-hooks": "^4.2.0",
-        "prettier": "^2.4.1"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "dev": "parcel src/index.html",
-        "predeploy": "yarn run build",
-        "deploy": "yarn run build && echo martinmiglio.dev > ./build/CNAME && gh-pages -d build",
-        "test": "react-scripts test --passWithNoTests",
-        "eject": "react-scripts eject",
-        "format": "prettier \"src/**/*.{js,html}\" --write",
-        "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
     },
     "author": "marmig0404",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.16.1",
+        "@testing-library/react": "^12.1.2",
+        "@testing-library/user-event": "^13.5.0",
+        "gh-pages": "^3.2.3",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-helmet": "^6.1.0",
+        "react-router-dom": "^6.2.1",
+        "react-scripts": "5.0.0",
+        "uuid": "^8.3.2",
+        "web-vitals": "^2.1.3"
+    },
+    "overrides": {
+        "mini-css-extract-plugin": "2.4.5"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --passWithNoTests",
+        "eject": "react-scripts eject",
+        "predeploy": "npm run build",
+        "deploy": "npm run build && echo martinmiglio.dev > ./build/CNAME && gh-pages -d build"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
     "browserslist": {
         "production": [
             ">0.2%",
