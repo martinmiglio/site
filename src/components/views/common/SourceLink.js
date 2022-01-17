@@ -4,7 +4,7 @@ import "./../../../stylesheets/SourceLink.css";
 export default class SourceLink extends Component {
   render() {
     return (
-      <div className="sourcelink-wraper">
+      <div className="sourcelink-wrapper">
         <a
           className="sourcelink"
           href="https://github.com/marmig0404/portfolio/"

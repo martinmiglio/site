@@ -31,14 +31,18 @@ export default class PortfolioHome extends Component {
         <Helmet>
           <title>{"Martin Miglio"}</title>
         </Helmet>
-        <Landing
-          className="portfolio-landing"
-          logo={logo}
-          header="Martin Miglio"
-          signature="Check out my links"
-        />
-        <SocialBar contentList={contactContent} className="social" />
-        <SourceLink />
+        <div className="content">
+          <Landing
+            className="portfolio-landing"
+            logo={logo}
+            header="Martin Miglio"
+            signature="Check out my links"
+          />
+          <SocialBar contentList={contactContent} className="social" />
+        </div>
+        <div className="footer">
+          <SourceLink className="sourcelink-wrapper" />
+        </div>
       </div>
     );
   }

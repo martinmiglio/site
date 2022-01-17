@@ -7,8 +7,3 @@
 .sourcelink:hover {
     opacity: 0.7;
 }
-
-#bottom {
-    position: absolute;
-    bottom: 10px;
-}

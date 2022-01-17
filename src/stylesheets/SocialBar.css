@@ -1,6 +1,7 @@
 .sb-wrapper {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .fa {

@@ -23,18 +23,22 @@ export default class CompanyHome extends Component {
         <Helmet>
           <title>{"DigiDev"}</title>
         </Helmet>
-        <Landing
-          logo={logo}
-          header="Come back soon!"
-          signature="Check Twitter for updates or email"
-          className="company-landing"
-        />
-        <SocialBar
-          contentList={contactContent}
-          className="social"
-          color="#282c34"
-        />
-        <SourceLink />
+        <div className="content">
+          <Landing
+            logo={logo}
+            header="Come back soon!"
+            signature="Check Twitter for updates or email"
+            className="company-landing"
+          />
+          <SocialBar
+            contentList={contactContent}
+            className="social"
+            color="#282c34"
+          />
+        </div>
+        <div className="footer">
+          <SourceLink className="sourcelink-wrapper" />
+        </div>
       </div>
     );
   }
