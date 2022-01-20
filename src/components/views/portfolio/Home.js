@@ -31,7 +31,7 @@ export default class PortfolioHome extends Component {
         <Helmet>
           <title>{"Martin Miglio"}</title>
         </Helmet>
-        <div className="content">
+        <div className="portfolio-content">
           <Landing
             className="portfolio-landing"
             logo={logo}
@@ -40,7 +40,7 @@ export default class PortfolioHome extends Component {
           />
           <SocialBar contentList={contactContent} className="social" />
         </div>
-        <div className="footer">
+        <div className="portfolio-footer">
           <SourceLink className="sourcelink-wrapper" />
         </div>
       </div>

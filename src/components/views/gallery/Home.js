@@ -25,7 +25,7 @@ export default class GalleryHome extends Component {
         <Helmet>
           <title>{"Miglio Sights"}</title>
         </Helmet>
-        <div className="content">
+        <div className="gallery-content">
           <Landing
             logo="https://lh3.googleusercontent.com/pw/AM-JKLWl0VLclBpsVzc1qoK2xVRaRAJ91S9MG6HQDPAHmToQosTMVC_uOGgY8CaK6JpRt9zdHJzeO--a5-qQDU41j6fQuzCed5jQZIriMNdXa8OT5xYzj9YRXlAJJTP_9WLpXhuWpIkZSAxn9Xa2HaJfFxiI2g=w1421-h947-no?authuser=0"
             header="Come back soon!"
@@ -33,7 +33,7 @@ export default class GalleryHome extends Component {
             className="gallery-landing"
           />
         </div>
-        <div className="footer">
+        <div className="gallery-footer">
           <SourceLink className="sourcelink-wrapper" />
         </div>
       </div>

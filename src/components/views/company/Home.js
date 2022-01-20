@@ -23,7 +23,7 @@ export default class CompanyHome extends Component {
         <Helmet>
           <title>{"DigiDev"}</title>
         </Helmet>
-        <div className="content">
+        <div className="company-content">
           <Landing
             logo={logo}
             header="Come back soon!"
@@ -36,7 +36,7 @@ export default class CompanyHome extends Component {
             color="#282c34"
           />
         </div>
-        <div className="footer">
+        <div className="company-footer">
           <SourceLink className="sourcelink-wrapper" />
         </div>
       </div>
