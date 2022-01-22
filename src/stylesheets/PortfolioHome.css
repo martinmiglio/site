@@ -10,12 +10,10 @@
 .portfolio-content {
     flex: 1 0 auto;
     padding: 10px;
-    width: 100vw;
 }
 
 .portfolio-footer {
     flex-shrink: 0;
     text-align: center;
     padding: 10px;
-    width: 100vw;
 }
