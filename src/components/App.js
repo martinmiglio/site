@@ -1,10 +1,13 @@
 import React from "react";
+import ReactGA from "react-ga";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./../stylesheets/App.css";
 import PortfolioHome from "./views/portfolio/Home";
 import CompanyHome from "./views/company/Home";
 import GalleryHome from "./views/gallery/Home";
+
+ReactGA.initialize("UA-148190769-1");
 
 export default function App() {
   return (
