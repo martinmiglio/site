@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+
 import "./../../../stylesheets/CompanyHome.css";
+
 import SocialBar from "../common/SocialBar";
 import Landing from "../common/Landing";
 import SourceLink from "../common/SourceLink";
+
 import logo from "../../assets/DDCLogo1.png";
 
 export default class CompanyHome extends Component {
@@ -41,5 +45,9 @@ export default class CompanyHome extends Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount() {
+    ReactGA.pageview(window.location.pathname);
   }
 }

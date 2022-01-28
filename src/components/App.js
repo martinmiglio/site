@@ -7,9 +7,8 @@ import PortfolioHome from "./views/portfolio/Home";
 import CompanyHome from "./views/company/Home";
 import GalleryHome from "./views/gallery/Home";
 
-ReactGA.initialize("UA-148190769-1");
-
 export default function App() {
+  ReactGA.initialize("UA-148190769-1");
   return (
     <Router basename="/">
       <div className="app-wrapper">

@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+
 import "./../../../stylesheets/PortfolioHome.css";
+
 import Landing from "../common/Landing";
 import SocialBar from "../common/SocialBar";
 import SourceLink from "../common/SourceLink";
+
 import logo from "../../assets/PortfolioLogo.svg";
+
 export default class PortfolioHome extends Component {
   render() {
     const contactContent = [
@@ -45,5 +50,9 @@ export default class PortfolioHome extends Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount() {
+    ReactGA.pageview(window.location.pathname);
   }
 }

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
+
+import "./../../../stylesheets/GalleryHome.css";
+
 import Landing from "../common/Landing";
 import SourceLink from "../common/SourceLink";
-//import logo from "../../assets/temp_gallery.png";
 // import Carousel from 'react-instagram-carousel';
-import "./../../../stylesheets/GalleryHome.css";
+
+//import logo from "../../assets/temp_gallery.png";
 
 export default class GalleryHome extends Component {
   render() {
@@ -38,5 +42,9 @@ export default class GalleryHome extends Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount() {
+    ReactGA.pageview(window.location.pathname);
   }
 }
