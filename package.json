@@ -1,59 +1,59 @@
 {
-  "name": "portfolio",
-  "version": "0.2.0",
-  "main": "index.js",
-  "homepage": "https://martinmiglio.dev/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
-  },
-  "author": "marmig0404",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^3.2.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-ga": "^3.3.0",
-    "react-helmet": "^6.1.0",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
-    "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
-  },
-  "devDependencies": {
-    "prettier": "^2.5.1"
-  },
-  "overrides": {
-    "mini-css-extract-plugin": "2.4.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "npm run build && echo martinmiglio.dev > ./build/CNAME && gh-pages -d build",
-    "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "portfolio",
+    "version": "0.2.0",
+    "main": "index.js",
+    "homepage": "https://martinmiglio.dev/",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
+    },
+    "author": "marmig0404",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.16.1",
+        "@testing-library/react": "^12.1.2",
+        "@testing-library/user-event": "^13.5.0",
+        "gh-pages": "^3.2.3",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-ga": "^3.3.0",
+        "react-helmet": "^6.1.0",
+        "react-router-dom": "^6.2.1",
+        "react-scripts": "5.0.0",
+        "uuid": "^8.3.2",
+        "web-vitals": "^2.1.4"
+    },
+    "devDependencies": {
+        "prettier": "^2.5.1"
+    },
+    "overrides": {
+        "mini-css-extract-plugin": "2.4.5"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --passWithNoTests",
+        "eject": "react-scripts eject",
+        "predeploy": "npm run build",
+        "deploy": "npm run build && echo martinmiglio.dev > ./build/CNAME && gh-pages -d build",
+        "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
