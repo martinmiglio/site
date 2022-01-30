@@ -49,5 +49,12 @@ export default class CompanyHome extends Component {
 
   componentDidMount() {
     ReactGA.pageview(window.location.pathname);
+    if (
+      window.location.href.split("/").pop() !==
+        "?utm_source=dev&utm_medium=dev" &&
+      (!process.env.NODE_ENV || process.env.NODE_ENV === "development")
+    ) {
+      window.location.href = "/#/company/?utm_source=dev&utm_medium=dev";
+    }
   }
 }
