@@ -44,11 +44,14 @@ export default class SocialBar extends Component {
           <div className="cell" key={uuidv4()}>
             <span role="img" aria-labelledby={item.contactContent}>
               <a
-                className={"icon"}
+                className={"icon-link"}
                 href={item.contactLink}
                 onClick={() => onLinkClick(item.contactContent)}
               >
-                <FontAwesomeIcon icon={getIcon(item.contactContent)} />
+                <FontAwesomeIcon
+                  className={"icon"}
+                  icon={getIcon(item.contactContent)}
+                />
                 <div />
               </a>
             </span>
