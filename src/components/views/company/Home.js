@@ -14,11 +14,11 @@ export default class CompanyHome extends Component {
   render() {
     const contactContent = [
       {
-        contactType: "twitter",
+        contactContent: "twitter",
         contactLink: "https://twitter.com/digidevllc",
       },
       {
-        contactType: "envelope",
+        contactContent: "mail",
         contactLink: "mailto:mail@digidev.llc",
       },
     ];

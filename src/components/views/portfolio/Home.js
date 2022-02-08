@@ -14,19 +14,19 @@ export default class PortfolioHome extends Component {
   render() {
     const contactContent = [
       {
-        contactType: "github",
+        contactContent: "github",
         contactLink: "https://github.com/marmig0404",
       },
       {
-        contactType: "envelope",
+        contactContent: "mail",
         contactLink: "mailto:marmig0404@gmail.com",
       },
       {
-        contactType: "linkedin",
+        contactContent: "linkedin",
         contactLink: "https://www.linkedin.com/in/martinmiglio",
       },
       {
-        contactType: "cube",
+        contactContent: "thingiverse",
         contactLink: "https://www.thingiverse.com/marmig0404/",
       },
     ];
