@@ -31,9 +31,6 @@
     "devDependencies": {
         "prettier": "^2.5.1"
     },
-    "overrides": {
-        "mini-css-extract-plugin": "2.4.5"
-    },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
