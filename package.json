@@ -36,8 +36,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test --passWithNoTests",
         "eject": "react-scripts eject",
-        "predeploy": "npm run build",
-        "deploy": "npm run build && echo martinmiglio.dev > ./build/CNAME && gh-pages -d build",
+        "predeploy": "npm run build && echo martinmiglio.dev > ./build/CNAME",
+        "deploy": " gh-pages -d build",
         "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
     },
     "eslintConfig": {
