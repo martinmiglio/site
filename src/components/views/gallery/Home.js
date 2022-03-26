@@ -1,16 +1,23 @@
-import React, { Component } from "react";
-import { reactGAPageChange } from "../../common/ReactGAUtil";
-import { Helmet } from "react-helmet";
+import React, {Component} from 'react';
+import {reactGAPageChange} from '../../common/ReactGAUtil';
+import {Helmet} from 'react-helmet';
 
-import "./../../../stylesheets/GalleryHome.css";
+import './../../../stylesheets/GalleryHome.css';
 
-import Landing from "../common/Landing";
-import SourceLink from "../common/SourceLink";
+import Landing from '../common/Landing';
+import SourceLink from '../common/SourceLink';
 // import Carousel from 'react-instagram-carousel';
 
-//import logo from "../../assets/temp_gallery.png";
+// import logo from "../../assets/temp_gallery.png";
 
+/**
+ * GalleryHome component (WIP!)
+ */
 export default class GalleryHome extends Component {
+  /**
+   * react render override
+   * @return {Component}
+   */
   render() {
     /*
     //get all iamges from image_folder
@@ -27,7 +34,7 @@ export default class GalleryHome extends Component {
     return (
       <div className="gallery-wrapper">
         <Helmet>
-          <title>{"Miglio Sights"}</title>
+          <title>{'Miglio Sights'}</title>
         </Helmet>
         <div className="gallery-content">
           <Landing
@@ -43,8 +50,10 @@ export default class GalleryHome extends Component {
       </div>
     );
   }
-
+  /**
+   * handle page change on mount
+   */
   componentDidMount() {
-    reactGAPageChange("/#/gallery/");
+    reactGAPageChange('/#/gallery/');
   }
 }

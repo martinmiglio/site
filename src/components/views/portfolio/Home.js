@@ -1,40 +1,47 @@
-import React, { Component } from "react";
-import { reactGAPageChange } from "../../common/ReactGAUtil";
-import { Helmet } from "react-helmet";
+import React, {Component} from 'react';
+import {reactGAPageChange} from '../../common/ReactGAUtil';
+import {Helmet} from 'react-helmet';
 
-import "./../../../stylesheets/PortfolioHome.css";
+import './../../../stylesheets/PortfolioHome.css';
 
-import Landing from "../common/Landing";
-import SocialBar from "../common/SocialBar";
-import SourceLink from "../common/SourceLink";
+import Landing from '../common/Landing';
+import SocialBar from '../common/SocialBar';
+import SourceLink from '../common/SourceLink';
 
-import logo from "../../assets/PortfolioLogo.svg";
+import logo from '../../assets/PortfolioLogo.svg';
 
+/**
+ * PortfolioHome component
+ */
 export default class PortfolioHome extends Component {
+  /**
+   * react render override
+   * @return {Component}
+   */
   render() {
     const contactContent = [
       {
-        contactContent: "github",
-        contactLink: "https://github.com/marmig0404",
+        contactContent: 'github',
+        contactLink: 'https://github.com/marmig0404',
       },
       {
-        contactContent: "mail",
-        contactLink: "mailto:marmig0404@gmail.com",
+        contactContent: 'mail',
+        contactLink: 'mailto:marmig0404@gmail.com',
       },
       {
-        contactContent: "linkedin",
-        contactLink: "https://www.linkedin.com/in/martinmiglio",
+        contactContent: 'linkedin',
+        contactLink: 'https://www.linkedin.com/in/martinmiglio',
       },
       {
-        contactContent: "thingiverse",
-        contactLink: "https://www.thingiverse.com/marmig0404/",
+        contactContent: 'thingiverse',
+        contactLink: 'https://www.thingiverse.com/marmig0404/',
       },
     ];
 
     return (
       <div className="portfolio-wrapper">
         <Helmet>
-          <title>{"Martin Miglio"}</title>
+          <title>{'Martin Miglio'}</title>
         </Helmet>
         <div className="portfolio-content">
           <Landing
@@ -51,8 +58,10 @@ export default class PortfolioHome extends Component {
       </div>
     );
   }
-
+  /**
+   * handle page change on mount
+   */
   componentDidMount() {
-    reactGAPageChange("/#/");
+    reactGAPageChange('/#/');
   }
 }

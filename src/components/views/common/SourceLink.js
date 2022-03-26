@@ -1,12 +1,22 @@
-import React, { Component } from "react";
-import ReactGA from "react-ga";
+import React, {Component} from 'react';
+import ReactGA from 'react-ga';
 
-import "./../../../stylesheets/SourceLink.css";
+import './../../../stylesheets/SourceLink.css';
 
+/**
+ * click event handler
+ */
 function onLinkClick() {
-  ReactGA.event({ category: "User", action: "Clicked source link" });
+  ReactGA.event({category: 'User', action: 'Clicked source link'});
 }
+/**
+ * SourceLink component
+ */
 export default class SourceLink extends Component {
+/**
+ * rect render override
+ * @return {Component}
+ */
   render() {
     return (
       <div className="sourcelink-wrapper">
@@ -16,7 +26,7 @@ export default class SourceLink extends Component {
           id="bottom"
           onClick={() => onLinkClick()}
         >
-          {"View Source Code"}
+          {'View Source Code'}
         </a>
       </div>
     );
