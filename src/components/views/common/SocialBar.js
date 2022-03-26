@@ -14,7 +14,7 @@ import "./../../../stylesheets/SocialBar.css";
 function onLinkClick(contactContent) {
   ReactGA.event({
     category: "User",
-    action: "Clicked social: " + contactContent,
+    action: `Clicked social: ${contactContent}`,
   });
 }
 
