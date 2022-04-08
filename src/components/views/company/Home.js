@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import {reactGAPageChange} from '../../common/ReactGAUtil';
 import {Helmet} from 'react-helmet';
-
-import './../../../stylesheets/CompanyHome.css';
-
-import SocialBar from '../common/SocialBar';
-import Landing from '../common/Landing';
-import SourceLink from '../common/SourceLink';
-
 import logo from '../../assets/DDCLogo1.png';
+import {pageChange} from '../../common/GoogleAnalytics';
+import Landing from '../common/Landing';
+import SocialBar from '../common/SocialBar';
+import SourceLink from '../common/SourceLink';
+import './../../../stylesheets/CompanyHome.css';
 
 /**
  * CompanyHome component
@@ -57,6 +54,6 @@ export default class CompanyHome extends Component {
    * handle page change on mount
    */
   componentDidMount() {
-    reactGAPageChange('/#/company/');
+    pageChange('/#/company/');
   }
 }

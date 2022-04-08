@@ -1,18 +1,18 @@
 import React from 'react';
-import ReactGA from 'react-ga';
 import {HashRouter as Router, Route, Routes} from 'react-router-dom';
-
 import './../stylesheets/App.css';
-import PortfolioHome from './views/portfolio/Home';
+import {initializeGA} from './common/GoogleAnalytics';
 import CompanyHome from './views/company/Home';
 import GalleryHome from './views/gallery/Home';
+import PortfolioHome from './views/portfolio/Home';
+
 
 /**
  * main app
  * @return {Component} App with routing
  */
 export default function App() {
-  ReactGA.initialize('UA-148190769-1');
+  initializeGA();
   return (
     <Router basename="/">
       <div className="app-wrapper">

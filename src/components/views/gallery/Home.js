@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {reactGAPageChange} from '../../common/ReactGAUtil';
 import {Helmet} from 'react-helmet';
-
-import './../../../stylesheets/GalleryHome.css';
-
+import {pageChange} from '../../common/GoogleAnalytics';
 import Landing from '../common/Landing';
 import SourceLink from '../common/SourceLink';
+import './../../../stylesheets/GalleryHome.css';
+
+
 // import Carousel from 'react-instagram-carousel';
 
 // import logo from "../../assets/temp_gallery.png";
@@ -54,6 +54,6 @@ export default class GalleryHome extends Component {
    * handle page change on mount
    */
   componentDidMount() {
-    reactGAPageChange('/#/gallery/');
+    pageChange('/#/gallery/');
   }
 }

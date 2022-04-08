@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import {reactGAPageChange} from '../../common/ReactGAUtil';
 import {Helmet} from 'react-helmet';
-
-import './../../../stylesheets/PortfolioHome.css';
-
+import logo from '../../assets/PortfolioLogo.svg';
+import {pageChange} from '../../common/GoogleAnalytics';
 import Landing from '../common/Landing';
 import SocialBar from '../common/SocialBar';
 import SourceLink from '../common/SourceLink';
+import './../../../stylesheets/PortfolioHome.css';
 
-import logo from '../../assets/PortfolioLogo.svg';
 
 /**
  * PortfolioHome component
@@ -62,6 +60,6 @@ export default class PortfolioHome extends Component {
    * handle page change on mount
    */
   componentDidMount() {
-    reactGAPageChange('/#/');
+    pageChange('/#/');
   }
 }

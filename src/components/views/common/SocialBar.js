@@ -1,27 +1,13 @@
-import React, {Component} from 'react';
-import ReactGA from 'react-ga';
-import {v4 as uuidv4} from 'uuid';
+import {faGithub, faLinkedinIn, faTwitter}
+  from '@fortawesome/free-brands-svg-icons';
+import {faCube, faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import
-{
-  faTwitter,
-  faLinkedinIn,
-  faGithub,
-} from '@fortawesome/free-brands-svg-icons';
-import {faEnvelope, faCube} from '@fortawesome/free-solid-svg-icons';
-
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {v4 as uuidv4} from 'uuid';
+import {socialBarEvent} from '../../common/GoogleAnalytics';
 import './../../../stylesheets/SocialBar.css';
 
-/**
- * click event handler
- * @param {string} contactContent Name of contact event
- */
-function onLinkClick(contactContent) {
-  ReactGA.event({
-    category: 'User',
-    action: `Clicked social: ${contactContent}`,
-  });
-}
 
 /**
  *  get fontawesome defenition from string
@@ -62,7 +48,7 @@ export default class SocialBar extends Component {
               <a
                 className={'icon-link'}
                 href={item.contactLink}
-                onClick={() => onLinkClick(item.contactContent)}
+                onClick={() => socialBarEvent(item.contactContent)}
               >
                 <FontAwesomeIcon
                   className={'icon'}

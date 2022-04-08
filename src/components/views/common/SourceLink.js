@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-import ReactGA from 'react-ga';
-
+import {sourceLinkEvent} from '../../common/GoogleAnalytics';
 import './../../../stylesheets/SourceLink.css';
 
-/**
- * click event handler
- */
-function onLinkClick() {
-  ReactGA.event({category: 'User', action: 'Clicked source link'});
-}
+
 /**
  * SourceLink component
  */
@@ -24,7 +18,7 @@ export default class SourceLink extends Component {
           className="sourcelink"
           href="https://github.com/marmig0404/portfolio/"
           id="bottom"
-          onClick={() => onLinkClick()}
+          onClick={() => sourceLinkEvent()}
         >
           {'View Source Code'}
         </a>
