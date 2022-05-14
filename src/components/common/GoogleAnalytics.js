@@ -19,6 +19,7 @@ export function pageChange(page) {
   const devQuery = '?utm_source=dev&utm_medium=dev';
   if (
     window.location.href.split('/').pop() !== devQuery &&
+    // eslint-disable-next-line no-undef
     (!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
   ) {
     window.location.href = page + devQuery;

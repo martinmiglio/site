@@ -18,11 +18,10 @@
         "@testing-library/jest-dom": "^5.16.2",
         "@testing-library/react": "^12.1.4",
         "@testing-library/user-event": "^14.0.4",
-        "gh-pages": "^3.2.3",
         "prop-types": "^15.8.1",
-        "react-ga4": "^1.4.1",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
+        "react-ga4": "^1.4.1",
         "react-helmet": "^6.1.0",
         "react-router-dom": "^6.3.0",
         "react-scripts": "^5.0.0",
@@ -30,15 +29,18 @@
         "web-vitals": "^2.1.4"
     },
     "devDependencies": {
-        "eslint": "^8.12.0",
+        "eslint": "^8.15.0",
         "eslint-config-google": "^0.14.0",
-        "eslint-plugin-react": "^7.29.4"
+        "eslint-plugin-react": "^7.29.4",
+        "gh-pages": "^3.2.3"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test --passWithNoTests",
         "eject": "react-scripts eject",
+        "lint": "eslint \"src/**/*.{js,hsx}\"",
+        "fixlint": "eslint \"src/**/*.{js,hsx}\" --fix",
         "predeploy": "npm run build && echo martinmiglio.dev > ./build/CNAME",
         "deploy": " gh-pages -d build"
     },
