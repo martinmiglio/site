@@ -1,7 +1,6 @@
 .cl-wrapper {
     display: flex;
     flex-direction: column;
-    flex-flow: column;
     align-items: center;
 }
 
