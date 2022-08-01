@@ -2,9 +2,9 @@ import React from 'react';
 import {HashRouter as Router, Route, Routes} from 'react-router-dom';
 import './../stylesheets/App.css';
 import {initializeGA} from './common/GoogleAnalytics';
-import CompanyHome from './views/company/Home';
-import GalleryHome from './views/gallery/Home';
-import PortfolioHome from './views/portfolio/Home';
+import CompanyHome from './views/company/CompanyHome';
+import GalleryHome from './views/gallery/GalleryHome';
+import PortfolioHome from './views/portfolio/PortfolioHome';
 
 
 /**
