@@ -8,8 +8,8 @@ import './../../../stylesheets/SourceLink.css';
  */
 export default class SourceLink extends Component {
 /**
- * rect render override
- * @return {Component}
+ * react render override
+ * @return {ComJSX.Elementponent}
  */
   render() {
     return (

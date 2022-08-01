@@ -9,7 +9,7 @@ import PortfolioHome from './views/portfolio/Home';
 
 /**
  * main app
- * @return {Component} App with routing
+ * @return {JSX.Element} App with routing
  */
 export default function App() {
   initializeGA();

@@ -8,7 +8,7 @@ import './../../../stylesheets/Landing.css';
 export default class Landing extends Component {
   /**
    * react render override
-   * @return {Component}
+   * @return {JSX.Element}
    */
   render() {
     return (

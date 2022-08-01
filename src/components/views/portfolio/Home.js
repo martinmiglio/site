@@ -14,7 +14,7 @@ import './../../../stylesheets/PortfolioHome.css';
 export default class PortfolioHome extends Component {
   /**
    * react render override
-   * @return {Component}
+   * @return {JSX.Element}
    */
   render() {
     const contactContent = [

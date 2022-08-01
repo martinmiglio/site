@@ -13,7 +13,7 @@ import './../../../stylesheets/CompanyHome.css';
 export default class CompanyHome extends Component {
   /**
    * react render override
-   * @return {Component}
+   * @return {JSX.Element}
    */
   render() {
     const contactContent = [

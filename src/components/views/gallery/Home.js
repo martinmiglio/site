@@ -16,7 +16,7 @@ import './../../../stylesheets/GalleryHome.css';
 export default class GalleryHome extends Component {
   /**
    * react render override
-   * @return {Component}
+   * @return {JSX.Element}
    */
   render() {
     /*

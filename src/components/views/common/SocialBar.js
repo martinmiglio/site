@@ -36,7 +36,7 @@ function getIcon(contactContent) {
 export default class SocialBar extends Component {
   /**
    * react render override
-   * @return {Component}
+   * @return {JSX.Element}
    */
   render() {
     const contentList = this.props.contentList;
