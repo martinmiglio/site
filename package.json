@@ -29,7 +29,7 @@
         "web-vitals": "^3.0.2"
     },
     "devDependencies": {
-        "eslint": "^8.23.1",
+        "eslint": "^8.24.0",
         "eslint-config-google": "^0.14.0",
         "eslint-plugin-react": "^7.31.8",
         "gh-pages": "^4.0.0"
