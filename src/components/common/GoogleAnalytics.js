@@ -1,10 +1,19 @@
 import ReactGA from 'react-ga4';
+import {process} from 'process';
+
+const GA_MEASUREMENT_ID = 'G-KNE7S7EQFD';
 
 /**
  * Initialize google analytics with tracking ID and settings
  */
 export function initializeGA() {
-  ReactGA.initialize('UA-148190769-1');
+  const isDev = process.env.NODE_ENV === 'development';
+  console.log('isDev: ', isDev);
+  ReactGA.initialize(GA_MEASUREMENT_ID, {
+    gaOptions: {debug_mode: isDev},
+    gtagOptions: {debug_mode: isDev},
+    debug: isDev,
+  });
 }
 
 /**
