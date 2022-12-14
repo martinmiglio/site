@@ -64,6 +64,5 @@ export default class SocialBar extends Component {
   }
 }
 SocialBar.propTypes = {
-  contentList: PropTypes.string.isRequired,
-  contactContent: PropTypes.string.isRequired,
+  contentList: PropTypes.array.isRequired,
 };
