@@ -49,6 +49,7 @@ export default class SocialBar extends Component {
                 className={'icon-link'}
                 href={item.contactLink}
                 onClick={() => socialBarEvent(item.contactContent)}
+                onContextMenu={() => socialBarEvent(item.contactContent)}
               >
                 <FontAwesomeIcon
                   className={'icon'}
