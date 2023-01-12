@@ -4,15 +4,6 @@
     justify-content: center;
 }
 
-.icon {
-    color: slategray;
-    padding: 10px;
-    font-size: 50px;
-    width: 50px;
-    text-align: center;
-    text-decoration: none;
-}
-
 .icon:hover {
     opacity: 0.7;
 }

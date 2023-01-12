@@ -42,7 +42,7 @@ export default class SocialBar extends Component {
     const contentList = this.props.contentList;
     return (
       <div className="sb-wrapper">
-        {contentList.map((item) => (
+        {contentList.map((item, index) => (
           <div className="cell" key={uuidv4()}>
             <span role="img" aria-labelledby={item.contactContent}>
               <a
@@ -51,9 +51,24 @@ export default class SocialBar extends Component {
                 onClick={() => socialBarEvent(item.contactContent)}
                 onContextMenu={() => socialBarEvent(item.contactContent)}
               >
+                {console.log(index)}
                 <FontAwesomeIcon
-                  className={'icon'}
+                  className={'icon fa-bounce'}
                   icon={getIcon(item.contactContent)}
+                  style={{'color': 'slategray',
+                    'padding': '10px',
+                    'fontSize': '50px',
+                    'width': '50px',
+                    'textAlign': 'center',
+                    'textDecoration': 'none',
+                    '--fa-animation-iteration-count': 3,
+                    '--fa-animation-delay': `${index*100}ms`,
+                    '--fa-bounce-start-scale-x': 1,
+                    '--fa-bounce-start-scale-y': 1,
+                    '--fa-bounce-jump-scale-x': 1,
+                    '--fa-bounce-jump-scale-y': 1,
+                    '--fa-bounce-land-scale-x': 1,
+                    '--fa-bounce-land-scale-y': 1}}
                 />
                 <div />
               </a>
