@@ -1,49 +1,39 @@
 {
     "name": "portfolio",
-    "version": "0.2.0",
-    "main": "index.js",
     "homepage": "https://martinmiglio.dev/",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
     },
-    "author": "marmig0404",
-    "private": true,
+    "author": "Martin Miglio",
     "dependencies": {
+        "next": "^13.1.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-ga4": "^1.4.1",
+        "prop-types": "^15.8.1",
+        "uuid": "^9.0.0",
+        "web-vitals": "^3.1.1",
         "@fortawesome/fontawesome-svg-core": "^6.2.1",
         "@fortawesome/free-brands-svg-icons": "^6.2.1",
         "@fortawesome/free-regular-svg-icons": "^6.2.1",
         "@fortawesome/free-solid-svg-icons": "^6.2.1",
-        "@fortawesome/react-fontawesome": "^0.2.0",
-        "process": "^0.11.10",
-        "prop-types": "^15.8.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-ga4": "^1.4.1",
-        "react-helmet": "^6.1.0",
-        "react-router-dom": "^6.6.2",
-        "react-scripts": "^5.0.1",
-        "uuid": "^9.0.0",
-        "web-vitals": "^3.1.1"
+        "@fortawesome/react-fontawesome": "^0.2.0"
     },
     "devDependencies": {
-        "@testing-library/jest-dom": "^5.16.5",
-        "@testing-library/react": "^13.4.0",
-        "@testing-library/user-event": "^14.4.3",
+        "@next/eslint-plugin-next": "^13.1.2",
         "eslint": "^8.32.0",
-        "eslint-config-google": "^0.14.0",
-        "eslint-plugin-react": "^7.32.0",
-        "gh-pages": "^4.0.0"
+        "eslint-config-next": "^13.1.2",
+        "eslint-config-react-app": "^7.0.1",
+        "eslint-plugin-react": "^7.31.11",
+        "gh-pages": "^4.0.0",
+        "touch": "^3.1.0"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --passWithNoTests",
-        "eject": "react-scripts eject",
-        "lint": "eslint \"src/**/*.{js,hsx}\"",
-        "fixlint": "eslint \"src/**/*.{js,hsx}\" --fix",
-        "predeploy": "npm run build && echo martinmiglio.dev > ./build/CNAME",
-        "deploy": " gh-pages -d build"
+        "dev": "next dev",
+        "build": "next build",
+        "export": "next export -o build",
+        "deploy": "npm run build && npm run export && nodetouch ./build/.nojekyll && gh-pages -d build -t true"
     },
     "eslintConfig": {
         "extends": [

@@ -1,65 +1,57 @@
-import React, {Component} from 'react';
-import {Helmet} from 'react-helmet';
-import logo from '../../assets/PortfolioLogo.svg';
-import {pageChange} from '../../common/GoogleAnalytics';
-import Landing from '../common/Landing';
-import SocialBar from '../common/SocialBar';
-import SourceLink from '../common/SourceLink';
-import './../../../stylesheets/PortfolioHome.css';
+import React from "react";
 
+import { pageChange, initializeGA } from "../GoogleAnalytics";
+import Landing from "../components/Landing";
+import SocialBar from "../components/SocialBar";
+import SourceLink from "../components/SourceLink";
+import Header from "../components/Header";
 
-/**
- * PortfolioHome component
- */
-export default class PortfolioHome extends Component {
-  /**
-   * react render override
-   * @return {JSX.Element}
-   */
-  render() {
-    const contactContent = [
-      {
-        contactContent: 'github',
-        contactLink: 'https://github.com/marmig0404',
-      },
-      {
-        contactContent: 'mail',
-        contactLink: 'mailto:marmig0404@gmail.com',
-      },
-      {
-        contactContent: 'linkedin',
-        contactLink: 'https://www.linkedin.com/in/martinmiglio',
-      },
-      {
-        contactContent: 'thingiverse',
-        contactLink: 'https://www.thingiverse.com/marmig0404/',
-      },
-    ];
+import styles from "../styles/PortfolioHome.module.css";
+import logo from "../assets/PortfolioLogo.svg";
 
-    return (
-      <div className="portfolio-wrapper">
-        <Helmet>
-          <title>{'Martin Miglio'}</title>
-        </Helmet>
-        <div className="portfolio-content">
-          <Landing
-            className="portfolio-landing"
-            logo={logo}
-            header="Martin Miglio"
-            signature="Check out my links"
-          />
-          <SocialBar contentList={contactContent} className="social" />
-        </div>
-        <div className="portfolio-footer">
-          <SourceLink className="sourcelink-wrapper" />
-        </div>
+const contactContent = [
+  {
+    contactContent: "github",
+    contactLink: "https://github.com/marmig0404",
+  },
+  {
+    contactContent: "mail",
+    contactLink: "mailto:marmig0404@gmail.com",
+  },
+  {
+    contactContent: "linkedin",
+    contactLink: "https://www.linkedin.com/in/martinmiglio",
+  },
+  {
+    contactContent: "thingiverse",
+    contactLink: "https://www.thingiverse.com/marmig0404/",
+  },
+];
+
+initializeGA();
+
+export default function PortfolioHome() {
+  React.useEffect(() => {
+    pageChange(window.location.pathname);
+  }, []);
+  return (
+    <div className={styles.wrapper}>
+      <Header
+        title="Martin Miglio"
+        decsription="My Portfolio"
+        keywords="Martin Miglio Portfolio"
+      />
+      <div className={styles.content}>
+        <Landing
+          logo={logo}
+          header="Martin Miglio"
+          signature="Check out my links"
+        />
+        <SocialBar contentList={contactContent} />
       </div>
-    );
-  }
-  /**
-   * handle page change on mount
-   */
-  componentDidMount() {
-    pageChange('/#/');
-  }
+      <div className={styles.footer}>
+        <SourceLink />
+      </div>
+    </div>
+  );
 }

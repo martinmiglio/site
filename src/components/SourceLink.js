@@ -1,26 +1,18 @@
-import React, {Component} from 'react';
-import {sourceLinkEvent} from '../../common/GoogleAnalytics';
-import './../../../stylesheets/SourceLink.css';
+import React, { Component } from "react";
+import { sourceLinkEvent } from "../GoogleAnalytics";
+import styles from "../styles/SourceLink.module.css";
 
-
-/**
- * SourceLink component
- */
 export default class SourceLink extends Component {
-/**
- * react render override
- * @return {ComJSX.Elementponent}
- */
   render() {
     return (
-      <div className="sourcelink-wrapper">
+      <div className={styles.wrapper}>
         <a
-          className="sourcelink"
+          className={styles.sourcelink}
           href="https://github.com/marmig0404/portfolio/"
           id="bottom"
           onClick={() => sourceLinkEvent()}
         >
-          {'View Source Code'}
+          {"View Source Code"}
         </a>
       </div>
     );
