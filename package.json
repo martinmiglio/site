@@ -21,7 +21,7 @@
         "@fortawesome/react-fontawesome": "^0.2.0"
     },
     "devDependencies": {
-        "@next/eslint-plugin-next": "^13.1.4",
+        "@next/eslint-plugin-next": "^13.1.6",
         "eslint": "^8.32.0",
         "eslint-config-next": "^13.1.4",
         "eslint-config-react-app": "^7.0.1",
