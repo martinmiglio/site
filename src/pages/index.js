@@ -40,6 +40,7 @@ export default function PortfolioHome() {
         title="Martin Miglio"
         decsription="My Portfolio"
         keywords="Martin Miglio Portfolio"
+        url="https://martinmiglio.dev/"
       />
       <div className={styles.content}>
         <Landing

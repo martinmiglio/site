@@ -9,6 +9,7 @@ export default class Header extends Component {
       title: this.props.title,
       description: this.props.description,
       keywords: this.props.keywords,
+      canonicalUrl: this.props.url,
     };
   }
 
@@ -28,6 +29,7 @@ export default class Header extends Component {
         <meta property="twitter:card" content={this.state.description} />
         <meta property="twitter:title" content={this.state.title} />
         <meta property="twitter:description" content={this.state.description} />
+        <link rel="canonical" href={this.state.canonicalUrl} />
         <meta httpEquiv="Cache-Control" content="max-age=86400" />
         <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
