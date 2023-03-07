@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { pageChange, initializeGA } from "../GoogleAnalytics";
 import Landing from "../components/Landing";
@@ -28,12 +28,12 @@ const contactContent = [
   },
 ];
 
-initializeGA();
-
 export default function PortfolioHome() {
-  React.useEffect(() => {
+  useEffect(() => {
+    initializeGA();
     pageChange(window.location.pathname);
   }, []);
+
   return (
     <div className={styles.wrapper}>
       <Header
