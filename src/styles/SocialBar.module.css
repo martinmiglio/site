@@ -1,9 +1,0 @@
-.wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.icon:hover {
-    opacity: 0.7;
-}
