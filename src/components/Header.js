@@ -17,7 +17,7 @@ export default class Header extends Component {
     return (
       <Head>
         <title>{this.state.title}</title>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <meta name="description" content={this.state.description} />
         <meta name="keywords" content={this.state.keywords} />
         <meta property="og:type" content="website" />
@@ -31,7 +31,7 @@ export default class Header extends Component {
         <meta property="twitter:description" content={this.state.description} />
         <link rel="canonical" href={this.state.canonicalUrl} />
         <meta httpEquiv="Cache-Control" content="max-age=86400" />
-        <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+        <meta httpEquiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
     );
   }
