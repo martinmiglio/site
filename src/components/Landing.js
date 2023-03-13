@@ -8,15 +8,11 @@ export default class Landing extends Component {
     return (
       <div className={styles.wrapper}>
         <header className={styles.header}>
-          <Image
-            src={this.props.logo}
-            className={styles.logo}
-            alt="logo"
-          />
+          {this.props.logo ? (
+            <Image src={this.props.logo} className={styles.logo} />
+          ) : null}
           <h1>{this.props.header}</h1>
-          <p className={styles.signature}>
-            {this.props.signature}
-          </p>
+          <p className={styles.signature}>{this.props.signature}</p>
         </header>
       </div>
     );
