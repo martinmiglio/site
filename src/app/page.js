@@ -47,27 +47,37 @@ export default function PortfolioHome() {
     }, animDuration);
   }, [anim]);
 
-  const wrapperStyle = {
-    display: "flex",
-    flexFlow: "column",
-    alignItems: "center",
-    minHeight: "100vh",
-    maxWidth: "100vw",
-    backgroundImage: `url(${backgroundImage.src})`,
-  };
-
   const filter = `
-    blur(max(10vw , ${anim}px))
+    blur(30px)
     hue-rotate(${-1 * anim}deg)
     saturate(150%)
   `;
 
-  const contentStyle = {
+  const wrapperStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     height: "100vh",
     width: "100vw",
-    backdropFilter: filter,
-    WebkitBackdropFilter: filter,
-    transition: `all ${animDuration}ms ease-in-out`,
+    overflow: "hidden",
+  };
+
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImage.src})`,
+    transform: "scale(2.0)", // remove the white border on blur
+    filter: filter,
+    WebkitFilter: filter,
+    transition: `filter, -webkit-filter ${animDuration}ms ease-in-out`,
+    height: "100%",
+    width: "100%",
+  };
+
+  const contentStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    height: "100vh",
+    width: "100vw",
     display: "flex",
     flexFlow: "column",
   };
@@ -81,12 +91,7 @@ export default function PortfolioHome() {
 
   return (
     <div style={wrapperStyle}>
-      <Header
-        title="Martin Miglio"
-        decsription="My Portfolio"
-        keywords="Martin Miglio Portfolio"
-        url="https://martinmiglio.dev/"
-      />
+      <div style={backgroundStyle} />
       <div style={contentStyle}>
         <Landing header="Martin Miglio" signature="Check out my links" />
         <SocialBar contentList={contactContent} />
