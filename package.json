@@ -3,7 +3,7 @@
     "homepage": "https://martinmiglio.dev/",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/marmig0404/marmig0404.github.io.git"
+        "url": "git+https://github.com/marmig0404/portfolio"
     },
     "author": "Martin Miglio",
     "dependencies": {
@@ -31,7 +31,7 @@
         "dev": "next dev",
         "build": "next build",
         "export": "next export -o build",
-        "deploy": "npm run build && npm run export && echo martinmiglio.dev > ./build/CNAME && nodetouch ./build/.nojekyll && gh-pages -d build -t true"
+        "deploy": "npm run build && npm run export && echo martinmiglio.dev > ./build/CNAME && nodetouch ./build/.nojekyll && gh-pages -d build -t true -r https://github.com/marmig0404/portfolio"
     },
     "eslintConfig": {
         "extends": [
