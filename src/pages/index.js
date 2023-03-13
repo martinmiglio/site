@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { pageChange, initializeGA } from "../GoogleAnalytics";
 import Landing from "../components/Landing";
@@ -6,8 +6,7 @@ import SocialBar from "../components/SocialBar";
 import SourceLink from "../components/SourceLink";
 import Header from "../components/Header";
 
-import styles from "../styles/PortfolioHome.module.css";
-import logo from "../assets/PortfolioLogo.svg";
+import backgroundImage from "../assets/frame_background.svg";
 
 const contactContent = [
   {
@@ -34,24 +33,66 @@ export default function PortfolioHome() {
     pageChange(window.location.pathname);
   }, []);
 
+  const animDuration = 5000;
+  const maxAnim = 45;
+  const minAnim = 0;
+  const [anim, setAnim] = useState(minAnim);
+  useEffect(() => {
+    setAnim(maxAnim);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAnim(anim === minAnim ? maxAnim : minAnim);
+    }, animDuration);
+  }, [anim]);
+
+  const wrapperStyle = {
+    display: "flex",
+    flexFlow: "column",
+    alignItems: "center",
+    minHeight: "100vh",
+    maxWidth: "100vw",
+    backgroundImage: `url(${backgroundImage.src})`,
+  };
+
+  const filter = `
+    blur(max(10vw , ${anim}px))
+    hue-rotate(${-1 * anim}deg)
+    saturate(150%)
+  `;
+
+  const contentStyle = {
+    height: "100vh",
+    width: "100vw",
+    backdropFilter: filter,
+    WebkitBackdropFilter: filter,
+    transition: `all ${animDuration}ms ease-in-out`,
+    display: "flex",
+    flexFlow: "column",
+  };
+
+  const footerStyle = {
+    flexShrink: 0,
+    textAlign: "center",
+    padding: "10px",
+    marginTop: "auto",
+  };
+
   return (
-    <div className={styles.wrapper}>
+    <div style={wrapperStyle}>
       <Header
         title="Martin Miglio"
         decsription="My Portfolio"
         keywords="Martin Miglio Portfolio"
         url="https://martinmiglio.dev/"
       />
-      <div className={styles.content}>
-        <Landing
-          logo={logo}
-          header="Martin Miglio"
-          signature="Check out my links"
-        />
+      <div style={contentStyle}>
+        <Landing header="Martin Miglio" signature="Check out my links" />
         <SocialBar contentList={contactContent} />
-      </div>
-      <div className={styles.footer}>
-        <SourceLink />
+        <div style={footerStyle}>
+          <SourceLink />
+        </div>
       </div>
     </div>
   );

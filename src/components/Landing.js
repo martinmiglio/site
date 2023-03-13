@@ -1,24 +1,29 @@
-import React, { Component } from "react";
-import Image from "next/image";
-import PropTypes from "prop-types";
-import styles from "../styles/Landing.module.css";
+export default function Landing({ header, signature, logo }) {
+  const wrapperStyle = {
+    textAlign: "center",
+  };
 
-export default class Landing extends Component {
-  render() {
-    return (
-      <div className={styles.wrapper}>
-        <header className={styles.header}>
-          {this.props.logo ? (
-            <Image src={this.props.logo} className={styles.logo} />
-          ) : null}
-          <h1>{this.props.header}</h1>
-          <p className={styles.signature}>{this.props.signature}</p>
-        </header>
-      </div>
-    );
-  }
+  const headerStyle = {
+    minHeight: "30vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "calc(8px + 2vmin)",
+    color: "white",
+  };
+
+  const signatureStyle = {
+    color: "#a6fff2",
+    textAlign: "right",
+  };
+
+  return (
+    <div style={wrapperStyle}>
+      <header style={headerStyle}>
+        <h1>{header}</h1>
+        <p style={signatureStyle}>{signature}</p>
+      </header>
+    </div>
+  );
 }
-Landing.propTypes = {
-  header: PropTypes.string.isRequired,
-  signature: PropTypes.string.isRequired,
-};
