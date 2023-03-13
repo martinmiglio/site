@@ -1,12 +1,12 @@
+"use client";
+
 import { useEffect, useState } from "react";
-
+import dynamic from "next/dynamic";
 import { pageChange, initializeGA } from "../GoogleAnalytics";
-import Landing from "../components/Landing";
-import SocialBar from "../components/SocialBar";
-import SourceLink from "../components/SourceLink";
-import Header from "../components/Header";
-
 import backgroundImage from "../assets/frame_background.svg";
+const Landing = dynamic(() => import("../components/Landing"));
+const SocialBar = dynamic(() => import("../components/SocialBar"));
+const SourceLink = dynamic(() => import("../components/SourceLink"));
 
 const contactContent = [
   {
