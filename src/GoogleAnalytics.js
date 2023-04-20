@@ -8,7 +8,6 @@ const GA_MEASUREMENT_ID = 'G-KNE7S7EQFD';
  */
 export function initializeGA() {
   const isDev = process.env.NODE_ENV === 'development';
-  console.log('isDev: ', isDev);
   ReactGA.initialize(GA_MEASUREMENT_ID, {
     gaOptions: {debug_mode: isDev},
     gtagOptions: {debug_mode: isDev},
