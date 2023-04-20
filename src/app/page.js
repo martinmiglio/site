@@ -15,7 +15,7 @@ const contactContent = [
   },
   {
     contactContent: "mail",
-    contactLink: "mailto:marmig0404@gmail.com",
+    contactLink: "mailto:contact@martinmiglio.dev",
   },
   {
     contactContent: "linkedin",
