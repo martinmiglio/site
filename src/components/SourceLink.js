@@ -11,7 +11,7 @@ export default function SourceLink() {
     <div>
       <a
         style={sourceLinkStyle}
-        href="https://github.com/marmig0404/portfolio/"
+        href="https://github.com/martinmiglio/portfolio/"
         id="bottom"
         onClick={() => sourceLinkEvent()}
       >

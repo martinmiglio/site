@@ -11,7 +11,7 @@ const SourceLink = dynamic(() => import("../components/SourceLink"));
 const contactContent = [
   {
     contactContent: "github",
-    contactLink: "https://github.com/marmig0404",
+    contactLink: "https://github.com/martinmiglio",
   },
   {
     contactContent: "mail",
