@@ -13,7 +13,7 @@
         "react-ga4": "^2.0.0"
     },
     "devDependencies": {
-        "@next/eslint-plugin-next": "^13.4.3",
+        "@next/eslint-plugin-next": "^13.4.5",
         "eslint": "^8.42.0",
         "eslint-config-next": "^13.4.4",
         "eslint-config-react-app": "^7.0.1",
