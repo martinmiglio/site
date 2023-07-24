@@ -1,101 +1,81 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import { pageChange, initializeGA } from "../GoogleAnalytics";
-import backgroundImage from "@/assets/frame_background.svg";
-const SocialBar = dynamic(() => import("@/components/SocialBar"));
-const SourceLink = dynamic(() => import("@/components/SourceLink"));
-
-const contactContent = [
-  {
-    contactContent: "github",
-    contactLink: "https://github.com/martinmiglio",
-  },
-  {
-    contactContent: "mail",
-    contactLink: "mailto:contact@martinmiglio.dev",
-  },
-  {
-    contactContent: "linkedin",
-    contactLink: "https://www.linkedin.com/in/martinmiglio",
-  },
-  {
-    contactContent: "thingiverse",
-    contactLink: "https://www.thingiverse.com/marmig0404/",
-  },
-];
+import SocialBar from "@/components/SocialBar";
+import Link from "next/link";
 
 export default function PortfolioHome() {
-  useEffect(() => {
-    initializeGA();
-    pageChange(window.location.pathname);
-  }, []);
-
-  const animDuration = 5000;
-  const maxAnim = 45;
-  const minAnim = 0;
-  const [anim, setAnim] = useState(minAnim);
-  useEffect(() => {
-    setAnim(maxAnim);
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setAnim(anim === minAnim ? maxAnim : minAnim);
-    }, animDuration);
-  }, [anim]);
-
-  const filter = `
-    blur(30px)
-    hue-rotate(${-1 * anim}deg)
-    saturate(150%)
-  `;
-
-  const wrapperStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "100vh",
-    width: "100vw",
-    overflow: "hidden",
-  };
-
-  const backgroundStyle = {
-    backgroundImage: `url(${backgroundImage.src})`,
-    transform: "scale(2.0)", // remove the white border on blur
-    filter: filter,
-    WebkitFilter: filter,
-    transition: `filter, -webkit-filter ${animDuration}ms ease-in-out`,
-    height: "100%",
-    width: "100%",
-  };
-
-  const contentStyle = {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    height: "100vh",
-    width: "100vw",
-    display: "flex",
-    flexFlow: "column",
-  };
-
-  const footerStyle = {
-    flexShrink: 0,
-    textAlign: "center",
-    padding: "10px",
-    marginTop: "auto",
-  };
-
   return (
-    <div style={wrapperStyle}>
-      <div style={backgroundStyle} />
-      <div style={contentStyle}>
-        <SocialBar contentList={contactContent} />
-        <div style={footerStyle}>
-          <SourceLink />
+    <div className="flex h-screen flex-col justify-between">
+      <div className="flex w-full justify-between py-8">
+        <h1 className="font-bold text-theme-500">Martin Miglio</h1>
+        <div className="flex gap-4">
+          <Link
+            className="hover:underline"
+            href="https://github.com/martinmiglio/"
+          >
+            my projects
+          </Link>
         </div>
+      </div>
+      <div className="flex-grow">
+        <h2 className="mb-12 py-6 text-4xl font-extrabold sm:text-5xl">
+          Hey there, I'm Martin!
+        </h2>
+        <div className="flex flex-col gap-6 text-lg opacity-80">
+          <p>
+            I'm a full-stack software developer with a knack for crafting web
+            applications using React, Next.js, and AWS. Currently pursuing a BS
+            in Computer Science, I'm embracing the art of mastering the best
+            practices in the field.
+          </p>
+          <p>
+            I take pride in maintaining and contributing to open source
+            projects. Visit{" "}
+            <Link
+              className="text-theme-500 hover:underline"
+              href="https://github.com/martinmiglio"
+            >
+              my GitHub
+            </Link>{" "}
+            to see my projects and contributions. Past internships at{" "}
+            <Link
+              className="hover:underline"
+              href="https://opencorporates.com/companies/us_tx/0801291571"
+            >
+              I Play Texas
+            </Link>{" "}
+            and{" "}
+            <Link
+              className="hover:underline"
+              href="https://www.groupgolfer.com/"
+            >
+              Group Golfer
+            </Link>{" "}
+            have honed my skills in full-stack development and frontend web
+            development using .NET and Python.
+          </p>
+          <p>
+            Beyond coding, I find solace in nature. Camping, hiking, and
+            landscape photography are my go-to activities when I'm not immersed
+            in the digital realm. Check out some of my captures on Instagram{" "}
+            <Link
+              className="text-theme-500 hover:underline"
+              href="https://instagram.com/migliosights"
+            >
+              @migliosights
+            </Link>
+            .
+          </p>
+          <p>
+            If you're interested in collaboration or simply want to connect,
+            drop me a message. Let's build something great together!
+          </p>
+        </div>
+      </div>
+      <div className="flex w-full flex-row items-center justify-between pb-8 text-sm opacity-60">
+        <span>© 2023 Martin Miglio</span>
+        <Link href="https://github.com/martinmiglio/portfolio/">
+          <span>view source</span>
+        </Link>
+        <SocialBar />
       </div>
     </div>
   );

@@ -1,4 +1,7 @@
 import "../styles/global.css";
+import { Golos_Text as Font } from "next/font/google";
+
+const font = Font({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Martin Miglio",
@@ -31,7 +34,13 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="canonical" href="https://martinmiglio.dev/" />
       </head>
-      <body>{children}</body>
+      <body className={font.className}>
+        <div className="h-full w-full bg-grid-theme-50">
+          <div className="mx-auto h-screen min-h-screen max-w-screen-md text-theme-900">
+            {children}
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
