@@ -1,7 +1,14 @@
+import { GTagScript } from "@/components/scripts/GTag";
 import "../styles/global.css";
 import { Golos_Text as Font } from "next/font/google";
+import { z } from "zod";
 
 const font = Font({ subsets: ["latin"] });
+
+const schema = z.object({
+  GA_MEASUREMENT_ID: z.string(),
+});
+const env = schema.parse(process.env);
 
 export const metadata = {
   title: "Martin Miglio",
@@ -33,6 +40,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="canonical" href="https://martinmiglio.dev/" />
+        <GTagScript measurementId={env.GA_MEASUREMENT_ID} />
       </head>
       <body className={font.className}>
         <div className="h-full w-full bg-grid-theme-50">
