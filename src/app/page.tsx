@@ -70,11 +70,16 @@ export default function PortfolioHome() {
           </p>
         </div>
       </div>
-      <div className="flex w-full flex-row items-center justify-between pb-8 text-sm opacity-60">
-        <span>© 2023 Martin Miglio</span>
-        <Link href="https://github.com/martinmiglio/portfolio/">
-          <span>view source</span>
-        </Link>
+      <div className="flex w-full flex-row flex-wrap items-center justify-between py-8 text-sm opacity-60">
+        <div className="pb-1">
+          © 2023 Martin Miglio
+          <Link
+            href="https://github.com/martinmiglio/portfolio/"
+            className="text-theme-500 hover:underline"
+          >
+            <div>view source</div>
+          </Link>
+        </div>
         <SocialBar />
       </div>
     </div>

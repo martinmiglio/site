@@ -42,7 +42,7 @@ const SocialBar = () => {
         <Link href={item.contactLink} key={item.contactContent}>
           <FontAwesomeIcon
             icon={iconMap[item.contactContent]}
-            className="h-4 w-4"
+            className="h-5 w-5"
           />
         </Link>
       ))}

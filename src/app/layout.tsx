@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={font.className}>
         <div className="h-full w-full bg-grid-theme-50">
-          <div className="mx-auto h-screen min-h-screen max-w-screen-md text-theme-900">
+          <div className="mx-auto h-screen min-h-screen max-w-screen-md px-6 text-theme-900 sm:px-0">
             {children}
           </div>
         </div>
