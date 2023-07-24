@@ -15,9 +15,11 @@ export const metadata = {
   description: "Martin Miglio's Portfolio",
   keywords: "Martin Miglio, Portfolio, Software Engineer, Web Developer",
   url: "https://martinmiglio.dev/",
-  httpEquiv: {
-    "Cache-Control": "max-age=86400",
-    "Permissions-Policy": "interest-cohort=()",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
   },
   twitter: {
     card: "summary",
@@ -32,14 +34,17 @@ export const metadata = {
   },
   canonical: "https://martinmiglio.dev/",
   themeColor: "#282c34",
-  viewport: "width=device-width, initial-scale=1.0",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://martinmiglio.dev/" />
         <GTagScript measurementId={env.GA_MEASUREMENT_ID} />
       </head>
       <body className={font.className}>
