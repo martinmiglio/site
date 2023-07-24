@@ -3,10 +3,9 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { pageChange, initializeGA } from "../GoogleAnalytics";
-import backgroundImage from "../assets/frame_background.svg";
-const Landing = dynamic(() => import("../components/Landing"));
-const SocialBar = dynamic(() => import("../components/SocialBar"));
-const SourceLink = dynamic(() => import("../components/SourceLink"));
+import backgroundImage from "@/assets/frame_background.svg";
+const SocialBar = dynamic(() => import("@/components/SocialBar"));
+const SourceLink = dynamic(() => import("@/components/SourceLink"));
 
 const contactContent = [
   {
@@ -93,7 +92,6 @@ export default function PortfolioHome() {
     <div style={wrapperStyle}>
       <div style={backgroundStyle} />
       <div style={contentStyle}>
-        <Landing header="Martin Miglio" signature="Check out my links" />
         <SocialBar contentList={contactContent} />
         <div style={footerStyle}>
           <SourceLink />
