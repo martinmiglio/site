@@ -1,7 +1,7 @@
 import { GTagScript } from "@/components/scripts/GTag";
-import "../styles/global.css";
 import { Golos_Text as Font } from "next/font/google";
 import { z } from "zod";
+import "../styles/global.css";
 
 const font = Font({ subsets: ["latin"] });
 

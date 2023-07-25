@@ -1,8 +1,8 @@
 import {
   faGithub,
+  faInstagram,
   faLinkedinIn,
   faTwitter,
-  faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

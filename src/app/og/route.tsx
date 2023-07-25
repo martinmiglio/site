@@ -1,5 +1,5 @@
-import { ImageResponse } from "next/server";
 import svgToDataUri from "mini-svg-data-uri";
+import { ImageResponse } from "next/server";
 
 export const runtime = "edge";
 
