@@ -1,49 +1,43 @@
 import {
+  IconDefinition,
   faGithub,
   faInstagram,
   faLinkedinIn,
-  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
-const contactContent = [
+interface Contact {
+  link: string;
+  icon: IconDefinition;
+}
+
+const contactContent: Contact[] = [
   {
-    contactContent: "github",
-    contactLink: "https://github.com/martinmiglio",
+    link: "https://github.com/martinmiglio",
+    icon: faGithub,
   },
   {
-    contactContent: "mail",
-    contactLink: "mailto:contact@martinmiglio.dev",
+    link: "mailto:contact@martinmiglio.dev",
+    icon: faEnvelope,
   },
   {
-    contactContent: "linkedin",
-    contactLink: "https://www.linkedin.com/in/martinmiglio",
+    link: "https://www.linkedin.com/in/martinmiglio",
+    icon: faLinkedinIn,
   },
   {
-    contactContent: "instagram",
-    contactLink: "https://www.instagram.com/migliosights",
+    link: "https://www.instagram.com/migliosights",
+    icon: faInstagram,
   },
 ];
-
-const iconMap = {
-  twitter: faTwitter,
-  linkedin: faLinkedinIn,
-  mail: faEnvelope,
-  github: faGithub,
-  instagram: faInstagram,
-};
 
 const SocialBar = () => {
   return (
     <div className="flex flex-row gap-4">
       {contactContent.map((item) => (
-        <Link href={item.contactLink} key={item.contactContent}>
-          <FontAwesomeIcon
-            icon={iconMap[item.contactContent]}
-            className="h-5 w-5"
-          />
+        <Link href={item.link} key={item.link}>
+          <FontAwesomeIcon icon={item.icon} className="h-5 w-5" />
         </Link>
       ))}
     </div>
