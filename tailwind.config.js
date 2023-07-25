@@ -27,6 +27,23 @@ const config = {
         950: "#070311",
       },
     },
+    extend: {
+      animation: {
+        shine: "shine 9s",
+      },
+      keyframes: {
+        shine: {
+          "0%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+          "100%": {
+            "background-size": "250% 200%",
+            "background-position": "left center",
+          },
+        },
+      },
+    },
   },
   plugins: [
     function ({ matchUtilities, theme }) {
@@ -44,6 +61,7 @@ const config = {
         },
       );
     },
+    require("tailwindcss-animate"),
   ],
 };
 
