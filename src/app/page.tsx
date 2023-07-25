@@ -74,7 +74,7 @@ export default function PortfolioHome() {
         <div className="pb-1">
           © 2023 Martin Miglio
           <Link
-            href="https://github.com/martinmiglio/portfolio/"
+            href="https://github.com/martinmiglio/site"
             className="text-theme-500 hover:underline"
           >
             <div>view source</div>
