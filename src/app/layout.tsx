@@ -27,7 +27,7 @@ export const metadata = {
     description: "Martin Miglio's Portfolio",
     images: ["https://martinmiglio.dev/og"],
   },
-  og: {
+  openGraph: {
     type: "website",
     title: "Martin Miglio",
     description: "Martin Miglio's Portfolio",
@@ -40,7 +40,6 @@ export const metadata = {
       },
     ],
   },
-  canonical: "https://martinmiglio.dev/",
   themeColor: "#282c34",
   viewport: {
     width: "device-width",
