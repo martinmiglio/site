@@ -59,7 +59,7 @@ export default function RootLayout({ children }) {
       <body className={font.className}>
         <div className="fixed inset-0 -z-50 h-screen w-screen bg-grid-theme-50" />
         <div className="mx-auto h-screen min-h-screen max-w-screen-md px-6 text-theme-900 sm:px-0">
-          <div className="flex h-screen flex-col justify-between">
+          <div className="flex h-full w-full flex-col justify-between">
             <Header />
             {children}
             <Footer />
