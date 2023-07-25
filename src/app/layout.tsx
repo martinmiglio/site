@@ -22,15 +22,23 @@ export const metadata = {
     },
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Martin Miglio",
     description: "Martin Miglio's Portfolio",
+    images: ["https://martinmiglio.dev/og"],
   },
   og: {
     type: "website",
     title: "Martin Miglio",
     description: "Martin Miglio's Portfolio",
     site_name: "Martin Miglio",
+    images: [
+      {
+        url: "https://martinmiglio.dev/og",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   canonical: "https://martinmiglio.dev/",
   themeColor: "#282c34",
