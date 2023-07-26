@@ -26,11 +26,11 @@ export async function GET() {
           tw="w-full h-full flex flex-col pl-12"
         >
           <div style={{ fontFamily: '"Golos Text Bold"' }} tw="flex flex-col">
-            <h1 tw="text-[#5221C4] py-8 text-7xl">Martin Miglio</h1>
-            <h2 tw="text-[#070311] pt-8 text-8xl">full-stack web dev</h2>
+            <h1 tw="text-[#D29C3A] py-8 text-7xl">Martin Miglio</h1>
+            <h2 tw="text-[#71340F] pt-8 text-8xl">full-stack web dev</h2>
           </div>
-          <h3 tw="text-[#070311] text-6xl">React • Next.js • AWS</h3>
-          <h4 tw="text-[#5221C4] opacity-30 p-8 text-5xl mt-auto ml-auto">
+          <h3 tw="text-[#71340F] text-6xl">React • Next.js • AWS</h3>
+          <h4 tw="text-[#D29C3A] opacity-30 p-8 text-5xl mt-auto ml-auto">
             martinmiglio.dev
           </h4>
         </div>
