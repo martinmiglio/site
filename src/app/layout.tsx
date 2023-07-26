@@ -42,7 +42,6 @@ export const metadata = {
       },
     ],
   },
-  themeColor: "#5221C4",
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -57,7 +56,7 @@ export default function RootLayout({ children }) {
         <GTagScript measurementId={env.GA_MEASUREMENT_ID} />
       </head>
       <body className={font.className}>
-        <div className="fixed inset-0 -z-50 h-screen w-screen bg-grid-theme-50" />
+        <div className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100" />
         <div className="mx-auto h-screen min-h-screen max-w-screen-md px-6 text-theme-900 sm:px-0">
           <div className="flex h-full w-full flex-col justify-between">
             <Header />
