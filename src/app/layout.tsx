@@ -1,6 +1,7 @@
 import Footer from "@/components/page/Footer";
 import Header from "@/components/page/Header";
 import { GTagScript } from "@/components/scripts/GTag";
+import { Metadata } from "next";
 import "@/styles/global.css";
 import { Golos_Text as Font } from "next/font/google";
 import { z } from "zod";
@@ -12,17 +13,13 @@ const schema = z.object({
 });
 const env = schema.parse(process.env);
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Martin Miglio",
   description: "Martin Miglio's Portfolio",
   keywords: "Martin Miglio, Portfolio, Software Engineer, Web Developer",
-  url: "https://martinmiglio.dev/",
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
-  },
+  creator: "Martin Miglio",
+  metadataBase: new URL("https://martinmiglio.dev/"),
+  alternates: { canonical: "/" },
   twitter: {
     card: "summary_large_image",
     title: "Martin Miglio",
@@ -33,7 +30,7 @@ export const metadata = {
     type: "website",
     title: "Martin Miglio",
     description: "Martin Miglio's Portfolio",
-    site_name: "Martin Miglio",
+    siteName: "Martin Miglio",
     images: [
       {
         url: "https://martinmiglio.dev/og",
@@ -42,12 +39,6 @@ export const metadata = {
       },
     ],
   },
-  themeColor: "#5221C4",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
 };
 
 export default function RootLayout({ children }) {
@@ -55,6 +46,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <GTagScript measurementId={env.GA_MEASUREMENT_ID} />
+        <link rel="canonical" href="https://martinmiglio.dev/" />
       </head>
       <body className={font.className}>
         <div className="fixed inset-0 -z-50 h-screen w-screen bg-grid-theme-50" />
