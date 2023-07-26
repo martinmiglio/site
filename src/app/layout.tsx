@@ -55,6 +55,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <GTagScript measurementId={env.GA_MEASUREMENT_ID} />
+        <link rel="canonical" href="https://martinmiglio.dev/" />
       </head>
       <body className={font.className}>
         <div className="fixed inset-0 -z-50 h-screen w-screen bg-grid-theme-50" />
