@@ -17,12 +17,6 @@ export const metadata = {
   description: "Martin Miglio's Portfolio",
   keywords: "Martin Miglio, Portfolio, Software Engineer, Web Developer",
   url: "https://martinmiglio.dev/",
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
-  },
   twitter: {
     card: "summary_large_image",
     title: "Martin Miglio",
