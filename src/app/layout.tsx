@@ -43,19 +43,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-theme-50 dark:bg-theme-900">
       <head>
         <GTagScript measurementId={env.GA_MEASUREMENT_ID} />
         <link rel="canonical" href="https://martinmiglio.dev/" />
       </head>
       <body className={font.className}>
         <div className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950" />
-        <div className="mx-auto h-screen min-h-screen max-w-screen-md px-6 text-theme-900 dark:text-theme-100 sm:px-0">
-          <div className="flex h-full w-full flex-col justify-between">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+        <div className="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100">
+          <Header />
+          {children}
+          <Footer />
         </div>
       </body>
     </html>
