@@ -15,21 +15,22 @@ const env = schema.parse(process.env);
 
 export const metadata: Metadata = {
   title: "Martin Miglio",
-  description: "Martin Miglio's Portfolio",
-  keywords: "Martin Miglio, Portfolio, Software Engineer, Web Developer",
+  description: "Martin Miglio's Site",
+  keywords: "Martin Miglio, Site, Software Engineer, Web Developer",
   creator: "Martin Miglio",
   metadataBase: new URL("https://martinmiglio.dev/"),
   alternates: { canonical: "/" },
+  icons: { icon: "/icon" },
   twitter: {
     card: "summary_large_image",
     title: "Martin Miglio",
-    description: "Martin Miglio's Portfolio",
+    description: "Martin Miglio's Site",
     images: ["https://martinmiglio.dev/og"],
   },
   openGraph: {
     type: "website",
     title: "Martin Miglio",
-    description: "Martin Miglio's Portfolio",
+    description: "Martin Miglio's Site",
     siteName: "Martin Miglio",
     images: [
       {
