@@ -17,20 +17,20 @@ export async function GET() {
       (
         <div
           style={{
-            backgroundColor: "white",
+            backgroundColor: "#E8E8E8",
             fontFamily: '"Golos Text Regular"',
             backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="#EBE5FB"><path d="M0 .5H99.5V100"/></svg>`,
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none" stroke="#D8DAD3"><path d="M0 .5H99.5V100"/></svg>`,
             )}")`,
           }}
           tw="w-full h-full flex flex-col pl-12"
         >
           <div style={{ fontFamily: '"Golos Text Bold"' }} tw="flex flex-col">
-            <h1 tw="text-[#D29C3A] py-8 text-7xl">Martin Miglio</h1>
-            <h2 tw="text-[#71340F] pt-8 text-8xl">full-stack web dev</h2>
+            <h1 tw="text-[#00A824] py-8 text-7xl">Martin Miglio</h1>
+            <h2 tw="text-[#32352C] pt-8 text-8xl">full-stack web dev</h2>
           </div>
-          <h3 tw="text-[#71340F] text-6xl">React • Next.js • AWS</h3>
-          <h4 tw="text-[#D29C3A] opacity-30 p-8 text-5xl mt-auto ml-auto">
+          <h3 tw="text-[#32352C] text-6xl">React • Next.js • AWS</h3>
+          <h4 tw="text-[#00A824] opacity-30 p-8 text-5xl mt-auto ml-auto">
             martinmiglio.dev
           </h4>
         </div>
