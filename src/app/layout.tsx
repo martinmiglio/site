@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   creator: "Martin Miglio",
   metadataBase: new URL("https://martinmiglio.dev/"),
   alternates: { canonical: "/" },
-  icons: { icon: "/icon" },
+  icons: { icon: "/icon?v1" },
   twitter: {
     card: "summary_large_image",
     title: "Martin Miglio",
     description: "Martin Miglio's Site",
-    images: ["https://martinmiglio.dev/og"],
+    images: ["https://martinmiglio.dev/og?v2"],
   },
   openGraph: {
     type: "website",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "Martin Miglio",
     images: [
       {
-        url: "https://martinmiglio.dev/og",
+        url: "https://martinmiglio.dev/og?v2",
         width: 1200,
         height: 630,
       },
