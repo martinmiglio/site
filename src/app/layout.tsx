@@ -1,6 +1,5 @@
 import Footer from "@/components/page/Footer";
 import Header from "@/components/page/Header";
-import { GTagScript } from "@/components/scripts/GTag";
 import { Metadata } from "next";
 import "@/styles/global.css";
 import { Golos_Text as Font } from "next/font/google";
@@ -9,7 +8,7 @@ import { z } from "zod";
 const font = Font({ subsets: ["latin"] });
 
 const schema = z.object({
-  GA_MEASUREMENT_ID: z.string(),
+  ANALYTICS_ID: z.string(),
 });
 const env = schema.parse(process.env);
 
@@ -46,7 +45,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-theme-50 dark:bg-theme-900">
       <head>
-        <GTagScript measurementId={env.GA_MEASUREMENT_ID} />
+      <Script
+          async
+          src="https://analytics.martinmiglio.dev/script.js"
+          data-website-id={env.ANALYTICS_ID}
+        />
         <link rel="canonical" href="https://martinmiglio.dev/" />
       </head>
       <body className={font.className}>
