@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import "@/styles/global.css";
 import { Golos_Text as Font } from "next/font/google";
 import { z } from "zod";
+import Script from "next/script";
 
 const font = Font({ subsets: ["latin"] });
 
@@ -45,7 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-theme-50 dark:bg-theme-900">
       <head>
-      <Script
+        <Script
           async
           src="https://analytics.martinmiglio.dev/script.js"
           data-website-id={env.ANALYTICS_ID}
