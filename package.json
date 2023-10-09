@@ -20,7 +20,7 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",
     "@types/node": "20.8.0",
-    "@types/react": "18.2.24",
+    "@types/react": "18.2.25",
     "eslint": "^8.50.0",
     "eslint-config-next": "^13.5.3",
     "eslint-config-react-app": "^7.0.1",
