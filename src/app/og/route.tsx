@@ -1,5 +1,5 @@
 import svgToDataUri from "mini-svg-data-uri";
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
@@ -38,17 +38,17 @@ export async function GET() {
       {
         width: 1200,
         height: 630,
-        fonts: [          {
-          name: "Golos Text Regular",
-          data: fontDataRegular,
-          style: "normal",
-        },
+        fonts: [
+          {
+            name: "Golos Text Regular",
+            data: fontDataRegular,
+            style: "normal",
+          },
           {
             name: "Golos Text Bold",
             data: fontDataBold,
             style: "normal",
           },
-
         ],
       },
     );
