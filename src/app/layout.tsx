@@ -50,8 +50,8 @@ export default function RootLayout({ children }) {
           async
           src="https://analytics.martinmiglio.dev/script.js"
           data-website-id={env.ANALYTICS_ID}
+          data-domains="martinmiglio.dev,www.martinmiglio.dev"
         />
-        <link rel="canonical" href="https://martinmiglio.dev/" />
       </head>
       <body className={font.className}>
         <div className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950" />
