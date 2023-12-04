@@ -1,10 +1,10 @@
 import Footer from "@/components/page/Footer";
 import Header from "@/components/page/Header";
-import { Metadata } from "next";
 import "@/styles/global.css";
+import { Metadata } from "next";
 import { Golos_Text as Font } from "next/font/google";
-import { z } from "zod";
 import Script from "next/script";
+import { z } from "zod";
 
 const font = Font({ subsets: ["latin"] });
 

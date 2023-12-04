@@ -1,5 +1,5 @@
-import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
 import svgToDataUri from "mini-svg-data-uri";
+import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
 
 const config = {
   content: [
@@ -22,7 +22,7 @@ const config = {
         700: "#31651F",
         800: "#3A4D28",
         900: "#32352C",
-        950: "#2E2E2E"
+        950: "#2E2E2E",
       },
     },
     extend: {

@@ -41,11 +41,7 @@ const SocialBar = () => {
   return (
     <div className="flex flex-row gap-4">
       {contactContent.map((item) => (
-        <Link
-          href={item.link}
-          key={item.link}
-          aria-label={`${item.name} link`}
-        >
+        <Link href={item.link} key={item.link} aria-label={`${item.name} link`}>
           <FontAwesomeIcon
             icon={item.icon}
             aria-label={`${item.name} icon`}

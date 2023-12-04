@@ -1,5 +1,5 @@
-import Link from "next/link";
 import SocialBar from "./SocialBar";
+import Link from "next/link";
 
 export default function Footer() {
   return (
