@@ -1,5 +1,5 @@
-import Footer from "@/components/page/Footer";
-import Header from "@/components/page/Header";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import "@/styles/global.css";
 import { Metadata } from "next";
 import { Golos_Text as Font } from "next/font/google";

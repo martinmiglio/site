@@ -8,13 +8,11 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
-interface Contact {
+const contactContent: {
   name: string;
   link: string;
   icon: IconDefinition;
-}
-
-const contactContent: Contact[] = [
+}[] = [
   {
     name: "Github",
     link: "https://github.com/martinmiglio",
@@ -37,7 +35,7 @@ const contactContent: Contact[] = [
   },
 ];
 
-const SocialBar = () => {
+export default function SocialBar() {
   return (
     <div className="flex flex-row gap-4">
       {contactContent.map((item) => (
@@ -51,6 +49,4 @@ const SocialBar = () => {
       ))}
     </div>
   );
-};
-
-export default SocialBar;
+}
