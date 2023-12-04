@@ -3,51 +3,34 @@
   "homepage": "https://martinmiglio.dev/",
   "author": "Martin Miglio",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-brands-svg-icons": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "autoprefixer": "^10.4.16",
     "mini-svg-data-uri": "^1.4.4",
-    "next": "^14",
-    "postcss": "^8.4.32",
+    "next": "^14.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5.3.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14",
-    "@types/node": "20.10.0",
-    "@types/react": "18.2.41",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^20.10.3",
+    "@types/react": "^18.2.41",
+    "@types/react-dom": "^18.2.17",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.55.0",
-    "eslint-config-next": "^14",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-react": "^7.33.2",
+    "eslint-config-next": "^14.0.3",
+    "postcss": "^8.4.32",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss": "^3.3.5",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.3.2"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   }
 }
