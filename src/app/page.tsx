@@ -22,6 +22,7 @@ export default function Home() {
           <Link
             className="text-theme-500 hover:underline"
             href="https://github.com/martinmiglio"
+            data-umami-event="GitHub Link Clicked"
           >
             my GitHub
           </Link>{" "}
@@ -29,11 +30,16 @@ export default function Home() {
           <Link
             className="hover:underline"
             href="https://opencorporates.com/companies/us_tx/0801291571"
+            data-umami-event="IPT Link Clicked"
           >
             I Play Texas
           </Link>{" "}
           and{" "}
-          <Link className="hover:underline" href="https://www.groupgolfer.com/">
+          <Link
+            className="hover:underline"
+            href="https://www.groupgolfer.com/"
+            data-umami-event="GG Link Clicked"
+          >
             Group Golfer
           </Link>{" "}
           have honed my skills in full-stack development and frontend web
@@ -46,6 +52,7 @@ export default function Home() {
           <Link
             className="text-theme-500 hover:underline"
             href="https://instagram.com/migliosights"
+            data-umami-event="Instagram Link Clicked"
           >
             @migliosights
           </Link>

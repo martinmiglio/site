@@ -9,6 +9,7 @@ export default function Footer() {
         <Link
           href="https://github.com/martinmiglio/site"
           className="text-theme-500 hover:underline"
+          data-umami-event="View Source Link Clicked"
         >
           <div>view source</div>
         </Link>

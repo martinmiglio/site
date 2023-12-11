@@ -8,6 +8,7 @@ export default function Header() {
         <Link
           className="hover:underline"
           href="https://github.com/martinmiglio/"
+          data-umami-event="My Projects Link Clicked"
         >
           my projects
         </Link>

@@ -39,7 +39,12 @@ export default function SocialBar() {
   return (
     <div className="flex flex-row gap-4">
       {contactContent.map((item) => (
-        <Link href={item.link} key={item.link} aria-label={`${item.name} link`}>
+        <Link
+          href={item.link}
+          key={item.link}
+          aria-label={`${item.name} link`}
+          data-umami-event={`Social link clicked: ${item.name}`}
+        >
           <FontAwesomeIcon
             icon={item.icon}
             aria-label={`${item.name} icon`}
