@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex-grow">
-      <h2 className="mb-12 py-6 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl">
+      <h2 className="mb-12 py-6 text-4xl font-extrabold text-theme-950 sm:text-5xl dark:text-theme-300">
         Hey there, I'm{" "}
         <span className="animate-shine flex-col bg-gradient-to-r from-theme-500 from-35% via-theme-300 to-theme-500 to-65% bg-clip-text text-transparent fill-mode-forwards">
           Martin!
@@ -59,8 +59,15 @@ export default function Home() {
           .
         </p>
         <p>
-          If you're interested in collaboration or simply want to connect, drop
-          me a message. Let's build something great together!
+          If you're interested in collaboration or simply want to connect,{" "}
+          <Link
+            className="text-theme-500 hover:underline"
+            href="/message"
+            data-umami-event="Message Link Clicked"
+          >
+            drop me a message
+          </Link>
+          . Let's build something great together!
         </p>
       </div>
     </div>
