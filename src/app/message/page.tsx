@@ -90,10 +90,11 @@ export default function Page() {
     redirect(`/`);
   }
 
-  const inputClassName = "border border-gray-300 rounded-md p-2 text-theme-900";
+  const inputClassName =
+    "border border-gray-300 bg-theme-50 rounded-md p-2 text-theme-900";
 
   const buttonClassName =
-    "rounded-md p-2 border-theme-500 border bg-theme-700/70 enabled:hover:bg-theme-700 transition-colors duration-200 ease-in-out text-theme-100";
+    "rounded-md p-2 border-theme-500 border bg-theme-300/70 dark:bg-theme-700/70 enabled:hover:bg-theme-300 dark:enabled:hover:bg-theme-700 transition-colors duration-200 ease-in-out text-theme-800 dark:text-theme-100";
 
   return (
     <Captcha handleVerify={handleVerify} refreshReCaptcha={refreshReCaptcha}>
