@@ -3,7 +3,9 @@ import Link from "next/link";
 export default function Header() {
   return (
     <div className="flex w-full justify-between py-8">
-      <h1 className="font-bold text-theme-500">Martin Miglio</h1>
+      <Link href="/" data-umami-event="Header Home Clicked">
+        <h1 className="font-bold text-theme-500">Martin Miglio</h1>
+      </Link>
       <div className="flex gap-4">
         <Link
           className="hover:underline"
