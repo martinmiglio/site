@@ -56,48 +56,51 @@ export default function Page() {
     readonly elements: FormElements;
   }
 
-  const submitForm = async (event: React.FormEvent<MessageFormElement>) => {
-    if (!token) {
-      return;
-    }
+  const submitForm = useCallback(
+    async (event: React.FormEvent<MessageFormElement>) => {
+      if (!token) {
+        return;
+      }
 
-    event.preventDefault();
+      event.preventDefault();
 
-    const formData = await verifyForm(event);
+      const formData = await verifyForm(event);
 
-    if (!formData) {
-      setIsErrored(true);
-      return;
-    }
+      if (!formData) {
+        setIsErrored(true);
+        return;
+      }
 
-    setIsLoading(true);
+      setIsLoading(true);
 
-    const res = await fetch("/api/message", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...formData,
-        subject: "New Message from Personal Site: " + formData.subject,
-        token,
-      }),
-    });
+      const res = await fetch("/api/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          subject: "New Message from Personal Site: " + formData.subject,
+          token,
+        }),
+      });
 
-    if (res.status === 200) {
-      setSuccess(true);
+      if (res.status === 200) {
+        setSuccess(true);
+        setTimeout(() => {
+          setTriggerRedirect(true);
+        }, 3000);
+      } else {
+        setIsErrored(true);
+      }
+
+      setRefreshReCaptcha((r) => !r);
       setTimeout(() => {
-        setTriggerRedirect(true);
-      }, 3000);
-    } else {
-      setIsErrored(true);
-    }
-
-    setRefreshReCaptcha((r) => !r);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  };
+        setIsLoading(false);
+      }, 1000);
+    },
+    [token],
+  );
 
   if (triggerRedirect) {
     redirect(`/`);
