@@ -48,7 +48,7 @@ export default function SocialBar() {
           <FontAwesomeIcon
             icon={item.icon}
             aria-label={`${item.name} icon`}
-            className="h-5 w-5"
+            className="h-5 w-5 opacity-60 transition-all duration-200 ease-in-out hover:text-theme-950 hover:opacity-100 hover:dark:text-theme-50"
           />
         </Link>
       ))}
