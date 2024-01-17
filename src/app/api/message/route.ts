@@ -1,4 +1,4 @@
-import verifyCapatch from "@/lib/captcha";
+import verifyCaptcha from "@/lib/captcha";
 import { sendEmail } from "@/lib/smtp";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const { subject, message, email, token } = messageSchema.parse(body);
 
     const remoteIp = req.ip ?? req.headers.get("x-real-ip");
-    if (!verifyCapatch(token, remoteIp)) {
+    if (!verifyCaptcha(token, remoteIp)) {
       return NextResponse.error();
     }
 

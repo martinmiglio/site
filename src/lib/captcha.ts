@@ -6,7 +6,7 @@ const envSchema = z.object({
 
 const env = envSchema.parse(process.env);
 
-export default async function verifyCapatch(
+export default async function verifyCaptcha(
   response: string,
   remoteip?: string,
 ) {
