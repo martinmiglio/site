@@ -2,7 +2,7 @@
 
 import Captcha from "@/components/Captcha";
 import { redirect } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { z } from "zod";
 
 export default function Page() {
@@ -11,6 +11,16 @@ export default function Page() {
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
   const [success, setSuccess] = useState(false);
   const [triggerRedirect, setTriggerRedirect] = useState(false);
+  const [isErrored, setIsErrored] = useState(false);
+
+  useEffect(() => {
+    if (isErrored) {
+      setRefreshReCaptcha((r) => !r);
+      setTimeout(() => {
+        setIsErrored(false);
+      }, 1000);
+    }
+  }, [isErrored]);
 
   const handleVerify = useCallback((token: string) => {
     setToken(token);
@@ -56,6 +66,7 @@ export default function Page() {
     const formData = await verifyForm(event);
 
     if (!formData) {
+      setIsErrored(true);
       return;
     }
 
@@ -78,6 +89,8 @@ export default function Page() {
       setTimeout(() => {
         setTriggerRedirect(true);
       }, 3000);
+    } else {
+      setIsErrored(true);
     }
 
     setRefreshReCaptcha((r) => !r);
@@ -93,8 +106,11 @@ export default function Page() {
   const inputClassName =
     "border border-gray-300 bg-theme-50 rounded-md p-2 text-theme-900";
 
-  const buttonClassName =
-    "rounded-md p-2 border-theme-500 border bg-theme-300/70 dark:bg-theme-700/70 enabled:hover:bg-theme-300 dark:enabled:hover:bg-theme-700 transition-colors duration-200 ease-in-out text-theme-800 dark:text-theme-100";
+  const buttonClassName = `rounded-md p-2 border transition-colors duration-200 ease-in-out text-theme-800 dark:text-theme-100 ${
+    isErrored
+      ? "border-red-500 bg-red-300/70 dark:bg-red-500/30 animate-shake"
+      : "border-theme-500 bg-theme-300/70 dark:bg-theme-700/70 enabled:hover:bg-theme-300 dark:enabled:hover:bg-theme-700"
+  }`;
 
   return (
     <Captcha handleVerify={handleVerify} refreshReCaptcha={refreshReCaptcha}>

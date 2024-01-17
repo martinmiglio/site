@@ -8,26 +8,25 @@ const config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: {
-      transparent: "transparent",
-      current: "currentColor",
-      theme: {
-        50: "#E8E8E8",
-        100: "#D8DAD3",
-        200: "#B4CD9D",
-        300: "#7BCE5F",
-        400: "#25C922",
-        500: "#00A824",
-        600: "#188316",
-        700: "#31651F",
-        800: "#3A4D28",
-        900: "#32352C",
-        950: "#2E2E2E",
-      },
-    },
     extend: {
+      colors: {
+        theme: {
+          50: "#E8E8E8",
+          100: "#D8DAD3",
+          200: "#B4CD9D",
+          300: "#7BCE5F",
+          400: "#25C922",
+          500: "#00A824",
+          600: "#188316",
+          700: "#31651F",
+          800: "#3A4D28",
+          900: "#32352C",
+          950: "#2E2E2E",
+        },
+      },
       animation: {
         shine: "shine 9s",
+        shake: "shake 0.4s ease-in-out 0s 2",
       },
       keyframes: {
         shine: {
@@ -38,6 +37,24 @@ const config = {
           "100%": {
             "background-size": "250% 200%",
             "background-position": "left center",
+          },
+        },
+        shake: {
+          "0%": {
+            "margin-left": "0rem",
+            "margin-right": "0rem",
+          },
+          "25%": {
+            "margin-left": "0.2rem",
+            "margin-right": "-0.2rem",
+          },
+          "75%": {
+            "margin-left": "-0.2rem",
+            "margin-right": "0.2rem",
+          },
+          "100%": {
+            "margin-left": "0rem",
+            "margin-right": "0rem",
           },
         },
       },
