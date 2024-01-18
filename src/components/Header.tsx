@@ -1,3 +1,4 @@
+import { ThemeSwitcher } from "@/components/Theme";
 import Link from "next/link";
 
 export default function Header() {
@@ -6,7 +7,7 @@ export default function Header() {
       <Link href="/" data-umami-event="Header Home Clicked">
         <h1 className="font-bold text-theme-500">Martin Miglio</h1>
       </Link>
-      <div className="flex gap-4">
+      <div className="flex items-center gap-4">
         <Link
           className="hover:underline"
           href="https://github.com/martinmiglio/"
@@ -14,6 +15,7 @@ export default function Header() {
         >
           my projects
         </Link>
+        <ThemeSwitcher />
       </div>
     </div>
   );

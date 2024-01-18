@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/Theme";
 import "@/styles/global.css";
 import { Metadata } from "next";
 import { Golos_Text as Font } from "next/font/google";
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="bg-theme-50 dark:bg-theme-900">
+    <html lang="en">
       <head>
         <Script
           async
@@ -53,14 +54,16 @@ export default function RootLayout({ children }) {
           data-domains="martinmiglio.dev,www.martinmiglio.dev"
         />
       </head>
-      <body className={font.className}>
-        <div className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950" />
-        <div className="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100">
-          <Header />
-          {children}
-          <Footer />
-        </div>
-      </body>
+      <ThemeProvider>
+        <body className={font.className + " bg-theme-50 dark:bg-theme-900"}>
+          <div className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950" />
+          <div className="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
