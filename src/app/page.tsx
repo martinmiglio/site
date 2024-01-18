@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex-grow">
-      <h2 className="mb-12 py-6 text-4xl font-extrabold text-theme-950 sm:text-5xl dark:text-theme-300">
+      <h2 className="mb-12 py-6 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl">
         Hey there, I'm{" "}
         <span className="animate-shine flex-col bg-gradient-to-r from-theme-500 from-35% via-theme-300 to-theme-500 to-65% bg-clip-text text-transparent fill-mode-forwards">
           Martin!
