@@ -1,13 +1,16 @@
 import svgToDataUri from "mini-svg-data-uri";
+import type { Config } from "tailwindcss";
 import { default as flattenColorPalette } from "tailwindcss/lib/util/flattenColorPalette";
 
 const config = {
+  darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
-  darkMode: "class",
+  prefix: "",
   theme: {
     extend: {
       colors: {
@@ -25,11 +28,15 @@ const config = {
           950: "#2E2E2E",
         },
       },
-      animation: {
-        shine: "shine 9s",
-        shake: "shake 0.4s ease-in-out 0s 2",
-      },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
         shine: {
           "0%": {
             "background-size": "200% 200%",
@@ -59,6 +66,12 @@ const config = {
           },
         },
       },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        shine: "shine 9s",
+        shake: "shake 0.4s ease-in-out 0s 2",
+      },
     },
   },
   plugins: [
@@ -79,6 +92,6 @@ const config = {
     },
     require("tailwindcss-animate"),
   ],
-};
+} satisfies Config;
 
 export default config;
