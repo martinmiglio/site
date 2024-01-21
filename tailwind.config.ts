@@ -12,6 +12,10 @@ const config = {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ["var(--font-sans)"],
+      mono: ["var(--font-mono)"],
+    },
     extend: {
       colors: {
         theme: {

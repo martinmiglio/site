@@ -1,13 +1,11 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/Theme";
+import { sans, mono } from "@/styles/fonts";
 import "@/styles/global.css";
 import { Metadata } from "next";
-import { Golos_Text as Font } from "next/font/google";
 import Script from "next/script";
 import { z } from "zod";
-
-const font = Font({ subsets: ["latin"] });
 
 const schema = z.object({
   ANALYTICS_ID: z.string(),
@@ -55,7 +53,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <ThemeProvider>
-        <body className={font.className + " bg-theme-50 dark:bg-theme-900"}>
+        <body
+          className={`${sans.variable} ${mono.variable} bg-theme-50 font-sans dark:bg-theme-900`}
+        >
           <div className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950" />
           <div className="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100">
             <Header />
