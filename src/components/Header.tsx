@@ -10,7 +10,7 @@ export default function Header() {
   const links = [
     { href: "/", label: "Home" },
     { href: "/cv", label: "My CV" },
-    { href: "/message", label: "Message Me" },
+    { href: "/message", label: "Message me" },
   ];
 
   return (
