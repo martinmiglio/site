@@ -19,7 +19,7 @@ export function ProjectCard({ title, description, tags, link }: Props) {
     <Card className="flex flex-col overflow-hidden border border-theme-900/40 p-3 dark:border-theme-100/40">
       <CardHeader className="">
         <div className="space-y-1">
-          <CardTitle className="text-base">
+          <CardTitle className="border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50">
             {link ? (
               <a
                 href={link}

@@ -48,8 +48,8 @@ export default function Page() {
           {RESUME_DATA.work.map((work) => (
             <Card key={work.company}>
               <CardHeader>
-                <div className="flex items-center justify-between gap-x-2 text-base">
-                  <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
+                <div className="flex items-center justify-between gap-x-2 border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50">
+                  <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none ">
                     <Link className="hover:underline" href={work.link}>
                       {work.company}
                     </Link>
@@ -82,7 +82,7 @@ export default function Page() {
           {RESUME_DATA.education.map((education) => (
             <Card key={education.school}>
               <CardHeader>
-                <div className="flex items-center justify-between gap-x-2 text-base">
+                <div className="flex items-center justify-between gap-x-2 border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50">
                   <h3 className="font-semibold leading-none">
                     {education.school}
                   </h3>
