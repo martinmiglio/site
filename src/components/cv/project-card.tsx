@@ -6,6 +6,7 @@ import {
   CardDescription,
   CardTitle,
 } from "../ui/card";
+import Link from "next/link";
 
 interface Props {
   title: string;
@@ -14,21 +15,27 @@ interface Props {
   link?: string;
 }
 
-export function ProjectCard({ title, description, tags, link }: Props) {
+export function ProjectCard({
+  title,
+  description,
+  tags,
+  link,
+}: Readonly<Props>) {
   return (
     <Card className="flex flex-col overflow-hidden border border-theme-900/40 p-3 dark:border-theme-100/40">
       <CardHeader className="">
         <div className="space-y-1">
           <CardTitle className="border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50">
             {link ? (
-              <a
+              <Link
                 href={link}
                 target="_blank"
                 className="inline-flex items-center gap-1 hover:underline"
+                data-umami-event={`CV Project - ${title} Link Clicked`}
               >
                 {title}{" "}
                 <span className="h-1 w-1 rounded-full bg-green-500"></span>
-              </a>
+              </Link>
             ) : (
               title
             )}

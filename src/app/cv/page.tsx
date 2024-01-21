@@ -29,6 +29,7 @@ export default function Page() {
                 className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
                 href={RESUME_DATA.locationLink}
                 target="_blank"
+                data-umami-event="CV Location Link Clicked"
               >
                 <FontAwesomeIcon icon={faGlobe} className="h-3 w-3" />
                 {RESUME_DATA.location}
@@ -50,7 +51,11 @@ export default function Page() {
               <CardHeader>
                 <div className="flex items-center justify-between gap-x-2 border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50">
                   <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none ">
-                    <Link className="hover:underline" href={work.link}>
+                    <Link
+                      className="hover:underline"
+                      href={work.link}
+                      data-umami-event={`CV Company - ${work.company} Link Clicked`}
+                    >
                       {work.company}
                     </Link>
                     <span className="inline-flex gap-x-1">
