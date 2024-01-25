@@ -1,5 +1,5 @@
 import { ProjectCard } from "@/components/cv/project-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
@@ -16,15 +16,13 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 md:p-16 print:p-12">
-      <section className="mx-auto w-full max-w-2xl space-y-8 print:space-y-6">
+    <main className="relative scroll-my-12 overflow-auto">
+      <section className="mx-auto w-full space-y-8 print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
-            <p className="max-w-md text-pretty font-mono text-sm">
-              {RESUME_DATA.about}
-            </p>
-            <p className="max-w-md items-center text-pretty font-mono text-xs">
+            <p className="text-pretty font-mono text-sm">{RESUME_DATA.about}</p>
+            <p className="items-center text-pretty font-mono text-xs">
               <Link
                 className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
                 href={RESUME_DATA.locationLink}
@@ -36,7 +34,7 @@ export default function Page() {
               </Link>
             </p>
           </div>
-          <Avatar className="h-28 w-28">
+          <Avatar className="h-32 w-32">
             <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
           </Avatar>
         </div>
@@ -110,7 +108,7 @@ export default function Page() {
         </Section>
         <Section className="print-force-new-page scroll-mb-16">
           <h2 className="text-xl font-bold">Projects</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2">
             {RESUME_DATA.projects.map((project) => (
               <ProjectCard
                 key={project.title}
