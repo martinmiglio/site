@@ -1,6 +1,10 @@
 "use client";
 
 import Captcha from "@/components/Captcha";
+import { MouseBackground } from "@/components/MouseBackground";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { redirect } from "next/navigation";
 import { useCallback, useState, useEffect } from "react";
 import { z } from "zod";
@@ -106,9 +110,6 @@ export default function Page() {
     redirect(`/`);
   }
 
-  const inputClassName =
-    "border border-gray-300 bg-theme-50 rounded-md p-2 text-theme-900";
-
   const buttonClassName = `rounded-md p-2 border transition-colors duration-200 ease-in-out text-theme-800 dark:text-theme-100 ${
     isErrored
       ? "border-red-500 bg-red-300/70 dark:bg-red-500/30 animate-shake"
@@ -117,24 +118,11 @@ export default function Page() {
 
   return (
     <Captcha handleVerify={handleVerify} refreshReCaptcha={refreshReCaptcha}>
+      <h1 className="pb-2 text-2xl font-bold">Send me a message</h1>
       <form className="flex flex-col gap-2" onSubmit={submitForm}>
-        <input
-          type="text"
-          placeholder="Subject"
-          id="subject"
-          className={inputClassName}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          id="email"
-          className={inputClassName}
-        />
-        <textarea
-          placeholder="Message"
-          id="message"
-          className={inputClassName}
-        />
+        <Input type="text" placeholder="Subject" id="subject" />
+        <Input type="email" placeholder="Email" id="email" />
+        <Textarea placeholder="Message" id="message" />
         <button
           type="submit"
           disabled={!token || isLoading || success}
