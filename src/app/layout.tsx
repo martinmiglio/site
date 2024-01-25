@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
       </head>
       <ThemeProvider>
         <body
-          className={`${sans.variable} ${mono.variable} bg-theme-50 font-sans dark:bg-theme-900`}
+          className={`${sans.variable} ${mono.variable} bg-theme-50 font-sans antialiased dark:bg-theme-900`}
         >
           <div className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950">
             <MouseBackground className="z-40" />
