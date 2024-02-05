@@ -58,10 +58,21 @@ export const RESUME_DATA = {
     "SQL",
     "Docker",
     "AWS",
+    "GCP",
     "Rest API",
     "GraphQL",
   ],
   projects: [
+    {
+      title: "sample.fit",
+      techStack: ["Side Project", "Docker", "TypeScript", "Next.js", "Python"],
+      description:
+        "A service to help indie music producers explore their sample library with machine learning",
+      link: {
+        label: "sample.fit",
+        href: "https://sample.fit/",
+      },
+    },
     {
       title: "TixTrend",
       techStack: ["Side Project", "TypeScript", "Next.js", "Rest API", "AWS"],
