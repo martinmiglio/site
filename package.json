@@ -3,8 +3,8 @@
   "homepage": "https://martinmiglio.dev/",
   "author": "Martin Miglio",
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "^6.5.1",
-    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@radix-ui/react-avatar": "^1.0.4",
