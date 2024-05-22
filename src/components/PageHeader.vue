@@ -1,15 +1,10 @@
 <script setup lang="ts">
+import { routes } from '@/router'
 import { RouterLink, useRoute } from 'vue-router'
-
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/cv', label: 'My CV' },
-  { href: '/message', label: 'Message me' }
-]
 
 const route = useRoute()
 
-const visibleLinks = links.filter((link) => link.href !== route.path)
+const visibleLinks = routes.filter((link) => link.inHeader && link.path !== route.path)
 </script>
 
 <template>
@@ -20,12 +15,12 @@ const visibleLinks = links.filter((link) => link.href !== route.path)
     <div className="flex items-center gap-4">
       <RouterLink
         v-for="link in visibleLinks"
-        :key="link.href"
-        :to="link.href"
+        :key="link.path"
+        :to="link.path"
         className="hover:underline"
-        :data-umami-event="link.label + ' Link Clicked'"
+        :data-umami-event="link.name + ' Link Clicked'"
       >
-        {{ link.label }}
+        {{ link.name }}
       </RouterLink>
     </div>
   </nav>
