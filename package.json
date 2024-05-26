@@ -22,7 +22,7 @@
     "react-dom": "^18.3.1",
     "react-google-recaptcha-v3": "^1.10.1",
     "tailwind-merge": "^2.3.0",
-    "vaul": "^0.9.0",
+    "vaul": "^0.9.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
