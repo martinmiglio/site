@@ -20,7 +20,7 @@ useMeta({
     </metainfo>
   </header>
   <div
-    className="fixed inset-0 -z-50 h-screen w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950"
+    className="fixed inset-0 -z-50 h-full w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950"
   >
     <MouseBackground />
   </div>

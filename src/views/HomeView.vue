@@ -1,5 +1,5 @@
 <template>
-  <div className="flex-grow">
+  <div className="flex-grow" id="page">
     <h2
       className="mb-12 py-6 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl"
     >
