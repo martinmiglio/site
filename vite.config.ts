@@ -7,9 +7,6 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  build: {
-    target: 'esnext'
-  },
   css: {
     postcss: {
       plugins: [tailwind(), autoprefixer()]
