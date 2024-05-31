@@ -60,7 +60,7 @@
         If you're interested in collaboration or simply want to connect,
         <a
           className="text-theme-500 hover:underline"
-          href="/message"
+          href="mailto:contact@martinmiglio.dev"
           data-umami-event="Message Link Clicked"
         >
           drop me a message</a
