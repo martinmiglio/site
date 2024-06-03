@@ -35,7 +35,7 @@
     "@rushstack/eslint-patch": "^1.8.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.14.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/compiler-sfc": "^3.4.27",
     "@vue/eslint-config-prettier": "^9.0.0",
