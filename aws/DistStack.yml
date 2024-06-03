@@ -1,0 +1,133 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: "Formation template for the static site hosted on S3 with CloudFront distribution."
+
+Parameters:
+  ResourcePrefix:
+    Description: prefix for all resources, can include lowercase letters (a-z), numbers (0-9), and dashes (-). must be unique within an aws region
+    Type: String
+  Domain:
+    Description: domain name for the site
+    Type: String
+
+Resources:
+  S3Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Sub "${ResourcePrefix}-bucket"
+      Tags:
+        - Key: !Ref ResourcePrefix
+          Value: ""
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: "AES256"
+            BucketKeyEnabled: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: "BucketOwnerEnforced"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+
+  S3BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: "2008-10-17"
+        Id: "PolicyForCloudFrontPrivateContent"
+        Statement:
+          - Sid: "AllowCloudFrontServicePrincipal"
+            Effect: "Allow"
+            Principal:
+              Service: "cloudfront.amazonaws.com"
+            Action: "s3:GetObject"
+            Resource: !Sub
+              - "${bucketARN}/*"
+              - { bucketARN: !GetAtt S3Bucket.Arn }
+            Condition:
+              StringEquals:
+                "AWS:SourceArn": !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+
+  CloudFrontDistribution:
+    Type: "AWS::CloudFront::Distribution"
+    Properties:
+      DistributionConfig:
+        Origins:
+          - ConnectionAttempts: 3
+            ConnectionTimeout: 10
+            DomainName: !GetAtt S3Bucket.RegionalDomainName
+            Id: !GetAtt S3Bucket.RegionalDomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
+        DefaultCacheBehavior:
+          FunctionAssociations:
+            - EventType: "viewer-request"
+              FunctionARN: !Ref CloudFrontFunction
+          AllowedMethods:
+            - "HEAD"
+            - "GET"
+          CachedMethods:
+            - "HEAD"
+            - "GET"
+          Compress: true
+          SmoothStreaming: false
+          TargetOriginId: !GetAtt S3Bucket.RegionalDomainName
+          ViewerProtocolPolicy: "redirect-to-https"
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+        Comment: !Sub "${ResourcePrefix} Distribution"
+        PriceClass: "PriceClass_100"
+        Enabled: true
+        Restrictions:
+          GeoRestriction:
+            RestrictionType: "none"
+        HttpVersion: "http2"
+        Aliases:
+          - !Sub "${Domain}"
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateManagerCertificate
+          MinimumProtocolVersion: TLSv1.2_2021
+          SslSupportMethod: sni-only
+        IPV6Enabled: true
+
+  CloudFrontOriginAccessControl:
+    Type: "AWS::CloudFront::OriginAccessControl"
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${ResourcePrefix}-origin-access-control"
+        OriginAccessControlOriginType: "s3"
+        SigningBehavior: "always"
+        SigningProtocol: "sigv4"
+
+  CloudFrontFunction:
+    Type: "AWS::CloudFront::Function"
+    Properties:
+      Name: !Sub "${ResourcePrefix}-spa-rewrite"
+      AutoPublish: true
+      FunctionCode: |
+        function handler(event) {
+          var request = event.request;
+          if (request.uri.match(/\/[^./]+\.[^./]+$/) === null) {
+            request.uri = "/index.html";
+          }
+          return request;
+        }
+      FunctionConfig:
+        Comment: ""
+        Runtime: "cloudfront-js-2.0"
+
+  CertificateManagerCertificate:
+    Type: "AWS::CertificateManager::Certificate"
+    Properties:
+      DomainName: !Sub "${Domain}"
+      SubjectAlternativeNames:
+        - !Sub "${Domain}"
+      ValidationMethod: "DNS"
+      CertificateTransparencyLoggingPreference: "ENABLED"
