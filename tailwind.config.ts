@@ -1,8 +1,8 @@
 import svgToDataUri from 'mini-svg-data-uri'
 import type { Config } from 'tailwindcss'
+import animate from 'tailwindcss-animate'
 import { default as flattenColorPalette } from 'tailwindcss/lib/util/flattenColorPalette'
-
-const animate = require('tailwindcss-animate')
+import { type PluginAPI } from 'tailwindcss/types/config'
 
 const config = {
   darkMode: ['class'],
@@ -18,8 +18,27 @@ const config = {
 
   theme: {
     fontFamily: {
-      sans: ['"Golos Text"'],
-      mono: ['"Source Code Pro"']
+      sans: [
+        '"Golos Text"',
+        'ui-sans-serif',
+        'system-ui',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Noto Color Emoji"'
+      ],
+      mono: [
+        '"Source Code Pro"',
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        '"Liberation Mono"',
+        '"Courier New"',
+        'monospace'
+      ]
     },
     container: {
       center: true,
@@ -107,7 +126,7 @@ const config = {
     }
   },
   plugins: [
-    function ({ matchUtilities, theme }) {
+    function ({ matchUtilities, theme }: PluginAPI) {
       matchUtilities(
         {
           'bg-grid': (value) => ({
