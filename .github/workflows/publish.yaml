@@ -51,3 +51,7 @@ jobs:
         run: aws s3 sync ./dist/ s3://$AWS_S3_BUCKET --follow-symlinks --delete
         env:
           AWS_S3_BUCKET: '${{ secrets.RESOURCEPREFIX }}-bucket'
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
