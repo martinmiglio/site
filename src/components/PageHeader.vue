@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { routes } from '@/router'
-import { RouterLink, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
@@ -9,11 +9,11 @@ const visibleLinks = routes.filter((link) => link.inHeader && link.path !== rout
 
 <template>
   <nav className="flex w-full justify-between py-8">
-    <RouterLink to="/" data-umami-event="Header Home Clicked">
+    <router-link to="/" data-umami-event="Header Home Clicked">
       <h1 className="font-bold text-theme-500">Martin Miglio</h1>
-    </RouterLink>
+    </router-link>
     <div className="flex items-center gap-4">
-      <RouterLink
+      <router-link
         v-for="link in visibleLinks"
         :key="link.path"
         :to="link.path"
@@ -21,7 +21,7 @@ const visibleLinks = routes.filter((link) => link.inHeader && link.path !== rout
         :data-umami-event="link.name + ' Link Clicked'"
       >
         {{ link.name }}
-      </RouterLink>
+      </router-link>
     </div>
   </nav>
 </template>
