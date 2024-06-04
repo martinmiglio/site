@@ -78,17 +78,14 @@ Resources:
           SmoothStreaming: false
           TargetOriginId: !GetAtt S3Bucket.RegionalDomainName
           ViewerProtocolPolicy: "redirect-to-https"
-          ForwardedValues:
-            QueryString: false
-            Cookies:
-              Forward: none
+          CachePolicyId: !Ref CloudFrontCachePolicy
         Comment: !Sub "${ResourcePrefix} Distribution"
         PriceClass: "PriceClass_100"
         Enabled: true
         Restrictions:
           GeoRestriction:
             RestrictionType: "none"
-        HttpVersion: "http2"
+        HttpVersion: "http2and3"
         Aliases:
           - !Sub "${Domain}"
         ViewerCertificate:
@@ -96,6 +93,24 @@ Resources:
           MinimumProtocolVersion: TLSv1.2_2021
           SslSupportMethod: sni-only
         IPV6Enabled: true
+
+  CloudFrontCachePolicy:
+    Type: "AWS::CloudFront::CachePolicy"
+    Properties:
+      CachePolicyConfig:
+        Name: !Sub "${ResourcePrefix}-cache-policy"
+        DefaultTTL: 86400
+        MaxTTL: 31536000
+        MinTTL: 1
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          EnableAcceptEncodingBrotli: true
+          CookiesConfig:
+            CookieBehavior: "none"
+          HeadersConfig:
+            HeaderBehavior: "none"
+          QueryStringsConfig:
+            QueryStringBehavior: "none"
 
   CloudFrontOriginAccessControl:
     Type: "AWS::CloudFront::OriginAccessControl"
