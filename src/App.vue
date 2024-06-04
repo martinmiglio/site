@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MouseBackground from '@/components/MouseBackground.vue'
+import PageBackground from '@/components/PageBackground.vue'
 import PageFooter from '@/components/PageFooter.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import { useMeta } from 'vue-meta'
@@ -19,11 +19,7 @@ useMeta({
       }}</template>
     </metainfo>
   </header>
-  <div
-    className="fixed inset-0 -z-50 h-full w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950"
-  >
-    <MouseBackground />
-  </div>
+  <PageBackground />
   <div
     className="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100"
   >
