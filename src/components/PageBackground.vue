@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import noise from '@/assets/noise.png'
+import noise from '@/assets/noise.webp'
 import { useMousePosition } from '@/composables/useMousePosition'
 import { useUpdatingRandom } from '@/composables/useUpdatingRandom'
 
