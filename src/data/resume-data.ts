@@ -51,8 +51,10 @@ export const RESUME_DATA = {
   skills: [
     'JavaScript',
     'TypeScript',
-    'React/Next.js',
     'Node.js',
+    'React',
+    'Next.js',
+    'Vue.js',
     'Python',
     'C# .NET',
     'SQL',
@@ -85,7 +87,7 @@ export const RESUME_DATA = {
     {
       title: 'pymemuc',
       techStack: ['Open Source', 'Python', 'API'],
-      description: 'A Python API for MEmu Android Emulator ',
+      description: 'A Python API for MEmu Android Emulator',
       link: {
         label: 'pymemuc on GitHub',
         href: 'https://github.com/pyclashbot/pymemuc'
@@ -93,8 +95,8 @@ export const RESUME_DATA = {
     },
     {
       title: 'martinmiglio.dev',
-      techStack: ['Side Project', 'Next.js'],
-      description: 'My personal website. Built with Next.js and TypeScript',
+      techStack: ['Side Project', 'Vue.js', 'AWS'],
+      description: 'My personal website. Built with Vue.js and TypeScript hosted on AWS',
       link: {
         label: 'martinmiglio.dev',
         href: 'https://martinmiglio.dev/'
