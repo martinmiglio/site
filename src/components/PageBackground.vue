@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import noise from '@/assets/noise.webp'
+import { useIsTouchDevice } from '@/composables/useIsTouchDevice'
 import { useMousePosition } from '@/composables/useMousePosition'
 import { useUpdatingRandom } from '@/composables/useUpdatingRandom'
+
+const isTouch = useIsTouchDevice()
 
 const { x: mouseX, y: mouseY } = useMousePosition()
 
@@ -27,11 +30,12 @@ const radius = 512
       }"
     />
     <div
-      class="absolute left-0 top-0 -z-30 rounded-full bg-theme-50 blur-[128px] dark:bg-theme-900"
+      class="absolute left-0 top-0 -z-30 rounded-full bg-theme-50 blur-[128px] transition-opacity duration-300 dark:bg-theme-900"
       :style="{
         height: radius + 'px',
         width: radius + 'px',
-        transform: `translate(calc(-50% + ${mouseX}px), calc(-50% + ${mouseY}px))`
+        transform: `translate(calc(-50% + ${mouseX}px), calc(-50% + ${mouseY}px))`,
+        opacity: isTouch ? 0 : 1
       }"
     />
   </div>
