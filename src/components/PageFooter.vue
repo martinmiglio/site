@@ -6,13 +6,13 @@ const year = new Date().getFullYear()
 
 <template>
   <footer
-    className="flex w-full flex-row flex-wrap items-center justify-between py-8 text-sm opacity-60"
+    class="flex w-full flex-row flex-wrap items-center justify-between py-8 text-sm opacity-60"
   >
-    <div className="pb-1">
+    <div class="pb-1">
       <p>© {{ year }} Martin Miglio</p>
       <a
         href="https://github.com/martinmiglio/site"
-        className="text-theme-500 hover:underline"
+        class="text-theme-500 hover:underline"
         data-umami-event="View Source Link Clicked"
       >
         <div>view source</div>

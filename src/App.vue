@@ -21,7 +21,7 @@ useMeta({
   </header>
   <PageBackground />
   <div
-    className="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100"
+    class="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100"
   >
     <PageHeader :key="$route.fullPath" />
     <RouterView />

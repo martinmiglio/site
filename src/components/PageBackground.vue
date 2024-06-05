@@ -17,7 +17,7 @@ const radius = 512
 
 <template>
   <div
-    className="fixed inset-0 -z-50 h-full w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950"
+    class="fixed inset-0 -z-50 h-full w-screen bg-theme-50 bg-grid-theme-100 dark:bg-theme-900 dark:bg-grid-theme-950"
   >
     <div
       class="absolute inset-[-200%] -z-40 h-[400%] w-[400%] opacity-[0.05]"
@@ -27,7 +27,7 @@ const radius = 512
       }"
     />
     <div
-      className="-z-30 absolute left-0 top-0 rounded-full bg-theme-50 dark:bg-theme-900 blur-[128px]"
+      class="absolute left-0 top-0 -z-30 rounded-full bg-theme-50 blur-[128px] dark:bg-theme-900"
       :style="{
         height: radius + 'px',
         width: radius + 'px',

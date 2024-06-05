@@ -8,16 +8,16 @@ const visibleLinks = routes.filter((link) => link.inHeader && link.path !== rout
 </script>
 
 <template>
-  <nav className="flex w-full justify-between py-8">
+  <nav class="flex w-full justify-between py-8">
     <router-link to="/" data-umami-event="Header Home Clicked">
-      <h1 className="font-bold text-theme-500">Martin Miglio</h1>
+      <h1 class="font-bold text-theme-500">Martin Miglio</h1>
     </router-link>
-    <div className="flex items-center gap-4">
+    <div class="flex items-center gap-4">
       <router-link
         v-for="link in visibleLinks"
         :key="link.path"
         :to="link.path"
-        className="hover:underline"
+        class="hover:underline"
         :data-umami-event="link.name + ' Link Clicked'"
       >
         {{ link.name }}

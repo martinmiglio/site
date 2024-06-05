@@ -1,16 +1,14 @@
 <template>
-  <div className="flex-grow" id="page">
-    <h2
-      className="mb-12 py-6 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl"
-    >
+  <div class="flex-grow" id="page">
+    <h2 class="mb-12 py-6 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl">
       Hey there, I'm
       <span
-        className="animate-shine flex-col bg-gradient-to-r from-theme-500 from-35% via-theme-300 to-theme-500 to-65% bg-clip-text text-transparent fill-mode-forwards"
+        class="animate-shine flex-col bg-gradient-to-r from-theme-500 from-35% via-theme-300 to-theme-500 to-65% bg-clip-text text-transparent fill-mode-forwards"
       >
         Martin!
       </span>
     </h2>
-    <div className="flex flex-col gap-6 text-lg">
+    <div class="flex flex-col gap-6 text-lg">
       <p>
         I'm a full-stack software developer with a knack for crafting web applications using React,
         Next.js, and AWS. Currently pursuing a BS in Computer Science, I'm embracing the art of
@@ -19,7 +17,7 @@
       <p>
         I take pride in maintaining and contributing to open source projects. Visit
         <a
-          className="text-theme-500 hover:underline"
+          class="text-theme-500 hover:underline"
           href="https://github.com/martinmiglio"
           data-umami-event="GitHub Link Clicked"
         >
@@ -27,7 +25,7 @@
         </a>
         to see my projects and contributions. Past internships at
         <a
-          className="hover:underline"
+          class="hover:underline"
           href="https://opencorporates.com/companies/us_tx/0801291571"
           data-umami-event="IPT Link Clicked"
         >
@@ -35,7 +33,7 @@
         </a>
         and
         <a
-          className="hover:underline"
+          class="hover:underline"
           href="https://www.groupgolfer.com/"
           data-umami-event="GG Link Clicked"
         >
@@ -49,7 +47,7 @@
         go-to activities when I'm not immersed in the digital realm. Check out some of my captures
         on Instagram
         <a
-          className="text-theme-500 hover:underline"
+          class="text-theme-500 hover:underline"
           href="https://instagram.com/migliosights"
           data-umami-event="Instagram Link Clicked"
         >
@@ -59,7 +57,7 @@
       <p>
         If you're interested in collaboration or simply want to connect,
         <a
-          className="text-theme-500 hover:underline"
+          class="text-theme-500 hover:underline"
           href="mailto:contact@martinmiglio.dev"
           data-umami-event="Message Link Clicked"
         >
