@@ -1,3 +1,4 @@
+import CVView from '@/views/CVView.vue'
 import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -16,15 +17,9 @@ export const routes = [
   {
     path: '/cv',
     name: 'My CV',
-    component: () => import('@/views/CVView.vue'),
+    component: CVView,
     inHeader: true
   }
-  // {
-  //   path: '/message',
-  //   name: 'Message Me',
-  //   component: () => import('@/views/MessageView.vue'),
-  //   inHeader: true
-  // }
 ]
 
 const router = createRouter({
