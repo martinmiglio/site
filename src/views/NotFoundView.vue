@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'Not Found'
+})
+</script>
+
 <template>
   <div class="flex flex-grow flex-col items-center justify-center">
     <h1 class="text-center text-9xl">404</h1>

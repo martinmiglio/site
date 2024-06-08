@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useMeta } from 'vue-meta'
+import { useHead } from '@unhead/vue'
 
-useMeta({
+useHead({
   title: 'Message Me'
 })
 </script>

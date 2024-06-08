@@ -16,7 +16,6 @@
 # production
 /build
 /dist
-.env
 /.cache
 /.idea
 
@@ -417,6 +416,5 @@ coverage
 *.tsbuildinfo
 
 .vercel
-.env
 .next
 

@@ -1,3 +1,4 @@
+import UnheadVite from '@unhead/addons/vite'
 import vue from '@vitejs/plugin-vue'
 import autoprefixer from 'autoprefixer'
 import path from 'path'
@@ -12,7 +13,7 @@ export default defineConfig({
       plugins: [tailwind(), autoprefixer()]
     }
   },
-  plugins: [vue(), VueDevTools()],
+  plugins: [vue(), VueDevTools(), UnheadVite()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')

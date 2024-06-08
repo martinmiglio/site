@@ -6,10 +6,16 @@ import { ProjectCard } from '@/components/ui/projectCard'
 import { RESUME_DATA } from '@/data/resume-data'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { useMeta } from 'vue-meta'
+import { useHead } from '@unhead/vue'
 
-useMeta({
-  title: 'Curriculum Vitae'
+useHead({
+  title: 'Curriculum Vitae',
+  link: [
+    {
+      rel: 'canonical',
+      href: new URL('/cv', import.meta.env.VITE_DEPLOY_URL).href
+    }
+  ]
 })
 </script>
 
