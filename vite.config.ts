@@ -7,6 +7,7 @@ import tailwind from 'tailwindcss'
 import { defineConfig, loadEnv } from 'vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import webfontDownload from 'vite-plugin-webfont-dl'
+import generateSitemap from 'vite-ssg-sitemap'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -29,6 +30,9 @@ export default defineConfig(({ mode }) => {
       formatting: 'minify',
       crittersOptions: {
         reduceInlineStyles: false
+      },
+      onFinished() {
+        generateSitemap({ hostname: env.VITE_DEPLOY_URL })
       }
     }
   }
