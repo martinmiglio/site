@@ -23,7 +23,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.6",
-    "@napi-rs/canvas": "^0.1.52",
+    "@napi-rs/canvas": "^0.1.53",
     "@unhead/vue": "^1.9.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
