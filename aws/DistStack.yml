@@ -64,10 +64,14 @@ Resources:
             S3OriginConfig:
               OriginAccessIdentity: ""
             OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: "/index.html"
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: "/index.html"
         DefaultCacheBehavior:
-          FunctionAssociations:
-            - EventType: "viewer-request"
-              FunctionARN: !Ref CloudFrontFunction
           AllowedMethods:
             - "HEAD"
             - "GET"
@@ -120,23 +124,6 @@ Resources:
         OriginAccessControlOriginType: "s3"
         SigningBehavior: "always"
         SigningProtocol: "sigv4"
-
-  CloudFrontFunction:
-    Type: "AWS::CloudFront::Function"
-    Properties:
-      Name: !Sub "${ResourcePrefix}-spa-rewrite"
-      AutoPublish: true
-      FunctionCode: |
-        function handler(event) {
-          var request = event.request;
-          if (request.uri.match(/\/[^./]+\.[^./]+$/) === null) {
-            request.uri = "/index.html";
-          }
-          return request;
-        }
-      FunctionConfig:
-        Comment: ""
-        Runtime: "cloudfront-js-2.0"
 
   CertificateManagerCertificate:
     Type: "AWS::CertificateManager::Certificate"

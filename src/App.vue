@@ -13,7 +13,7 @@ useHead({
 </script>
 
 <template>
-  <PageBackground />
+  <client-only><PageBackground /></client-only>
   <div
     class="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100"
   >
