@@ -33,7 +33,7 @@
     "satori": "^0.10.13",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "vue": "^3.4.21",
+    "vue": "^3.4.31",
     "vue-router": "^4.4.0",
     "zod": "^3.23.8"
   },
