@@ -33,8 +33,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       lucide-vue-next:
-        specifier: ^0.396.0
-        version: 0.396.0(vue@3.4.31(typescript@5.5.3))
+        specifier: ^0.427.0
+        version: 0.427.0(vue@3.4.31(typescript@5.5.3))
       mini-svg-data-uri:
         specifier: ^1.4.4
         version: 1.4.4
@@ -1756,8 +1756,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-vue-next@0.396.0:
-    resolution: {integrity: sha512-fY2FbKWVlAH6KyGHLWQvjPmDAbAh5UH6eqakDYB815UG5wPLtDQmhSYQlZvDLvhkahLdUZt5f+IWKwSANaS0Zw==}
+  lucide-vue-next@0.427.0:
+    resolution: {integrity: sha512-zI1FhbfQ3Wl0SgPKnOWhTDC6yAC5TTjSC9FSZ61ULg3U36e+GVK+RT1qfkU9Q5BjeBuwmsHWKsXKptKMjUAwFA==}
     peerDependencies:
       vue: '>=3.0.1'
 
@@ -4364,7 +4364,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-vue-next@0.396.0(vue@3.4.31(typescript@5.5.3)):
+  lucide-vue-next@0.427.0(vue@3.4.31(typescript@5.5.3)):
     dependencies:
       vue: 3.4.31(typescript@5.5.3)
 
