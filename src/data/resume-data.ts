@@ -94,6 +94,15 @@ export const RESUME_DATA = {
       }
     },
     {
+      title: 'Around the World Blog',
+      techStack: ['Side Project', 'Next.js', 'AWS'],
+      description: 'A travel blog built for Hogan Milam. Hosted on AWS and Vercel',
+      link: {
+        label: 'hoganmilam.site',
+        href: 'https://hoganmilam.site/'
+      }
+    },
+    {
       title: 'martinmiglio.dev',
       techStack: ['Side Project', 'Vue.js', 'AWS'],
       description: 'My personal website. Built with Vue.js and TypeScript hosted on AWS',
