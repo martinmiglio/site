@@ -35,7 +35,7 @@ export const RESUME_DATA = {
       start: 'October 2018',
       end: 'January 2019',
       description:
-        'Developed in various languages for different tasks to improve company efficiency. Included software development with Geospatial Information Systems, Python, MySQL, PGSQL, and website development in WordPress.Developed '
+        'Developed in various languages for different tasks to improve company efficiency. Included software development with Geospatial Information Systems, Python, MySQL, PGSQL, and website development in WordPress.'
     },
     {
       company: 'Integrated System Specialists',

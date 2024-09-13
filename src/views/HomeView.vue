@@ -10,9 +10,9 @@
     </h2>
     <div class="flex flex-col gap-6 text-lg">
       <p>
-        I'm a full-stack software developer with a knack for crafting web applications using React,
-        Next.js, and AWS. Currently pursuing a BS in Computer Science, I'm embracing the art of
-        mastering the best practices in the field.
+        I'm a full-stack software developer with a knack for crafting web applications using modern
+        toolsets. Graduated with a BS in Computer Science, I'm embracing the art of mastering the
+        best practices in the field.
       </p>
       <p>
         I take pride in maintaining and contributing to open source projects. Visit
