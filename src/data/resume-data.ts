@@ -110,15 +110,6 @@ export const RESUME_DATA = {
         label: 'martinmiglio.dev',
         href: 'https://martinmiglio.dev/'
       }
-    },
-    {
-      title: 'BYO Photo Blog',
-      techStack: ['Side Project', 'Next.js', 'AWS'],
-      description: 'A self-hosted photo blog. Built with Next.js and TypeScript on AWS',
-      link: {
-        label: 'blogdemo.martinmiglio.dev',
-        href: 'https://blogdemo.martinmiglio.dev/'
-      }
     }
   ]
 } as const
