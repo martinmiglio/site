@@ -3,7 +3,7 @@ import { Icon } from './types'
 import React from 'react'
 
 export default {
-  name: 'opengraph.png',
+  targets: [{ name: 'opengraph.png', fileType: 'png' }],
   element: (
     <div
       style={{ fontFamily: '"Golos Text Regular"' }}

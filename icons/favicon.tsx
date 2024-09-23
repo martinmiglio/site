@@ -3,7 +3,10 @@ import { Icon } from './types'
 import React from 'react'
 
 export default {
-  name: 'favicon.ico',
+  targets: [
+    { name: 'favicon.ico', fileType: 'png' },
+    { name: 'icon.svg', fileType: 'svg' }
+  ],
   element: (
     <div
       style={{ fontFamily: '"Golos Text Bold"' }}

@@ -1,12 +1,16 @@
 import favicon from './favicon'
 import opengraph from './opengraph'
-import type { Icon } from './types'
+import type { FileType, Icon } from './types'
 import { createCanvas, Image } from '@napi-rs/canvas'
 import fs from 'fs'
 import satori from 'satori'
 
-const render = async (icon: Icon): Promise<Buffer> => {
+const render = async (icon: Icon, fileType: FileType): Promise<Buffer> => {
   const svg = await satori(icon.element, icon.options)
+
+  if (fileType === 'svg') {
+    return Buffer.from(svg)
+  }
 
   const canvas = createCanvas(icon.options.width, icon.options.height)
 
@@ -22,11 +26,13 @@ if (!fs.existsSync('dist')) {
 }
 
 for (const icon of [favicon, opengraph]) {
-  try {
-    const path = `dist/${icon.name}`
-    fs.writeFileSync(path, await render(icon))
-    console.log(`Generated ${path}`)
-  } catch (e) {
-    console.error(`Failed to generate ${icon.name}: ${e}`)
+  for (const target of icon.targets) {
+    try {
+      const path = `dist/${target.name}`
+      fs.writeFileSync(path, new Uint8Array(await render(icon, target.fileType)))
+      console.log(`Generated ${path}`)
+    } catch (e) {
+      console.error(`Failed to generate ${target.name}: ${e}`)
+    }
   }
 }
