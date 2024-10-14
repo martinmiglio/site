@@ -24,7 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "@napi-rs/canvas": "^0.1.52",
-    "@unhead/vue": "^1.9.12",
+    "@unhead/vue": "^1.11.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.427.0",
