@@ -2,10 +2,24 @@ import fonts from './fonts'
 import { Icon } from './types'
 import React from 'react'
 
+const defaultOptions = {
+  width: 64,
+  height: 64,
+  fonts
+}
+
 export default {
   targets: [
-    { name: 'favicon.ico', fileType: 'png' },
-    { name: 'icon.svg', fileType: 'svg' }
+    {
+      name: 'favicon.ico',
+      fileType: 'png',
+      options: defaultOptions
+    },
+    {
+      name: 'icon.svg',
+      fileType: 'svg',
+      options: defaultOptions
+    }
   ],
   element: (
     <div
@@ -16,10 +30,5 @@ export default {
         M<div tw="text-xl flex mb-auto">2</div>
       </div>
     </div>
-  ),
-  options: {
-    width: 64,
-    height: 64,
-    fonts
-  }
+  )
 } satisfies Icon

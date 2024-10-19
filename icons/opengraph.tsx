@@ -3,7 +3,17 @@ import { Icon } from './types'
 import React from 'react'
 
 export default {
-  targets: [{ name: 'opengraph.png', fileType: 'png' }],
+  targets: [
+    {
+      name: 'opengraph.png',
+      fileType: 'png',
+      options: {
+        width: 1200,
+        height: 630,
+        fonts
+      }
+    }
+  ],
   element: (
     <div
       style={{ fontFamily: '"Golos Text Regular"' }}
@@ -16,10 +26,5 @@ export default {
       <h3 tw="text-[#32352C] text-6xl">React • Next.js • AWS</h3>
       <h4 tw="text-[#00A824] opacity-30 p-8 text-5xl mt-auto ml-auto">martinmiglio.dev</h4>
     </div>
-  ),
-  options: {
-    width: 1200,
-    height: 630,
-    fonts
-  }
+  )
 } satisfies Icon
