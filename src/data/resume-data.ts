@@ -18,6 +18,16 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: 'Revv ADAS',
+      link: 'https://revvhq.com/',
+      badges: [],
+      title: 'On-Team Web Development Consultant',
+      start: 'October 2024',
+      end: 'Present',
+      description:
+        'Collaborated with marketing and SEO teams to develop and deploy new landing pages for webinars, product demos, and email campaigns, integrating Marketo Engage, Chili Piper, Google Analytics, and Google Tag Manager. Created custom React components that streamlined lead capture, enhanced user tracking, and optimized engagement metrics, supporting high-impact marketing offers and communications.'
+    },
+    {
       company: 'I Play Texas',
       link: 'https://opencorporates.com/companies/us_tx/0801291571',
       badges: [],
