@@ -6,7 +6,7 @@ export const RESUME_DATA = {
   about:
     'Full-stack software developer with a knack for crafting web applications from the ground, up.',
   summary:
-    'With experience in both front-end and back-end development, I have a passion for creating web applications that are both functional and beautiful. I am a quick learner and am always looking to expand my knowledge and skillset. Being familiar with multiple tech stacks, I am able to adapt to any project and work with any team.',
+    'A versatile developer with a strong background in both web development and system integration, I specialize in building efficient, impactful solutions across diverse industries. My experience spans creating intuitive user interfaces, optimizing back-end systems, and developing tools that improve business operations. I thrive in dynamic environments, continually expanding my skills and adapting to new challenges. Passionate about delivering high-quality, user-centric products, I collaborate effectively with cross-functional teams to achieve project goals and drive business growth.',
   personalWebsiteUrl: 'https://martinmiglio.dev',
   education: [
     {
@@ -35,7 +35,7 @@ export const RESUME_DATA = {
       start: 'April 2019',
       end: 'December 2019',
       description:
-        'Worked in Full Stack .Net development, focusing primarily on WPF, WCF, IIS, and MSSQL technologies. I also venture into Xamarin, PHP, JavaScript and HTML when integrating my software into web or Android. I use these technologies to develop for physical and web-based slot machines and related applications.'
+        'Developed and maintained software for slot machines and related applications using WPF, WCF, IIS, and MSSQL. Designed internal tools to improve process efficiency, including a casino floor management system sold to a client, enabling graphical analysis of slot machine performance, hot/cold zones, and revenue metrics. Built mobile product demo apps with Xamarin and maintained web-based offerings using PHP and JavaScript.'
     },
     {
       company: 'GroupGolfer.com',
@@ -45,7 +45,7 @@ export const RESUME_DATA = {
       start: 'October 2018',
       end: 'January 2019',
       description:
-        'Developed in various languages for different tasks to improve company efficiency. Included software development with Geospatial Information Systems, Python, MySQL, PGSQL, and website development in WordPress.'
+        'Automated Geospatial Information Systems (GIS) tasks, generating marketing map imagery with Python and GIS database integrations. Managed GIS database operations and implementations, improving efficiency for marketing campaigns. Performed a successful website migration to WordPress, streamlining content management and hosting reliability.'
     },
     {
       company: 'Integrated System Specialists',
@@ -55,7 +55,7 @@ export const RESUME_DATA = {
       start: 'April 2016',
       end: 'August 2017',
       description:
-        'Worked in network infrastructure implementation, including the planning and installation of various networking technologies in settings such as offices, schools, and township buildings.'
+        'Implemented network infrastructure projects, including installing Cisco routers, switches, and firewalls across offices, schools, and township buildings. Supported large-scale deployments with small teams under tight deadlines, ensuring robust and secure connectivity. Collaborated with engineers and cable technicians to deliver solutions tailored to client needs.'
     }
   ],
   skills: [
