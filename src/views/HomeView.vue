@@ -10,12 +10,14 @@
     </h2>
     <div class="flex flex-col gap-6 text-lg">
       <p>
-        I'm a full-stack software developer with a knack for crafting web applications using modern
-        toolsets. Graduated with a BS in Computer Science, I'm embracing the art of mastering the
-        best practices in the field.
+        I’m a full-stack software developer with a passion for building intuitive and impactful web
+        applications. I’ve honed my skills across formal education, professional experiences, and
+        personal projects, continually refining my ability to deliver impactful, end-to-end
+        applications.
       </p>
       <p>
-        I take pride in maintaining and contributing to open source projects. Visit
+        I enjoy working on open-source projects and take pride in contributing to the developer
+        community—check out
         <a
           class="text-theme-500 hover:underline"
           href="https://github.com/martinmiglio"
@@ -23,29 +25,15 @@
         >
           my GitHub
         </a>
-        to see my projects and contributions. Past internships at
-        <a
-          class="hover:underline"
-          href="https://opencorporates.com/companies/us_tx/0801291571"
-          data-umami-event="IPT Link Clicked"
-        >
-          I Play Texas
-        </a>
-        and
-        <a
-          class="hover:underline"
-          href="https://www.groupgolfer.com/"
-          data-umami-event="GG Link Clicked"
-        >
-          Group Golfer
-        </a>
-        have honed my skills in full-stack development and frontend web development using .NET and
-        Python.
+        to see what I’ve been up to. My professional experience spans full-stack development and
+        collaborating with cross-functional teams to deliver high-value solutions. I’ve worked on
+        everything from developing marketing tools and interactive landing pages to crafting dynamic
+        web features that drive engagement and streamline processes.
       </p>
       <p>
-        Beyond coding, I find solace in nature. Camping, hiking, and landscape photography are my
-        go-to activities when I'm not immersed in the digital realm. Check out some of my captures
-        on Instagram
+        When I’m not coding, I recharge by exploring the outdoors. Whether it’s hiking, camping, or
+        capturing landscapes through photography, I love finding inspiration in nature. You can see
+        some of my work on Instagram
         <a
           class="text-theme-500 hover:underline"
           href="https://instagram.com/migliosights"
@@ -55,7 +43,7 @@
         >.
       </p>
       <p>
-        If you're interested in collaboration or simply want to connect,
+        If you’re interested in collaborating or just want to chat, feel free to
         <a
           class="text-theme-500 hover:underline"
           href="mailto:contact@martinmiglio.dev"
