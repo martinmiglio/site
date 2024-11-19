@@ -2,7 +2,8 @@ import {
   type IconDefinition,
   faGithub,
   faInstagram,
-  faLinkedinIn
+  faLinkedinIn,
+  faBluesky
 } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
@@ -30,5 +31,10 @@ export const socialBarData: {
     name: 'Instagram',
     link: 'https://www.instagram.com/migliosights',
     icon: faInstagram
+  },
+  {
+    name: 'Bluesky',
+    link: 'https://bsky.app/profile/martinmiglio.dev/',
+    icon: faBluesky
   }
 ]
