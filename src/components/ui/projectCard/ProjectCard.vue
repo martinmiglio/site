@@ -11,12 +11,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Card
-    class="flex flex-col overflow-hidden border border-theme-900/40 p-3 dark:border-theme-100/40"
-  >
+  <Card class="flex flex-col overflow-hidden rounded-none border-none">
     <CardHeader class="">
       <div class="space-y-1">
-        <CardTitle class="border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50">
+        <CardTitle class="border-b border-theme-900/50 pb-[8px] text-base dark:border-theme-50/50">
           <a
             v-if="props.link"
             :href="props.link"
