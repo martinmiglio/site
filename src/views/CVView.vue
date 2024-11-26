@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { ProjectCard } from '@/components/ui/projectCard'
 import { RESUME_DATA } from '@/data/resume-data'
+import { renderHTML2PDF } from '@/lib/pdf'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { useHead } from '@unhead/vue'
@@ -17,16 +18,46 @@ useHead({
     }
   ]
 })
+
+const pdfElementId = 'to-pdf'
+
+const exportToPdf = async () => {
+  const today = new Date()
+  const element = document.getElementById('page')
+
+  if (!element) {
+    console.error('Element not found')
+    return
+  }
+
+  const dateString = today.toLocaleString('default', { month: 'long' }) + ' ' + today.getFullYear()
+
+  renderHTML2PDF(element, `${RESUME_DATA.name} - ${dateString} Resume.pdf`, {
+    width: 1050,
+    scale: 0.53,
+    xMargin: 15,
+    yMargin: 10,
+    documentModifier: (clonedDoc: HTMLDocument) => {
+      const badges = clonedDoc.querySelectorAll('#shadcn-badge')
+      badges?.forEach((badge) => {
+        badge.classList.add('pb-3')
+      })
+    },
+    ignoreElements: (element: HTMLElement) => {
+      return element.id === 'print-ignore'
+    }
+  })
+}
 </script>
 
 <template>
   <main class="relative scroll-my-12 overflow-auto" id="page">
-    <section class="mx-auto w-full space-y-8 print:space-y-6">
+    <section class="mx-auto w-full space-y-8 print:space-y-6" :id="pdfElementId">
       <div class="flex items-center justify-between">
         <div class="flex-1 space-y-1.5">
           <h1 class="text-2xl font-bold">{{ RESUME_DATA.name }}</h1>
           <p class="text-pretty font-mono text-sm">{{ RESUME_DATA.about }}</p>
-          <p class="items-center text-pretty font-mono text-xs">
+          <p class="items-center text-pretty font-mono text-xs" id="print-ignore">
             <a
               class="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
               :href="RESUME_DATA.locationLink"
@@ -38,7 +69,7 @@ useHead({
             </a>
           </p>
         </div>
-        <Avatar class="h-32 w-32">
+        <Avatar class="h-32 w-32" id="print-ignore">
           <AvatarFallback>{{ RESUME_DATA.initials }}</AvatarFallback>
         </Avatar>
       </div>
@@ -48,10 +79,14 @@ useHead({
       </section>
       <section class="flex min-h-0 flex-col gap-y-3">
         <h2 class="text-xl font-bold">Work Experience</h2>
-        <Card v-for="work in RESUME_DATA.work" v-bind:key="work.company">
+        <Card
+          v-for="work in RESUME_DATA.work"
+          v-bind:key="work.company"
+          class="rounded-none border-none"
+        >
           <CardHeader>
             <div
-              class="flex items-center justify-between gap-x-2 border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50"
+              class="flex items-center justify-between gap-x-2 border-b border-theme-900/50 pb-[8px] text-base dark:border-theme-50/50"
             >
               <h3
                 class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none"
@@ -83,10 +118,14 @@ useHead({
       </section>
       <section class="flex min-h-0 flex-col gap-y-3">
         <h2 class="text-xl font-bold">Education</h2>
-        <Card v-for="education in RESUME_DATA.education" v-bind:key="education.school">
+        <Card
+          v-for="education in RESUME_DATA.education"
+          v-bind:key="education.school"
+          class="rounded-none border-none"
+        >
           <CardHeader>
             <div
-              class="flex items-center justify-between gap-x-2 border-b border-theme-900/50 pb-[1px] text-base dark:border-theme-50/50"
+              class="flex items-center justify-between gap-x-2 border-b border-theme-900/50 pb-[8px] text-base dark:border-theme-50/50"
             >
               <h3 class="font-semibold leading-none">
                 {{ education.school }}
@@ -121,5 +160,13 @@ useHead({
         </div>
       </section>
     </section>
+    <button
+      class="pt-8 text-sm opacity-80 hover:underline"
+      @click="exportToPdf"
+      data-umami-event="CV Exported to PDF"
+      id="print-ignore"
+    >
+      Export to PDF
+    </button>
   </main>
 </template>

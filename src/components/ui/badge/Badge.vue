@@ -10,7 +10,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div :class="cn(badgeVariants({ variant }), props.class)">
+  <div :class="cn(badgeVariants({ variant }), props.class)" id="shadcn-badge">
     <slot />
   </div>
 </template>
