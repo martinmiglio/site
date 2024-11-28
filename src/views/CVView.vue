@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { ProjectCard } from '@/components/ui/projectCard'
@@ -37,13 +36,13 @@ const exportToPdf = async () => {
     scale: 0.53,
     xMargin: 15,
     yMargin: 10,
-    documentModifier: (clonedDoc: HTMLDocument) => {
+    documentModifier: (clonedDoc) => {
       const badges = clonedDoc.querySelectorAll('#shadcn-badge')
       badges?.forEach((badge) => {
         badge.classList.add('pb-3')
       })
     },
-    ignoreElements: (element: HTMLElement) => {
+    ignoreElements: (element) => {
       return element.id === 'print-ignore'
     }
   })
@@ -69,9 +68,6 @@ const exportToPdf = async () => {
             </a>
           </p>
         </div>
-        <Avatar class="h-32 w-32" id="print-ignore">
-          <AvatarFallback>{{ RESUME_DATA.initials }}</AvatarFallback>
-        </Avatar>
       </div>
       <section class="flex min-h-0 flex-col gap-y-3">
         <h2 class="text-xl font-bold">About</h2>
