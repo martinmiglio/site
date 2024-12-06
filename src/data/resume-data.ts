@@ -21,11 +21,11 @@ export const RESUME_DATA = {
       company: 'Revv ADAS',
       link: 'https://revvhq.com/',
       badges: [],
-      title: 'On-Team Web Development Consultant',
+      title: 'Growth Engineering Consultant',
       start: 'October 2024',
       end: 'Present',
       description:
-        'Collaborated with marketing and SEO teams to develop and deploy new landing pages for webinars, product demos, and email campaigns, integrating Marketo Engage, Chili Piper, Google Analytics, and Google Tag Manager. Created custom React components that streamlined lead capture, enhanced user tracking, and optimized engagement metrics, supporting high-impact marketing offers and communications.'
+        'Supported growth-focused initiatives by blending software engineering best practices with marketing technology integration to achieve measurable business outcomes. Collaborated with marketing, SEO, and sales teams to develop and optimize solutions that enhanced lead generation, community engagement, and customer retention. Migrated and integrated CMS platforms to streamline content management workflows and improve scalability for marketing initiatives. Engineered and maintained integrations with CRM technologies, including Salesforce, to ensure seamless data synchronization and workflow automation. Developed a community-focused platform designed to foster interactive engagement and collaboration among users, driving brand advocacy and adoption of the company’s core technology products. Designed and deployed custom React components to streamline lead capture processes and optimize user interaction metrics across webinars, product demos, and marketing campaigns. Integrated and managed tools such as Marketo Engage, Chili Piper, Google Analytics, and Google Tag Manager to enable advanced user tracking, marketing attribution, and campaign performance optimization.'
     },
     {
       company: 'I Play Texas',
