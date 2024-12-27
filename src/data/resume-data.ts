@@ -103,6 +103,16 @@ export const RESUME_DATA = {
         href: 'https://github.com/pyclashbot/pymemuc'
       }
     },
+    
+    {
+      title: 'Atlas Oak Advisory',
+      techStack: ['Contract Work', 'Next.js'],
+      description: 'A point of contact site for Atlas Oak Advisory',
+      link: {
+        label: 'atlasoakadvisory.com',
+        href: 'https://atlasoakadvisory.com/'
+      }
+    },
     {
       title: 'Around the World Blog',
       techStack: ['Side Project', 'Next.js', 'AWS'],
