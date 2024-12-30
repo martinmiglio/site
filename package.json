@@ -67,6 +67,6 @@
     "vite-plugin-webfont-dl": "^3.9.4",
     "vite-ssg": "^0.23.8",
     "vite-ssg-sitemap": "^0.8.1",
-    "vue-tsc": "^2.0.21"
+    "vue-tsc": "^2.2.0"
   }
 }
