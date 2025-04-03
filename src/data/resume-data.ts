@@ -20,17 +20,28 @@ export const RESUME_DATA = {
     {
       company: 'Revv ADAS',
       link: 'https://revvhq.com/',
-      badges: [],
-      title: 'Growth Engineering Consultant',
+      badges: ['Contract'],
+      title: 'Web Developer - Marketing',
       start: 'October 2024',
       end: 'Present',
       description:
         'Supported growth-focused initiatives by blending software engineering best practices with marketing technology integration to achieve measurable business outcomes. Collaborated with marketing, SEO, and sales teams to develop and optimize solutions that enhanced lead generation, community engagement, and customer retention. Migrated and integrated CMS platforms to streamline content management workflows and improve scalability for marketing initiatives. Engineered and maintained integrations with CRM technologies, including Salesforce, to ensure seamless data synchronization and workflow automation. Developed a community-focused platform designed to foster interactive engagement and collaboration among users, driving brand advocacy and adoption of the company’s core technology products. Designed and deployed custom React components to streamline lead capture processes and optimize user interaction metrics across webinars, product demos, and marketing campaigns. Integrated and managed tools such as Marketo Engage, Chili Piper, Google Analytics, and Google Tag Manager to enable advanced user tracking, marketing attribution, and campaign performance optimization.'
     },
     {
+      company: 'martinmiglio.dev',
+      link: 'https://www.martinmiglio.dev/',
+      badges: ['Freelance'],
+      title: 'Digital Strategy Consultant',
+      start: 'January 2024',
+      end: 'Present',
+      description: `Partner with early-stage tech startups to develop and implement comprehensive digital strategies that drive growth. Provide expert guidance on website optimization, content strategy, and platform integration to maximize online presence and performance.
+      My expertise encompasses website design, development, and content management across platforms including Webflow, Squarespace, and HubSpot; SEO implementation and optimization to increase organic traffic; analytics implementation and tracking to measure KPIs and ROI; CMS and ecommerce solution customization; and marketing technology stack integration and streamlining.
+      Deliver tailored web strategies that align with business objectives while providing technical expertise to implement scalable digital solutions.`
+    },
+    {
       company: 'I Play Texas',
       link: 'https://opencorporates.com/companies/us_tx/0801291571',
-      badges: [],
+      badges: ['Internship'],
       title: 'Full Stack Developer',
       start: 'April 2019',
       end: 'December 2019',
@@ -40,7 +51,7 @@ export const RESUME_DATA = {
     {
       company: 'GroupGolfer.com',
       link: 'https://GroupGolfer.com',
-      badges: [],
+      badges: ['Internship'],
       title: 'Software Developer Intern',
       start: 'October 2018',
       end: 'January 2019',
@@ -103,7 +114,7 @@ export const RESUME_DATA = {
         href: 'https://github.com/pyclashbot/pymemuc'
       }
     },
-    
+
     {
       title: 'Atlas Oak Advisory',
       techStack: ['Contract Work', 'Next.js'],
