@@ -18,6 +18,15 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: 'Vitable',
+      link: 'https://vitablehealth.com/',
+      badges: ['Contract'],
+      title: 'Software Engineer',
+      start: 'April 2025',
+      end: 'Present',
+      description: ''
+    },
+    {
       company: 'Revv ADAS',
       link: 'https://revvhq.com/',
       badges: ['Contract'],
@@ -34,9 +43,7 @@ export const RESUME_DATA = {
       title: 'Digital Strategy Consultant',
       start: 'January 2024',
       end: 'Present',
-      description: `Partner with early-stage tech startups to develop and implement comprehensive digital strategies that drive growth. Provide expert guidance on website optimization, content strategy, and platform integration to maximize online presence and performance.
-      My expertise encompasses website design, development, and content management across platforms including Webflow, Squarespace, and HubSpot; SEO implementation and optimization to increase organic traffic; analytics implementation and tracking to measure KPIs and ROI; CMS and ecommerce solution customization; and marketing technology stack integration and streamlining.
-      Deliver tailored web strategies that align with business objectives while providing technical expertise to implement scalable digital solutions.`
+      description: `Partner with early-stage tech startups to develop and implement comprehensive software products and digital strategies that drive growth.`
     },
     {
       company: 'I Play Texas',
