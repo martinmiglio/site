@@ -14,6 +14,13 @@
       <!-- Navigation Links -->
       <nav class="flex flex-col gap-4 mb-8">
         <router-link
+          to="/about"
+          class="text-2xl font-bold text-theme-700 hover:text-theme-500 dark:text-theme-200 dark:hover:text-theme-400 transition-colors duration-200 hover:scale-105 transform w-fit"
+          data-umami-event="Home Bio Link Clicked"
+        >
+          ABOUT
+        </router-link>
+        <router-link
           to="/cv"
           class="text-2xl font-bold text-theme-700 hover:text-theme-500 dark:text-theme-200 dark:hover:text-theme-400 transition-colors duration-200 hover:scale-105 transform w-fit"
           data-umami-event="Home CV Link Clicked"
