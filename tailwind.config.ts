@@ -121,7 +121,7 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'collapsible-down': 'collapsible-down 0.2s ease-in-out',
         'collapsible-up': 'collapsible-up 0.2s ease-in-out',
-        shine: 'shine 9s',
+        shine: 'shine 9s infinite linear alternate',
         shake: 'shake 0.4s ease-in-out 0s 2'
       }
     }
