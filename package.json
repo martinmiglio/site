@@ -31,6 +31,7 @@
     "lucide-vue-next": "^0.454.0",
     "mini-svg-data-uri": "^1.4.4",
     "radix-vue": "^1.8.0",
+    "reka-ui": "^2.5.0",
     "satori": "^0.10.14",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",

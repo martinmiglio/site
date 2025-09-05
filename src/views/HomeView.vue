@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import ContactMenu from '@/components/ContactMenu.vue'
+</script>
+
 <template>
   <div class="flex-grow flex h-full" id="page">
     <!-- Left Side - Menu -->
@@ -35,13 +39,7 @@
         >
           GITHUB
         </a>
-        <a
-          href="mailto:contact@martinmiglio.dev"
-          class="text-2xl font-bold text-theme-700 hover:text-theme-500 dark:text-theme-200 dark:hover:text-theme-400 transition-colors duration-200 hover:scale-105 transform w-fit"
-          data-umami-event="Home Contact Link Clicked"
-        >
-          CONTACT
-        </a>
+        <ContactMenu />
       </nav>
       
       <!-- Small Caption -->
