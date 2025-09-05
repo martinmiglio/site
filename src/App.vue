@@ -15,10 +15,10 @@ useHead({
 <template>
   <client-only><PageBackground /></client-only>
   <div
-    class="mx-auto flex h-full w-11/12 max-w-screen-md flex-col justify-between text-theme-900 dark:text-theme-100"
+    class="mx-auto flex h-full w-full flex-col justify-between text-theme-900 dark:text-theme-100"
   >
-    <PageHeader :key="$route.fullPath" />
+    <PageHeader v-if="$route.path !== '/'" :key="$route.fullPath" />
     <RouterView />
-    <PageFooter />
+    <PageFooter v-if="$route.path !== '/'" />
   </div>
 </template>

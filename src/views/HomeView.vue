@@ -1,57 +1,51 @@
 <template>
-  <div class="flex-grow" id="page">
-    <h2 class="mb-12 py-6 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl">
-      Hey there, I'm
-      <span
-        class="animate-shine flex-col bg-gradient-to-r from-theme-500 from-35% via-theme-300 to-theme-500 to-65% bg-clip-text text-transparent fill-mode-forwards"
-      >
-        Martin!
-      </span>
-    </h2>
-    <div class="flex flex-col gap-6 text-lg">
-      <p>
-        I’m a full-stack software developer with a passion for building intuitive and impactful web
-        applications. I’ve honed my skills across formal education, professional experiences, and
-        personal projects, continually refining my ability to deliver impactful, end-to-end
-        applications.
-      </p>
-      <p>
-        I enjoy working on open-source projects and take pride in contributing to the developer
-        community—check out
+  <div class="flex-grow flex h-full" id="page">
+    <!-- Left Side - Menu -->
+    <div class="flex flex-col justify-center w-1/2 px-8 py-16">
+      <!-- Main Title -->
+      <h1 class="mb-12 text-5xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-6xl md:text-7xl">
+        <span
+          class="animate-shine bg-gradient-to-r from-theme-500 from-35% via-theme-300 to-theme-500 to-65% bg-clip-text text-transparent fill-mode-forwards"
+        >
+          MARTIN
+        </span>
+      </h1>
+      
+      <!-- Navigation Links -->
+      <nav class="flex flex-col gap-4 mb-8">
+        <router-link
+          to="/cv"
+          class="text-2xl font-bold text-theme-700 hover:text-theme-500 dark:text-theme-200 dark:hover:text-theme-400 transition-colors duration-200 hover:scale-105 transform w-fit"
+          data-umami-event="Home CV Link Clicked"
+        >
+          EXPERIENCE
+        </router-link>
         <a
-          class="text-theme-500 hover:underline"
           href="https://github.com/martinmiglio"
-          data-umami-event="GitHub Link Clicked"
+          target="_blank"
+          class="text-2xl font-bold text-theme-700 hover:text-theme-500 dark:text-theme-200 dark:hover:text-theme-400 transition-colors duration-200 hover:scale-105 transform w-fit"
+          data-umami-event="Home GitHub Link Clicked"
         >
-          my GitHub
+          GITHUB
         </a>
-        to see what I’ve been up to. My professional experience spans full-stack development and
-        collaborating with cross-functional teams to deliver high-value solutions. I’ve worked on
-        everything from developing marketing tools and interactive landing pages to crafting dynamic
-        web features that drive engagement and streamline processes.
-      </p>
-      <p>
-        When I’m not coding, I recharge by exploring the outdoors. Whether it’s hiking, camping, or
-        capturing landscapes through photography, I love finding inspiration in nature. You can see
-        some of my work on Instagram
         <a
-          class="text-theme-500 hover:underline"
-          href="https://instagram.com/migliosights"
-          data-umami-event="Instagram Link Clicked"
-        >
-          @migliosights</a
-        >.
-      </p>
-      <p>
-        If you’re interested in collaborating or just want to chat, feel free to
-        <a
-          class="text-theme-500 hover:underline"
           href="mailto:contact@martinmiglio.dev"
-          data-umami-event="Message Link Clicked"
+          class="text-2xl font-bold text-theme-700 hover:text-theme-500 dark:text-theme-200 dark:hover:text-theme-400 transition-colors duration-200 hover:scale-105 transform w-fit"
+          data-umami-event="Home Contact Link Clicked"
         >
-          drop me a message</a
-        >. Let's build something great together!
+          CONTACT
+        </a>
+      </nav>
+      
+      <!-- Small Caption -->
+      <p class="text-sm text-theme-600 dark:text-theme-400 max-w-sm">
+        Full-stack developer building intuitive web applications
       </p>
+    </div>
+    
+    <!-- Right Side - Background Area -->
+    <div class="w-1/2 relative">
+      <!-- This area will be filled by the background component -->
     </div>
   </div>
 </template>
