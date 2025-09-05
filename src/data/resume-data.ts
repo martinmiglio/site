@@ -18,32 +18,31 @@ export const RESUME_DATA = {
   ],
   work: [
     {
-      company: 'Vitable',
+      company: 'Vitable Health',
       link: 'https://vitablehealth.com/',
-      badges: ['Contract'],
+      badges: ['Full-time'],
       title: 'Software Engineer',
       start: 'April 2025',
       end: 'Present',
-      description: ''
+      description: 'Delivering impactful, scalable software for a health-tech environment, blending modern web stacks with cloud-native practices. Focused on maintainable architecture and business-aligned engineering outcomes.'
     },
     {
-      company: 'Revv ADAS',
+      company: 'Revv',
       link: 'https://revvhq.com/',
       badges: ['Contract'],
       title: 'Web Developer - Marketing',
       start: 'October 2024',
-      end: 'Present',
-      description:
-        'Supported growth-focused initiatives by blending software engineering best practices with marketing technology integration to achieve measurable business outcomes. Collaborated with marketing, SEO, and sales teams to develop and optimize solutions that enhanced lead generation, community engagement, and customer retention. Migrated and integrated CMS platforms to streamline content management workflows and improve scalability for marketing initiatives. Engineered and maintained integrations with CRM technologies, including Salesforce, to ensure seamless data synchronization and workflow automation. Developed a community-focused platform designed to foster interactive engagement and collaboration among users, driving brand advocacy and adoption of the company’s core technology products. Designed and deployed custom React components to streamline lead capture processes and optimize user interaction metrics across webinars, product demos, and marketing campaigns. Integrated and managed tools such as Marketo Engage, Chili Piper, Google Analytics, and Google Tag Manager to enable advanced user tracking, marketing attribution, and campaign performance optimization.'
+      end: 'July 2025',
+      description: 'Integrated engineering and marketing to drive measurable growth. Built scalable systems and data-driven tools to boost engagement, conversion, and retention.'
     },
     {
       company: 'martinmiglio.dev',
       link: 'https://www.martinmiglio.dev/',
       badges: ['Freelance'],
-      title: 'Digital Strategy Consultant',
-      start: 'January 2024',
-      end: 'Present',
-      description: `Partner with early-stage tech startups to develop and implement comprehensive software products and digital strategies that drive growth.`
+      title: 'Software Engineering Consultant',
+      start: 'January 2025',
+      end: 'July 2025',
+      description: 'Partnered with startups to rapidly design, build, and launch products. Balanced technical decisions with business constraints to accelerate go-to-market.'
     },
     {
       company: 'I Play Texas',
@@ -90,7 +89,21 @@ export const RESUME_DATA = {
     'AWS',
     'GCP',
     'Rest API',
-    'GraphQL'
+    'GraphQL',
+    'Django',
+    'Cloud Computing',
+    'Web Development',
+    'Version Control',
+    'Database Design',
+    'Marketo',
+    'Google Analytics',
+    'Google Tag Manager',
+    'Visual Studio',
+    '.NET Framework',
+    'Windows Presentation Foundation (WPF)',
+    'Xamarin',
+    'Network Administration',
+    'Computer Networking'
   ],
   projects: [
     {
