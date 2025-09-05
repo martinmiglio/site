@@ -21,7 +21,14 @@ const renderHTML2PDF = (element: HTMLElement, filename: string, options: Options
     html2canvas: {
       ignoreElements: options.ignoreElements,
       scale: options.scale,
-      onclone: options.documentModifier,
+      onclone: (document) => {
+        const pdfOnlyElements: NodeListOf<Element> = document.querySelectorAll('.pdf-only')
+        Array.from(pdfOnlyElements).forEach((element) => {
+          element.classList.add('print')
+        })
+
+        return options.documentModifier(document)
+      },
       windowWidth: options.width
     },
     width: options.width,
