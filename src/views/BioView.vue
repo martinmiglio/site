@@ -10,7 +10,7 @@ useHead({
 <template>
   <div class="flex-grow flex h-full" id="page">
     <!-- Main Content -->
-    <div class="flex flex-col justify-center w-full px-8 py-16 max-w-4xl mx-auto">
+    <div class="flex flex-col w-full px-8 py-16 max-w-4xl mx-auto">
       <!-- Page Title -->
       <h1 class="mb-8 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl md:text-6xl">
         <span

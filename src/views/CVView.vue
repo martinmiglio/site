@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { ProjectCard } from '@/components/ui/projectCard'
 import { RESUME_DATA } from '@/data/resume-data'
 import { renderHTML2PDF } from '@/lib/pdf'
-import { faExternalLink, faGlobe, faLink } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faExternalLink } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { useHead } from '@unhead/vue'
 
@@ -60,7 +60,7 @@ const exportToPdf = async () => {
 
 <template>
   <div class="flex-grow flex h-full" id="page">
-    <div class="flex flex-col justify-center w-full px-8 py-16 max-w-4xl mx-auto">
+    <div class="flex flex-col w-full px-8 py-16 max-w-4xl mx-auto">
       <section class="space-y-8 print:space-y-6" :id="pdfElementId">
         <!-- Page Title -->
         <h1 class="mb-8 text-4xl font-extrabold text-theme-950 dark:text-theme-300 sm:text-5xl md:text-6xl">
@@ -85,7 +85,7 @@ const exportToPdf = async () => {
           >
             <FontAwesomeIcon :icon="faExternalLink" class="h-4 w-4" />
             martinmiglio.dev
-          </a>
+          </a>          
           <p class="items-center text-theme-600 dark:text-theme-400" id="print-ignore">
             <a
               class="inline-flex gap-x-1.5 align-baseline leading-none hover:text-theme-500 dark:hover:text-theme-300 transition-colors duration-200"
