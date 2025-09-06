@@ -1,96 +1,90 @@
 /// <reference types="vite/client" />
-import PageBackground from '@/components/PageBackground'
-import type { ReactNode } from 'react'
-import {
-  Outlet,
-  createRootRoute,
-  HeadContent,
-  Scripts,
-} from '@tanstack/react-router'
-
 import appCss from '@/assets/index.css?url'
+import PageBackground from '@/components/PageBackground'
 import NotFoundPage from '@/pages/404'
+import { Outlet, createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
+import type { ReactNode } from 'react'
 
 export const Route = createRootRoute({
   head: () => ({
     title: 'Martin Miglio',
     meta: [
       {
-        charSet: 'utf-8',
+        charSet: 'utf-8'
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1.0',
+        content: 'width=device-width, initial-scale=1.0'
       },
       {
         name: 'description',
-        content: "Martin Miglio's Site",
+        content: "Martin Miglio's Site"
       },
       {
         name: 'keywords',
-        content: 'Martin Miglio, Site, Software Engineer, Web Developer',
+        content: 'Martin Miglio, Site, Software Engineer, Web Developer'
       },
       {
         name: 'creator',
-        content: 'Martin Miglio',
+        content: 'Martin Miglio'
       },
       {
         property: 'og:title',
-        content: 'Martin Miglio',
+        content: 'Martin Miglio'
       },
       {
         property: 'og:description',
-        content: "Martin Miglio's Site",
+        content: "Martin Miglio's Site"
       },
       {
         property: 'og:site_name',
-        content: 'Martin Miglio',
+        content: 'Martin Miglio'
       },
       {
         property: 'og:image',
-        content: '/opengraph.png?v1',
+        content: '/opengraph.png?v1'
       },
       {
         property: 'og:image:width',
-        content: '1200',
+        content: '1200'
       },
       {
         property: 'og:image:height',
-        content: '630',
+        content: '630'
       },
       {
         property: 'og:type',
-        content: 'website',
+        content: 'website'
       },
       {
         name: 'twitter:card',
-        content: 'summary_large_image',
+        content: 'summary_large_image'
       },
       {
         name: 'twitter:title',
-        content: 'Martin Miglio',
+        content: 'Martin Miglio'
       },
       {
         name: 'twitter:description',
-        content: "Martin Miglio's Site",
+        content: "Martin Miglio's Site"
       },
       {
         name: 'twitter:image',
-        content: '/opengraph.png?v1',
-      },
+        content: '/opengraph.png?v1'
+      }
     ],
     links: [
       {
         rel: 'canonical',
-        href: 'https://martinmiglio.dev',
+        href: 'https://martinmiglio.dev'
       },
       {
         rel: 'icon',
-        href: '/favicon.ico?v1',
+        href: '/favicon.ico?v1'
       },
       {
         rel: 'preconnect',
-        href: 'https://analytics.martinmiglio.dev',
+        href: 'https://analytics.martinmiglio.dev'
       },
       { rel: 'stylesheet', href: appCss }
     ],
@@ -99,12 +93,12 @@ export const Route = createRootRoute({
         async: true,
         src: 'https://analytics.martinmiglio.dev/script.js',
         'data-website-id': '6b71e8bb-208f-4cce-a1a7-10802153c6cc',
-        'data-domains': 'vue.martinmiglio.dev,martinmiglio.dev',
-      },
-    ],
+        'data-domains': 'vue.martinmiglio.dev,martinmiglio.dev'
+      }
+    ]
   }),
   component: RootComponent,
-  notFoundComponent: NotFoundPage,
+  notFoundComponent: NotFoundPage
 })
 
 function RootComponent() {
