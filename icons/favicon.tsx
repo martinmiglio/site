@@ -1,6 +1,5 @@
 import fonts from './fonts'
-import { Icon } from './types'
-import React from 'react'
+import type { Icon } from './types'
 
 const defaultOptions = {
   width: 64,

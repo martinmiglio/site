@@ -24,7 +24,8 @@ export const RESUME_DATA = {
       title: 'Software Engineer',
       start: 'April 2025',
       end: 'Present',
-      description: 'Delivering impactful, scalable software for a health-tech environment, blending modern web stacks with cloud-native practices. Focused on maintainable architecture and business-aligned engineering outcomes.'
+      description:
+        'Delivering impactful, scalable software for a health-tech environment, blending modern web stacks with cloud-native practices. Focused on maintainable architecture and business-aligned engineering outcomes.'
     },
     {
       company: 'Revv',
@@ -33,7 +34,8 @@ export const RESUME_DATA = {
       title: 'Web Developer - Marketing',
       start: 'October 2024',
       end: 'July 2025',
-      description: 'Integrated engineering and marketing to drive measurable growth. Built scalable systems and data-driven tools to boost engagement, conversion, and retention.'
+      description:
+        'Integrated engineering and marketing to drive measurable growth. Built scalable systems and data-driven tools to boost engagement, conversion, and retention.'
     },
     {
       company: 'martinmiglio.dev',
@@ -42,7 +44,8 @@ export const RESUME_DATA = {
       title: 'Software Engineering Consultant',
       start: 'January 2025',
       end: 'July 2025',
-      description: 'Partnered with startups to rapidly design, build, and launch products. Balanced technical decisions with business constraints to accelerate go-to-market.'
+      description:
+        'Partnered with startups to rapidly design, build, and launch products. Balanced technical decisions with business constraints to accelerate go-to-market.'
     },
     {
       company: 'I Play Texas',

@@ -5,7 +5,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas'
 import fs, { promises } from 'fs'
 import satori from 'satori'
 
-const render = async (element: JSX.Element, icon: IconFile): Promise<Buffer> => {
+const render = async (element: React.ReactElement, icon: IconFile): Promise<Buffer> => {
   const svg = await satori(element, icon.options)
 
   if (icon.fileType === 'svg') {

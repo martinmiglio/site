@@ -10,5 +10,5 @@ export type IconFile = {
 
 export type Icon = {
   targets: IconFile[]
-  element: JSX.Element
+  element: React.ReactElement
 }

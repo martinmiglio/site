@@ -12,12 +12,12 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 24
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
           run_install: false
-          version: 9
+          version: 10
       - name: Get pnpm store directory
         shell: bash
         run: |
@@ -31,6 +31,10 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
       - name: Build site
         run: pnpm build
       # - name: Test site
@@ -38,4 +42,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          path: dist
+          path: |
+            .output
+            .tanstack
