@@ -13,7 +13,7 @@ export default defineConfig([
     extends: ['js/recommended']
   },
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['src/**/*.ts', 'src/**/*.tsx'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
@@ -37,6 +37,6 @@ export default defineConfig([
     }
   },
   {
-    ignores: ['dist/**', 'node_modules/**', 'src/routeTree.gen.ts']
+    ignores: ['dist/**', 'node_modules/**', 'src/routeTree.gen.ts', '.output', '.tanstack']
   }
 ])

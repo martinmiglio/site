@@ -429,3 +429,4 @@ count.txt
 .env
 .nitro
 .tanstack
+.output
