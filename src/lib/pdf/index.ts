@@ -27,7 +27,7 @@ const renderHTML2PDF = (element: HTMLElement, filename: string, options: Options
           element.classList.add('print')
         })
 
-        return options.documentModifier(document)
+        return options.documentModifier?.(document)
       },
       windowWidth: options.width
     },
