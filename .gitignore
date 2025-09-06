@@ -419,3 +419,13 @@ coverage
 .next
 
 .vite-ssg-temp
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+count.txt
+.env
+.nitro
+.tanstack

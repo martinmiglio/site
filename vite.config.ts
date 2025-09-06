@@ -1,32 +1,20 @@
-/// <reference types="vite-ssg" />
-import UnheadVite from '@unhead/addons/vite'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import { defineConfig, loadEnv } from 'vite'
-import VueDevTools from 'vite-plugin-vue-devtools'
-import webfontDownload from 'vite-plugin-webfont-dl'
-import generateSitemap from 'vite-ssg-sitemap'
+import tailwindcss from '@tailwindcss/vite'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
+import viteReact from '@vitejs/plugin-react'
+import { resolve } from 'node:path'
+import { defineConfig } from 'vite'
+import eslint from '@nabla/vite-plugin-eslint'
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd())
-
-  return {
-    base: env.VITE_DEPLOY_URL,
-    plugins: [vue(), VueDevTools(), UnheadVite(), webfontDownload()],
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src')
-      }
-    },
-    ssgOptions: {
-      script: 'async',
-      formatting: 'minify',
-      crittersOptions: {
-        reduceInlineStyles: false
-      },
-      onFinished() {
-        generateSitemap({ hostname: env.VITE_DEPLOY_URL })
-      }
+export default defineConfig({
+  plugins: [
+    tanstackRouter({ autoCodeSplitting: true }), 
+    viteReact(), 
+    tailwindcss(), 
+    eslint()
+  ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src')
     }
   }
 })

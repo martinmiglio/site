@@ -2,45 +2,14 @@ import svgToDataUri from 'mini-svg-data-uri'
 import type { Config } from 'tailwindcss'
 import animate from 'tailwindcss-animate'
 import { default as flattenColorPalette } from 'tailwindcss/lib/util/flattenColorPalette'
-import { type PluginAPI } from 'tailwindcss/types/config'
+import type { PluginAPI } from 'tailwindcss/plugin'
 
 const config = {
-  darkMode: ['class'],
-  safelist: ['dark'],
   prefix: '',
 
-  content: [
-    './index.html',
-    './pages/**/*.{ts,tsx,vue}',
-    './components/**/*.{ts,tsx,vue}',
-    './app/**/*.{ts,tsx,vue}',
-    './src/**/*.{ts,tsx,vue}'
-  ],
+  content: ['./index.html', './src/**/*.{ts,tsx,jsx,js}'],
 
   theme: {
-    fontFamily: {
-      sans: [
-        '"Golos Text"',
-        'ui-sans-serif',
-        'system-ui',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-        '"Noto Color Emoji"'
-      ],
-      mono: [
-        '"Source Code Pro"',
-        'ui-monospace',
-        'SFMono-Regular',
-        'Menlo',
-        'Monaco',
-        'Consolas',
-        '"Liberation Mono"',
-        '"Courier New"',
-        'monospace'
-      ]
-    },
     container: {
       center: true,
       padding: '2rem',
@@ -49,77 +18,7 @@ const config = {
       }
     },
     extend: {
-      colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        theme: {
-          50: '#E8E8E8',
-          100: '#D8DAD3',
-          200: '#B4CD9D',
-          300: '#7BCE5F',
-          400: '#25C922',
-          500: '#00A824',
-          600: '#188316',
-          700: '#31651F',
-          800: '#3A4D28',
-          900: '#32352C',
-          950: '#2E2E2E'
-        }
-      },
-      borderRadius: {
-        xl: 'calc(var(--radius) + 4px)',
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
-      },
       keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' }
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' }
-        },
-        'collapsible-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-collapsible-content-height)' }
-        },
-        'collapsible-up': {
-          from: { height: 'var(--radix-collapsible-content-height)' },
-          to: { height: '0' }
-        },
         shine: {
           '0%': {
             'background-size': '200% 200%',
@@ -129,33 +28,10 @@ const config = {
             'background-size': '250% 200%',
             'background-position': 'left center'
           }
-        },
-        shake: {
-          '0%': {
-            'margin-left': '0rem',
-            'margin-right': '0rem'
-          },
-          '25%': {
-            'margin-left': '0.2rem',
-            'margin-right': '-0.2rem'
-          },
-          '75%': {
-            'margin-left': '-0.2rem',
-            'margin-right': '0.2rem'
-          },
-          '100%': {
-            'margin-left': '0rem',
-            'margin-right': '0rem'
-          }
         }
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'collapsible-down': 'collapsible-down 0.2s ease-in-out',
-        'collapsible-up': 'collapsible-up 0.2s ease-in-out',
-        shine: 'shine 9s infinite linear alternate',
-        shake: 'shake 0.4s ease-in-out 0s 2'
+        shine: 'shine 9s infinite linear alternate'
       }
     }
   },

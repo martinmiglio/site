@@ -1,6 +1,6 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 
-Description: "Formation template for the static site hosted on S3 with CloudFront distribution."
+Description: 'Formation template for the static site hosted on S3 with CloudFront distribution.'
 
 Parameters:
   ResourcePrefix:
@@ -12,20 +12,20 @@ Parameters:
 
 Resources:
   S3Bucket:
-    Type: "AWS::S3::Bucket"
+    Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Sub "${ResourcePrefix}-bucket"
+      BucketName: !Sub '${ResourcePrefix}-bucket'
       Tags:
         - Key: !Ref ResourcePrefix
-          Value: ""
+          Value: ''
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: "AES256"
+              SSEAlgorithm: 'AES256'
             BucketKeyEnabled: true
       OwnershipControls:
         Rules:
-          - ObjectOwnership: "BucketOwnerEnforced"
+          - ObjectOwnership: 'BucketOwnerEnforced'
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
         BlockPublicPolicy: false
@@ -33,27 +33,27 @@ Resources:
         RestrictPublicBuckets: false
 
   S3BucketPolicy:
-    Type: "AWS::S3::BucketPolicy"
+    Type: 'AWS::S3::BucketPolicy'
     Properties:
       Bucket: !Ref S3Bucket
       PolicyDocument:
-        Version: "2008-10-17"
-        Id: "PolicyForCloudFrontPrivateContent"
+        Version: '2008-10-17'
+        Id: 'PolicyForCloudFrontPrivateContent'
         Statement:
-          - Sid: "AllowCloudFrontServicePrincipal"
-            Effect: "Allow"
+          - Sid: 'AllowCloudFrontServicePrincipal'
+            Effect: 'Allow'
             Principal:
-              Service: "cloudfront.amazonaws.com"
-            Action: "s3:GetObject"
+              Service: 'cloudfront.amazonaws.com'
+            Action: 's3:GetObject'
             Resource: !Sub
-              - "${bucketARN}/*"
+              - '${bucketARN}/*'
               - { bucketARN: !GetAtt S3Bucket.Arn }
             Condition:
               StringEquals:
-                "AWS:SourceArn": !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+                'AWS:SourceArn': !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}'
 
   CloudFrontDistribution:
-    Type: "AWS::CloudFront::Distribution"
+    Type: 'AWS::CloudFront::Distribution'
     Properties:
       DistributionConfig:
         Origins:
@@ -62,36 +62,36 @@ Resources:
             DomainName: !GetAtt S3Bucket.RegionalDomainName
             Id: !GetAtt S3Bucket.RegionalDomainName
             S3OriginConfig:
-              OriginAccessIdentity: ""
+              OriginAccessIdentity: ''
             OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
         CustomErrorResponses:
           - ErrorCode: 403
             ResponseCode: 200
-            ResponsePagePath: "/index.html"
+            ResponsePagePath: '/index.html'
           - ErrorCode: 404
             ResponseCode: 200
-            ResponsePagePath: "/index.html"
+            ResponsePagePath: '/index.html'
         DefaultCacheBehavior:
           AllowedMethods:
-            - "HEAD"
-            - "GET"
+            - 'HEAD'
+            - 'GET'
           CachedMethods:
-            - "HEAD"
-            - "GET"
+            - 'HEAD'
+            - 'GET'
           Compress: true
           SmoothStreaming: false
           TargetOriginId: !GetAtt S3Bucket.RegionalDomainName
-          ViewerProtocolPolicy: "redirect-to-https"
+          ViewerProtocolPolicy: 'redirect-to-https'
           CachePolicyId: !Ref CloudFrontCachePolicy
-        Comment: !Sub "${ResourcePrefix} Distribution"
-        PriceClass: "PriceClass_100"
+        Comment: !Sub '${ResourcePrefix} Distribution'
+        PriceClass: 'PriceClass_100'
         Enabled: true
         Restrictions:
           GeoRestriction:
-            RestrictionType: "none"
-        HttpVersion: "http2and3"
+            RestrictionType: 'none'
+        HttpVersion: 'http2and3'
         Aliases:
-          - !Sub "${Domain}"
+          - !Sub '${Domain}'
         ViewerCertificate:
           AcmCertificateArn: !Ref CertificateManagerCertificate
           MinimumProtocolVersion: TLSv1.2_2021
@@ -99,10 +99,10 @@ Resources:
         IPV6Enabled: true
 
   CloudFrontCachePolicy:
-    Type: "AWS::CloudFront::CachePolicy"
+    Type: 'AWS::CloudFront::CachePolicy'
     Properties:
       CachePolicyConfig:
-        Name: !Sub "${ResourcePrefix}-cache-policy"
+        Name: !Sub '${ResourcePrefix}-cache-policy'
         DefaultTTL: 86400
         MaxTTL: 31536000
         MinTTL: 1
@@ -110,26 +110,26 @@ Resources:
           EnableAcceptEncodingGzip: true
           EnableAcceptEncodingBrotli: true
           CookiesConfig:
-            CookieBehavior: "none"
+            CookieBehavior: 'none'
           HeadersConfig:
-            HeaderBehavior: "none"
+            HeaderBehavior: 'none'
           QueryStringsConfig:
-            QueryStringBehavior: "none"
+            QueryStringBehavior: 'none'
 
   CloudFrontOriginAccessControl:
-    Type: "AWS::CloudFront::OriginAccessControl"
+    Type: 'AWS::CloudFront::OriginAccessControl'
     Properties:
       OriginAccessControlConfig:
-        Name: !Sub "${ResourcePrefix}-origin-access-control"
-        OriginAccessControlOriginType: "s3"
-        SigningBehavior: "always"
-        SigningProtocol: "sigv4"
+        Name: !Sub '${ResourcePrefix}-origin-access-control'
+        OriginAccessControlOriginType: 's3'
+        SigningBehavior: 'always'
+        SigningProtocol: 'sigv4'
 
   CertificateManagerCertificate:
-    Type: "AWS::CertificateManager::Certificate"
+    Type: 'AWS::CertificateManager::Certificate'
     Properties:
-      DomainName: !Sub "${Domain}"
+      DomainName: !Sub '${Domain}'
       SubjectAlternativeNames:
-        - !Sub "${Domain}"
-      ValidationMethod: "DNS"
-      CertificateTransparencyLoggingPreference: "ENABLED"
+        - !Sub '${Domain}'
+      ValidationMethod: 'DNS'
+      CertificateTransparencyLoggingPreference: 'ENABLED'

@@ -28,6 +28,6 @@ jobs:
         with:
           name: ${{ secrets.STACKNAME }}
           template: aws/DistStack.yml
-          no-fail-on-empty-changeset: "1"
+          no-fail-on-empty-changeset: '1'
           capabilities: CAPABILITY_IAM, CAPABILITY_NAMED_IAM
-          parameter-overrides: "ResourcePrefix=${{ secrets.RESOURCEPREFIX }},Domain=${{ secrets.Domain }}"
+          parameter-overrides: 'ResourcePrefix=${{ secrets.RESOURCEPREFIX }},Domain=${{ secrets.Domain }}'
