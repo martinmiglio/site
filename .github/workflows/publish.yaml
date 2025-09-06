@@ -60,3 +60,5 @@ jobs:
           path: |
             .sst/
             !.sst/secrets/
+            .output
+            .tanstack
