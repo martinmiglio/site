@@ -1,13 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "include": ["src/**/*.ts", "src/**/*.tsx", "icons/**/*.ts", "icons/**/*.tsx", "*.ts"],
-  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "icons/**/*.ts", "icons/**/*.tsx"],
+  "exclude": ["node_modules", "dist", ".sst", ".output"],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
     "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
