@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [
     eslint(),
     tsConfigPaths(),
-    tanstackStart({ customViteReactPlugin: true }),
+    tanstackStart({ customViteReactPlugin: true, target: "aws-lambda", }),
     tailwindcss(),
     viteReact()
   ],

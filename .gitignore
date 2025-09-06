@@ -430,3 +430,6 @@ count.txt
 .nitro
 .tanstack
 .output
+
+# sst
+.sst

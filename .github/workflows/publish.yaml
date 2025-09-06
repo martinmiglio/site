@@ -1,4 +1,4 @@
-name: Build and publish site to S3
+name: Deploy SST App
 
 on:
   push:
@@ -10,12 +10,15 @@ permissions:
   id-token: write
   contents: read
 
+concurrency:
+  group: deploy-${{ github.ref }}
+
 jobs:
-  build-and-publish:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -42,24 +45,18 @@ jobs:
         run: pnpm typecheck
       - name: Lint
         run: pnpm lint
-      - name: Build site
-        run: pnpm build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-region: ${{ secrets.AWS_REGION }}
           role-to-assume: ${{ secrets.OIDCROLE }}
-          role-session-name: PublishSite
-      - name: Deploy to S3
-        shell: bash
-        run: aws s3 sync ./dist/ s3://$AWS_S3_BUCKET --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: '${{ secrets.RESOURCEPREFIX }}-bucket'
-      - name: Invalidate CloudFront cache
-        run: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
-        env:
-          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-      - name: Upload artifacts
+          role-session-name: SST-Deploy
+      - name: Deploy SST App
+        run: pnpm deploy --stage production
+      - name: Upload deployment artifacts
         uses: actions/upload-artifact@v4
         with:
-          path: dist
+          name: sst-deployment
+          path: |
+            .sst/
+            !.sst/secrets/
