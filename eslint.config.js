@@ -34,18 +34,6 @@ export default defineConfig([
         },
         rules: {
             '@tanstack/router/create-route-property-order': 'error',
-            "@typescript-eslint/only-throw-error": [
-      "error",
-      {
-        "allow": [
-          {
-            "from": "package",
-            "package": "@tanstack/router-core",
-            "name": "Redirect"
-          }
-        ]
-      }
-    ]
         },
 	},
 	{
