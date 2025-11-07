@@ -1,11 +1,11 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { SheetClose } from '@/components/ui/sheet'
 import { RESUME_DATA } from '@/data/resume-data'
 import { faGlobe, faExternalLink } from '@fortawesome/free-solid-svg-icons'
 // import { renderHTML2PDF } from '@/lib/pdf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from '@tanstack/react-router'
 
 export default function CVPage() {
   const pdfElementId = 'to-pdf'
@@ -220,9 +220,9 @@ export default function CVPage() {
               variant="link"
               className="text-theme-700 hover:text-theme-500 h-auto transform p-0 text-lg font-bold hover:scale-105"
             >
-              <Link to="/" data-umami-event="CV Back to Home Clicked">
+              <SheetClose data-umami-event="CV Back to Home Clicked">
                 ← Back to Home
-              </Link>
+              </SheetClose>
             </Button>
           </div>
 

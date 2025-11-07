@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
+import { SheetClose } from '@/components/ui/sheet'
 import { RESUME_DATA } from '@/data/resume-data'
-import { Link } from '@tanstack/react-router'
 
 export default function AboutPage() {
   return (
@@ -43,9 +43,9 @@ export default function AboutPage() {
             variant="link"
             className="text-theme-700 hover:text-theme-500 h-auto transform p-0 text-lg font-bold hover:scale-105"
           >
-            <Link to="/" data-umami-event="CV Back to Home Clicked">
+            <SheetClose data-umami-event="CV Back to Home Clicked">
               ← Back to Home
-            </Link>
+            </SheetClose>
           </Button>
         </div>
       </div>
