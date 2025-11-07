@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
-import { SheetClose } from '@/components/ui/sheet'
+import { StickyBackButton } from '@/components/ui/sticky-back-button'
 import { RESUME_DATA } from '@/data/resume-data'
 
 export default function AboutPage() {
   return (
-    <div className="flex h-full grow" id="page">
-      {/* Main Content */}
-      <div className="mx-auto flex w-full max-w-4xl flex-col px-8 py-16">
+    <div id="page">
+      <div className="mx-auto w-full max-w-4xl px-8 py-16">
+        {/* Sticky Back Button */}
+        <StickyBackButton />
         {/* Page Title */}
         <h1 className="text-theme-950 mb-8 text-4xl font-extrabold sm:text-5xl md:text-6xl">
           <span className="animate-shine from-theme-500 via-theme-300 to-theme-500 fill-mode-forwards bg-linear-to-r from-35% to-65% bg-clip-text text-transparent">
@@ -34,19 +34,6 @@ export default function AboutPage() {
               </a>
             </p>
           </div>
-        </div>
-
-        {/* Back to Home Link */}
-        <div className="my-12">
-          <Button
-            asChild
-            variant="link"
-            className="text-theme-700 hover:text-theme-500 h-auto transform p-0 text-lg font-bold hover:scale-105"
-          >
-            <SheetClose data-umami-event="CV Back to Home Clicked">
-              ← Back to Home
-            </SheetClose>
-          </Button>
         </div>
       </div>
     </div>

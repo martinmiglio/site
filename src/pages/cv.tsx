@@ -1,7 +1,6 @@
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { SheetClose } from '@/components/ui/sheet'
+import { StickyBackButton } from '@/components/ui/sticky-back-button'
 import { RESUME_DATA } from '@/data/resume-data'
 import { faGlobe, faExternalLink } from '@fortawesome/free-solid-svg-icons'
 // import { renderHTML2PDF } from '@/lib/pdf'
@@ -47,8 +46,10 @@ export default function CVPage() {
   // }
 
   return (
-    <div className="flex h-full grow" id="page">
-      <div className="mx-auto flex w-full max-w-4xl flex-col px-4 py-16 sm:px-8">
+    <div id="page">
+      <div className="mx-auto w-full max-w-4xl px-4 py-16 sm:px-8">
+        {/* Sticky Back Button */}
+        <StickyBackButton />
         <section className="space-y-8 print:space-y-6" id={pdfElementId}>
           {/* Page Title */}
           <h1 className="text-theme-950 mb-8 text-4xl font-extrabold sm:text-5xl md:text-6xl">
@@ -212,19 +213,6 @@ export default function CVPage() {
               ))}
             </div>
           </section>
-
-          {/* Back to Home Link */}
-          <div className="my-12" id="print-ignore">
-            <Button
-              asChild
-              variant="link"
-              className="text-theme-700 hover:text-theme-500 h-auto transform p-0 text-lg font-bold hover:scale-105"
-            >
-              <SheetClose data-umami-event="CV Back to Home Clicked">
-                ← Back to Home
-              </SheetClose>
-            </Button>
-          </div>
 
           {/* PDF Export Button
           <div className="mt-8" id="print-ignore">
