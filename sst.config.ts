@@ -30,7 +30,7 @@ export default $config({
     const router = new sst.aws.Router("ApiRouter", {
       domain: {
         name: baseDomain,
-        aliases: [`*.${baseDomain}`],
+        aliases: isProduction ? [`www.${baseDomain}`] : undefined,
         dns,
       },
     });
