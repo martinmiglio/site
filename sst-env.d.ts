@@ -5,6 +5,10 @@
 
 declare module "sst" {
   export interface Resource {
+    "ApiRouter": {
+      "type": "sst.aws.Router"
+      "url": string
+    }
     "MartinSite": {
       "type": "sst.aws.TanstackStart"
       "url": string
