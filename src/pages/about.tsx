@@ -1,6 +1,5 @@
 import { StickyBackButton } from '@/components/ui/sticky-back-button'
 import { RESUME_DATA } from '@/data/resume-data'
-import { Link } from '@tanstack/react-router'
 
 export default function AboutPage() {
   return (

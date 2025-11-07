@@ -5,7 +5,6 @@ import { RESUME_DATA } from '@/data/resume-data'
 import { faGlobe, faExternalLink } from '@fortawesome/free-solid-svg-icons'
 // import { renderHTML2PDF } from '@/lib/pdf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from '@tanstack/react-router'
 
 export default function CVPage() {
   const pdfElementId = 'to-pdf'
