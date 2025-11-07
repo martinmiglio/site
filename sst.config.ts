@@ -38,7 +38,6 @@ export default $config({
     new sst.aws.TanStackStart("MartinSite", {
       router: {
         instance: router,
-        domain: baseDomain,
       },
     });
   },
