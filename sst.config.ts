@@ -1,52 +1,60 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
-
-const defaultConfig = {
-  name: "martin-site",
-  tanstackStartName: "MartinSite",
-  protect: false,
-  removal: "remove" as "remove" | "retain" | "retain-all" | undefined,
-  home: "aws" as const,
-  awsProfile: "martinm",
-  domain: `${$app.stage}.martinmiglio.dev`,
-  dns_zone: "Z00930942RK5CDM0O5SAH",
-}
-
-const stageConfig: Record<string, Partial<typeof defaultConfig>> = {
-  production: {
-    removal: "retain",
-    protect: true,
-    domain: "martinmiglio.dev",
-  }
-}
-
-const config = {
-  ...defaultConfig,
-  ...stageConfig[$app.stage],
-}
-
 export default $config({
-  app(_input) {
+  app(input) {
     return {
-      name: config.name,
-      removal: config.removal,
-      protect: config.protect,
-      home: config.home,
+      name: "martin-site",
+      removal: input?.stage === "production" ? "retain" : "remove",
+      protect: ["production"].includes(input?.stage),
+      home: "aws",
       providers: {
         aws: {
-          profile: config.awsProfile,
+          profile: "martinm",
+          region: "us-east-1",
         },
       },
     };
   },
   async run() {
-    new sst.aws.TanStackStart(config.tanstackStartName, {
+    const stage = $app.stage;
+    const isProduction = stage === "production";
+
+    const baseDomain = isProduction
+      ? "martinmiglio.dev"
+      : `${stage}.martinmiglio.dev`;
+
+    const dns = sst.aws.dns({
+      zone: "Z00930942RK5CDM0O5SAH", // martinmiglio.dev
+    });
+
+    const router = new sst.aws.Router("ApiRouter", {
       domain: {
-        name: config.domain,
-        dns: sst.aws.dns({
-          zone: config.dns_zone,
-        })
+        name: baseDomain,
+        aliases: [`*.${baseDomain}`],
+        dns,
       },
     });
+
+    new sst.aws.TanStackStart("MartinSite", {
+      router: {
+        instance: router,
+        domain: baseDomain,
+      },
+    });
+  },
+  console: {
+    autodeploy: {
+      target(event) {
+        if (event.type === "branch" && event.action === "pushed") {
+          if (event.branch === "develop") {
+            return { stage: "develop" };
+          }
+
+          if (event.branch === "master") {
+            return { stage: "production" };
+          }
+        }
+      },
+    },
   },
 });
