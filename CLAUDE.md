@@ -1,0 +1,1 @@
+- you can run the dev server using 'pnpm dev:mono'
