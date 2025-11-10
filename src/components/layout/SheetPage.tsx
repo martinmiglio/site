@@ -1,12 +1,14 @@
-import { SheetContent } from '@/components/ui/sheet'
+import { SheetContent, SheetTitle, SheetDescription } from '@/components/ui/sheet'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 
 interface SheetPageProps {
+  title: string
+  description?: string
   children: React.ReactNode
 }
 
-export function SheetPage({ children }: SheetPageProps) {
+export function SheetPage({ title, description, children }: SheetPageProps) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const sheetOptions = {
     mobile: {
@@ -27,7 +29,13 @@ export function SheetPage({ children }: SheetPageProps) {
   `
 
   return (
-    <SheetContent className={cn(className, scrollbarStyles, 'sm:max-w-none')} side={side}>
+    <SheetContent
+      className={cn(className, scrollbarStyles, 'sm:max-w-none')}
+      side={side}
+      aria-describedby={description ? undefined : undefined}
+    >
+      <SheetTitle className="sr-only">{title}</SheetTitle>
+      {description && <SheetDescription className="sr-only">{description}</SheetDescription>}
       {children}
     </SheetContent>
   )

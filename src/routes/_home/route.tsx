@@ -20,11 +20,22 @@ function RouteComponent() {
     }
   }
 
+  const getSheetTitle = () => {
+    switch (pathname) {
+      case '/about':
+        return 'About'
+      case '/cv':
+        return 'Experience'
+      default:
+        return 'Page'
+    }
+  }
+
   return (
     <>
       <HomePage />
       <Sheet open={sheetIsOpen} onOpenChange={onSheetOpenChange}>
-        <SheetPage>
+        <SheetPage title={getSheetTitle()}>
           <Outlet />
         </SheetPage>
       </Sheet>
