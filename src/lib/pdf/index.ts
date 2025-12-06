@@ -1,5 +1,5 @@
-import addFontsToDocument from './fonts'
 import jsPDF from 'jspdf'
+import addFontsToDocument from './fonts'
 
 type Options = {
   ignoreElements?: (element: HTMLElement) => boolean
@@ -14,7 +14,7 @@ const renderHTML2PDF = (element: HTMLElement, filename: string, options: Options
   const pdf = new jsPDF('p', 'pt', 'a4')
   addFontsToDocument(pdf)
   pdf.html(element, {
-    callback: function (doc) {
+    callback: (doc) => {
       doc.save(filename)
     },
     autoPaging: 'text',

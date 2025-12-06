@@ -1,5 +1,5 @@
-import ContactMenu from '@/components/ContactMenu'
 import { Link } from '@tanstack/react-router'
+import ContactMenu from '@/components/ContactMenu'
 
 export default function HomePage() {
   return (
@@ -7,8 +7,8 @@ export default function HomePage() {
       {/* Left Side - Menu */}
       <div className="flex w-1/2 flex-col justify-center px-8 py-16">
         {/* Main Title */}
-        <h1 className="text-theme-950 mb-12 text-5xl font-extrabold sm:text-6xl md:text-7xl">
-          <span className="animate-shine from-theme-500 via-theme-300 to-theme-500 fill-mode-forwards bg-linear-to-r from-35% to-65% bg-clip-text text-transparent">
+        <h1 className="mb-12 font-extrabold text-5xl text-theme-950 sm:text-6xl md:text-7xl">
+          <span className="animate-shine bg-linear-to-r from-35% from-theme-500 via-theme-300 to-65% to-theme-500 bg-clip-text fill-mode-forwards text-transparent">
             MARTIN
           </span>
         </h1>
@@ -18,7 +18,7 @@ export default function HomePage() {
           <Link
             to="/about"
             preload="render"
-            className="text-theme-700 hover:text-theme-500 w-fit transform text-left text-2xl font-bold transition-colors duration-200 hover:scale-105"
+            className="w-fit transform text-left font-bold text-2xl text-theme-700 transition-colors duration-200 hover:scale-105 hover:text-theme-500"
             data-umami-event="Home Bio Link Clicked"
           >
             ABOUT
@@ -26,7 +26,7 @@ export default function HomePage() {
           <Link
             to="/cv"
             preload="render"
-            className="text-theme-700 hover:text-theme-500 w-fit transform text-left text-2xl font-bold transition-colors duration-200 hover:scale-105"
+            className="w-fit transform text-left font-bold text-2xl text-theme-700 transition-colors duration-200 hover:scale-105 hover:text-theme-500"
             data-umami-event="Home CV Link Clicked"
           >
             EXPERIENCE
@@ -34,8 +34,9 @@ export default function HomePage() {
           <a
             href="https://github.com/martinmiglio"
             target="_blank"
-            className="text-theme-700 hover:text-theme-500 w-fit transform text-2xl font-bold transition-colors duration-200 hover:scale-105"
+            className="w-fit transform font-bold text-2xl text-theme-700 transition-colors duration-200 hover:scale-105 hover:text-theme-500"
             data-umami-event="Home GitHub Link Clicked"
+            rel="noopener"
           >
             GITHUB
           </a>
@@ -43,7 +44,7 @@ export default function HomePage() {
         </nav>
 
         {/* Small Caption */}
-        <p className="text-theme-600 max-w-sm text-sm">
+        <p className="max-w-sm text-sm text-theme-600">
           Full-stack developer building intuitive web applications
         </p>
       </div>

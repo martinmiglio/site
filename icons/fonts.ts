@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises'
+import { readFile } from 'node:fs/promises'
 import type { SatoriOptions } from 'satori'
 
 const fontDataBold = await readFile('./icons/assets/GolosText-Bold.ttf')

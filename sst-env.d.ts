@@ -3,19 +3,18 @@
 /* eslint-disable */
 /* deno-fmt-ignore-file */
 
-declare module "sst" {
+declare module 'sst' {
   export interface Resource {
-    "ApiRouter": {
-      "type": "sst.aws.Router"
-      "url": string
+    ApiRouter: {
+      type: 'sst.aws.Router'
+      url: string
     }
-    "MartinSite": {
-      "type": "sst.aws.TanstackStart"
-      "url": string
+    MartinSite: {
+      type: 'sst.aws.TanstackStart'
+      url: string
     }
   }
 }
 /// <reference path="sst-env.d.ts" />
 
-import "sst"
-export {}
+import 'sst'
