@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-    "engines": {
+  "engines": {
     "node": ">=22.0.0"
   },
   "scripts": {
@@ -17,8 +17,9 @@
     "serve": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write .",
-    "lint": "eslint ."
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check ."
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^7.0.1",
@@ -48,22 +49,15 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.35.0",
-    "@nabla/vite-plugin-eslint": "^2.0.6",
-    "@tanstack/eslint-plugin-router": "^1.131.2",
+    "@biomejs/biome": "^2.3.8",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.0",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@types/aws-lambda": "8.10.152",
     "@types/node": "^24.3.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.1.9",
-    "@typescript-eslint/eslint-plugin": "^8.42.0",
-    "@typescript-eslint/parser": "^8.42.0",
     "@vitejs/plugin-react": "^5.1.1",
-    "eslint": "^9.35.0",
     "jsdom": "^26.1.0",
-    "prettier-plugin-tailwindcss": "^0.7.2",
     "sst": "3.17.23",
     "typescript": "^5.9.2",
     "vite": "^7.1.11",
@@ -71,5 +65,5 @@
     "vitest": "^3.2.4",
     "web-vitals": "^4.2.4"
   },
-  "packageManager": "bun@1.2.16"
+  "packageManager": "bun@1.2.17"
 }
