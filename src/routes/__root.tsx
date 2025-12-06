@@ -86,6 +86,15 @@ export const Route = createRootRoute({
         rel: 'preconnect',
         href: 'https://analytics.martinmiglio.dev'
       },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com'
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous'
+      },
       { rel: 'stylesheet', href: appCss }
     ],
     scripts: [
