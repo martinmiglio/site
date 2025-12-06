@@ -1,7 +1,7 @@
+import { createFileRoute, Outlet, useLocation, useNavigate } from '@tanstack/react-router'
 import { SheetPage } from '@/components/layout/SheetPage'
 import { Sheet } from '@/components/ui/sheet'
 import HomePage from '@/pages/home'
-import { createFileRoute, useLocation, useNavigate, Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_home')({
   component: RouteComponent

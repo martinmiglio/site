@@ -5,5 +5,5 @@ export const Route = createFileRoute('/_home/')({
 })
 
 function RouteComponent() {
-  return <></> // Return Fragment as SheetPage is closed on index
+  return null // SheetPage is closed on index
 }

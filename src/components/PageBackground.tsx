@@ -17,24 +17,24 @@ export default function PageBackground() {
   const radius = 512
 
   return (
-    <div className="fixed inset-0 -z-50 h-full w-screen">
+    <div className="-z-50 fixed inset-0 h-full w-screen">
       {/* Animated noise texture */}
       <div
-        className="absolute inset-[-200%] -z-40 h-[400%] w-[400%] opacity-[0.16]"
+        className="-z-40 absolute inset-[-200%] h-[400%] w-[400%] opacity-[0.16]"
         style={{
           transform: `translate(${noiseX}%, ${noiseY}%)`,
           background: `url('${noise}')`
         }}
       />
       {/* Spotlight on the left side */}
-      <div className="bg-theme-50 absolute top-0 left-0 -z-30 h-[100vh] w-[50vw] translate-x-[-10%] translate-y-[-30%] rounded-r-full blur-[64px] transition-opacity duration-300" />
+      <div className="-z-30 absolute top-0 left-0 h-[100vh] w-[50vw] translate-x-[-10%] translate-y-[-30%] rounded-r-full bg-theme-50 blur-[64px] transition-opacity duration-300" />
 
       {/* Mouse-following spotlight */}
       <div
-        className="bg-theme-50 absolute top-0 left-0 -z-30 rounded-full blur-[128px] transition-opacity duration-300"
+        className="-z-30 absolute top-0 left-0 rounded-full bg-theme-50 blur-[128px] transition-opacity duration-300"
         style={{
-          height: radius + 'px',
-          width: radius + 'px',
+          height: `${radius}px`,
+          width: `${radius}px`,
           transform: `translate(calc(-50% + ${mouseX}px), calc(-50% + ${mouseY}px))`,
           opacity: isTouch ? 0 : 1
         }}

@@ -1,9 +1,9 @@
 import {
-  type IconDefinition,
+  faBluesky,
   faGithub,
   faInstagram,
   faLinkedinIn,
-  faBluesky
+  type IconDefinition
 } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 

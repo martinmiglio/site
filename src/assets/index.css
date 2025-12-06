@@ -10,18 +10,18 @@
 
   /* Hide elements that should only appear in PDF */
   .pdf-only {
-    display: none !important;
+    display: none;
   }
 
   /* Show pdf-only elements when printing/exporting to PDF */
   @media print {
     .pdf-only {
-      display: block !important;
+      display: block;
     }
   }
 
   .pdf-only.print {
-    display: block !important;
+    display: block;
   }
 }
 
