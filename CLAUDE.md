@@ -1,1 +1,2 @@
 - you can run the dev server using 'bun run dev:mono'
+- always use bun over npm
