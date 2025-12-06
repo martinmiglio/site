@@ -36,6 +36,11 @@ export default $config({
     });
 
     new sst.aws.TanStackStart("MartinSite", {
+      warm: 1,
+      server: {
+        architecture: "arm64",
+        runtime: "nodejs22.x",
+      },
       router: {
         instance: router,
       },
