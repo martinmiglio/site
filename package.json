@@ -60,7 +60,7 @@
     "@vitejs/plugin-react": "^5.1.1",
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
-    "sst": "3.17.23",
+    "sst": "3.17.25",
     "typescript": "^5.9.2",
     "vite": "^7.1.11",
     "vite-tsconfig-paths": "^5.1.4",
