@@ -1,10 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { socialBarData } from '@/data/social-bar'
 
 export default function ContactMenu() {
+  const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => setMounted(true), [])
 
   const animationClasses = [
     'animate-slide-in-1',
@@ -13,6 +16,14 @@ export default function ContactMenu() {
     'animate-slide-in-4',
     'animate-slide-in-5'
   ]
+
+  if (!mounted) {
+    return (
+      <div className="w-fit">
+        <span className="w-fit font-bold text-2xl text-theme-700">CONTACT</span>
+      </div>
+    )
+  }
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-fit">
