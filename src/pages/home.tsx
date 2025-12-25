@@ -17,7 +17,7 @@ export default function HomePage() {
         <nav className="mb-8 flex flex-col gap-4">
           <Link
             to="/about"
-            preload="render"
+            preload="viewport"
             className="w-fit transform text-left font-bold text-2xl text-theme-700 transition-colors duration-200 hover:scale-105 hover:text-theme-500"
             data-umami-event="Home Bio Link Clicked"
           >
@@ -25,7 +25,7 @@ export default function HomePage() {
           </Link>
           <Link
             to="/cv"
-            preload="render"
+            preload="viewport"
             className="w-fit transform text-left font-bold text-2xl text-theme-700 transition-colors duration-200 hover:scale-105 hover:text-theme-500"
             data-umami-event="Home CV Link Clicked"
           >
