@@ -38,13 +38,19 @@ function RouteComponent() {
   return (
     <>
       <HomePage />
-      {mounted && (
-        <Sheet open={sheetIsOpen} onOpenChange={onSheetOpenChange}>
-          <SheetPage title={getSheetTitle()}>
+      {sheetIsOpen &&
+        (mounted ? (
+          <Sheet open={true} onOpenChange={onSheetOpenChange}>
+            <SheetPage title={getSheetTitle()}>
+              <Outlet />
+            </SheetPage>
+          </Sheet>
+        ) : (
+          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background p-6 shadow-lg lg:w-[66vw]">
+            <h1 className="sr-only">{getSheetTitle()}</h1>
             <Outlet />
-          </SheetPage>
-        </Sheet>
-      )}
+          </div>
+        ))}
     </>
   )
 }
