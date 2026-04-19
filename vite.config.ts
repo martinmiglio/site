@@ -24,7 +24,7 @@ export default defineConfig({
     }),
     tailwindcss(),
     viteReact(),
-    noiseKeyframes()
+    noiseKeyframes({ range: 10 })
   ],
   resolve: {
     alias: {
