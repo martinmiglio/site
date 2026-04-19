@@ -1,42 +1,52 @@
+import { useEffect, useRef } from 'react'
 import noise from '@/assets/noise.webp'
-import { useIsTouchDevice } from '@/hooks/useIsTouchDevice'
-import { useMousePosition } from '@/hooks/useMousePosition'
-import { useUpdatingRandom } from '@/hooks/useUpdatingRandom'
+
+const SPOTLIGHT_RADIUS = 512
 
 export default function PageBackground() {
-  const isTouch = useIsTouchDevice()
-  const { x: mouseX, y: mouseY } = useMousePosition()
+  const spotlightRef = useRef<HTMLDivElement>(null)
 
-  const noiseInterval = 100
-  const noiseMax = 10
-  const noiseMin = -10
+  useEffect(() => {
+    const el = spotlightRef.current
+    if (!el) return
+    if (window.matchMedia('(pointer: coarse)').matches) return
 
-  const noiseX = useUpdatingRandom(noiseInterval, noiseMin, noiseMax)
-  const noiseY = useUpdatingRandom(noiseInterval, noiseMin, noiseMax)
+    let frame = 0
+    let targetX = window.innerWidth / 2
+    let targetY = window.innerHeight / 2
 
-  const radius = 512
+    const handleMove = (e: MouseEvent) => {
+      targetX = e.clientX
+      targetY = e.clientY
+      if (!frame) {
+        frame = requestAnimationFrame(() => {
+          frame = 0
+          el.style.transform = `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px))`
+        })
+      }
+    }
+
+    window.addEventListener('mousemove', handleMove, { passive: true })
+    return () => {
+      window.removeEventListener('mousemove', handleMove)
+      if (frame) cancelAnimationFrame(frame)
+    }
+  }, [])
 
   return (
-    <div className="-z-50 fixed inset-0 h-full w-screen">
-      {/* Animated noise texture */}
+    <div className="-z-50 fixed inset-0 h-full w-screen" aria-hidden="true">
       <div
-        className="-z-40 absolute inset-[-200%] h-[400%] w-[400%] opacity-[0.16]"
-        style={{
-          transform: `translate(${noiseX}%, ${noiseY}%)`,
-          background: `url('${noise}')`
-        }}
+        className="-z-40 absolute inset-[-200%] h-[400%] w-[400%] animate-noise-jitter opacity-[0.16]"
+        style={{ background: `url('${noise}')` }}
       />
-      {/* Spotlight on the left side */}
-      <div className="-z-30 absolute top-0 left-0 h-[100vh] w-[50vw] translate-x-[-10%] translate-y-[-30%] rounded-r-full bg-theme-50 blur-[64px] transition-opacity duration-300" />
-
-      {/* Mouse-following spotlight */}
+      <div className="-z-30 absolute top-0 left-0 h-[100vh] w-[50vw] translate-x-[-10%] translate-y-[-30%] rounded-r-full bg-theme-50 blur-[64px]" />
       <div
-        className="-z-30 absolute top-0 left-0 rounded-full bg-theme-50 blur-[128px] transition-opacity duration-300"
+        ref={spotlightRef}
+        className="-z-30 mouse-spotlight absolute top-0 left-0 rounded-full bg-theme-50 blur-[128px]"
         style={{
-          height: `${radius}px`,
-          width: `${radius}px`,
-          transform: `translate(calc(-50% + ${mouseX}px), calc(-50% + ${mouseY}px))`,
-          opacity: isTouch ? 0 : 1
+          height: `${SPOTLIGHT_RADIUS}px`,
+          width: `${SPOTLIGHT_RADIUS}px`,
+          transform: 'translate(calc(-50% + 50vw), calc(-50% + 50vh))'
         }}
       />
     </div>
