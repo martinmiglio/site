@@ -48,57 +48,57 @@ export default function CapsulesBackground() {
     let pointerX = 0
     let pointerY = 0
 
-    const updateTargets = () => {
-      const rect = container.getBoundingClientRect()
-      if (rect.width === 0 || rect.height === 0) return
-      const colWidth = rect.width / COLUMNS.length
-      const relY = pointerY - rect.top
-      const cursorNorm = Math.max(MIN_GAP_Y, Math.min(MAX_GAP_Y, relY / rect.height))
-      const cursorCol = (pointerX - rect.left) / colWidth
-
-      COLUMNS.forEach((c, i) => {
-        if (!pointerActive || relY < 0 || relY > rect.height) {
-          state[i].target = c.setpointY
-          return
-        }
-        const dist = Math.abs(i + 0.5 - cursorCol)
-        const w = dist >= INFLUENCE ? 0 : 0.5 + 0.5 * Math.cos((Math.PI * dist) / INFLUENCE)
-        state[i].target = c.setpointY * (1 - w) + cursorNorm * w
-      })
-    }
-
-    const onMove = (x: number, y: number) => {
+    const handleMouse = (e: MouseEvent) => {
       pointerActive = true
-      pointerX = x
-      pointerY = y
-      updateTargets()
+      pointerX = e.clientX
+      pointerY = e.clientY
     }
-    const onLeave = () => {
-      pointerActive = false
-      updateTargets()
-    }
-
-    const handleMouse = (e: MouseEvent) => onMove(e.clientX, e.clientY)
     const handleTouch = (e: TouchEvent) => {
       const t = e.touches[0]
-      if (t) onMove(t.clientX, t.clientY)
+      if (!t) return
+      pointerActive = true
+      pointerX = t.clientX
+      pointerY = t.clientY
+    }
+    const handleTouchEnd = () => {
+      pointerActive = false
     }
 
     window.addEventListener('mousemove', handleMouse, { passive: true })
-    window.addEventListener('mouseleave', onLeave)
     window.addEventListener('touchmove', handleTouch, { passive: true })
-    window.addEventListener('touchend', onLeave)
+    window.addEventListener('touchend', handleTouchEnd)
 
     let last = performance.now()
     let raf = 0
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000)
       last = now
+
+      const rect = container.getBoundingClientRect()
+      const hasSize = rect.width > 0 && rect.height > 0
+      const relY = pointerY - rect.top
+      const pointerInRange = pointerActive && hasSize && relY >= 0 && relY <= rect.height
+      const colWidth = hasSize ? rect.width / COLUMNS.length : 0
+      const cursorNorm = pointerInRange
+        ? Math.max(MIN_GAP_Y, Math.min(MAX_GAP_Y, relY / rect.height))
+        : 0
+      const cursorCol = pointerInRange ? (pointerX - rect.left) / colWidth : 0
+
       for (let i = 0; i < state.length; i++) {
         const s = state[i]
+        const c = COLUMNS[i]
+        let target = c.setpointY
+        if (pointerInRange) {
+          const dist = Math.abs(i + 0.5 - cursorCol)
+          const w = dist >= INFLUENCE ? 0 : 0.5 + 0.5 * Math.cos((Math.PI * dist) / INFLUENCE)
+          target = c.setpointY * (1 - w) + cursorNorm * w
+        }
+        s.target = target
+
         const force = STIFFNESS * (s.target - s.current)
         s.velocity = (s.velocity + force * dt) / (1 + DAMPING * dt)
         s.current += s.velocity * dt
+
         const el = columnRefs.current[i]
         if (el) el.style.setProperty('--gap-y', String(s.current))
       }
@@ -109,9 +109,8 @@ export default function CapsulesBackground() {
     return () => {
       cancelAnimationFrame(raf)
       window.removeEventListener('mousemove', handleMouse)
-      window.removeEventListener('mouseleave', onLeave)
       window.removeEventListener('touchmove', handleTouch)
-      window.removeEventListener('touchend', onLeave)
+      window.removeEventListener('touchend', handleTouchEnd)
     }
   }, [])
 
