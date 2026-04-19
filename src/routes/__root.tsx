@@ -2,6 +2,7 @@
 
 import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
+import 'virtual:noise-jitter.css'
 import appCss from '@/assets/index.css?url'
 import PageBackground from '@/components/PageBackground'
 import NotFoundPage from '@/pages/404'
