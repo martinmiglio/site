@@ -4,6 +4,11 @@ import { SheetPage } from '@/components/layout/SheetPage'
 import { Sheet } from '@/components/ui/sheet'
 import HomePage from '@/pages/home'
 
+const SHEET_TITLES: Record<string, string> = {
+  '/about': 'About',
+  '/cv': 'Experience'
+}
+
 export const Route = createFileRoute('/_home')({
   component: RouteComponent
 })
@@ -14,6 +19,7 @@ function RouteComponent() {
   const deferredPathname = useDeferredValue(pathname)
 
   const sheetIsOpen = deferredPathname !== '/'
+  const sheetTitle = SHEET_TITLES[deferredPathname] ?? 'Page'
 
   const navigate = useNavigate()
 
@@ -25,24 +31,13 @@ function RouteComponent() {
     }
   }
 
-  const getSheetTitle = () => {
-    switch (deferredPathname) {
-      case '/about':
-        return 'About'
-      case '/cv':
-        return 'Experience'
-      default:
-        return 'Page'
-    }
-  }
-
   return (
     <>
       <HomePage />
       {sheetIsOpen &&
         (mounted ? (
           <Sheet open={true} onOpenChange={onSheetOpenChange}>
-            <SheetPage title={getSheetTitle()}>
+            <SheetPage title={sheetTitle}>
               <Suspense fallback={null}>
                 <Outlet />
               </Suspense>
@@ -50,7 +45,7 @@ function RouteComponent() {
           </Sheet>
         ) : (
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background p-6 shadow-lg lg:w-[66vw]">
-            <h1 className="sr-only">{getSheetTitle()}</h1>
+            <h1 className="sr-only">{sheetTitle}</h1>
             <Outlet />
           </div>
         ))}
