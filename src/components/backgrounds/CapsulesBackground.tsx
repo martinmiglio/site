@@ -1,13 +1,21 @@
+import type React from 'react'
 import { useEffect, useRef } from 'react'
 
 type Tone = 'light' | 'mid' | 'deep' | 'accent'
-type Column = { id: string; setpointY: number; gapSize: number; tone: Tone }
+type Column = {
+  id: string
+  setpointY: number
+  gapSize: number
+  tone: Tone
+  /** hidden on mobile — column is only rendered at md+ breakpoints */
+  desktopOnly?: boolean
+}
 
 const COLUMNS: Column[] = [
-  { id: 'c0', setpointY: 0.28, gapSize: 0.05, tone: 'light' },
-  { id: 'c1', setpointY: 0.62, gapSize: 0.07, tone: 'mid' },
-  { id: 'c2', setpointY: 0.38, gapSize: 0.06, tone: 'deep' },
-  { id: 'c3', setpointY: 0.55, gapSize: 0.08, tone: 'accent' },
+  { id: 'c0', setpointY: 0.28, gapSize: 0.05, tone: 'light', desktopOnly: true },
+  { id: 'c1', setpointY: 0.62, gapSize: 0.07, tone: 'mid', desktopOnly: true },
+  { id: 'c2', setpointY: 0.38, gapSize: 0.06, tone: 'deep', desktopOnly: true },
+  { id: 'c3', setpointY: 0.55, gapSize: 0.08, tone: 'accent', desktopOnly: true },
   { id: 'c4', setpointY: 0.42, gapSize: 0.05, tone: 'deep' },
   { id: 'c5', setpointY: 0.7, gapSize: 0.07, tone: 'mid' },
   { id: 'c6', setpointY: 0.33, gapSize: 0.06, tone: 'light' }
@@ -23,12 +31,19 @@ const GRADIENTS: Record<Tone, string> = {
 const PILL_SHADOW =
   '18px 18px 30px rgba(209, 217, 230, 0.9), -18px -18px 30px rgba(255, 255, 255, 0.95), inset 6px 6px 14px rgba(255, 255, 255, 0.55), inset -6px -6px 14px rgba(120, 138, 120, 0.18)'
 
-const STIFFNESS = 161
-const DAMPING = 20.5
 const GAP_SCALE = 0.6
 const MIN_GAP_Y = 0.01
 const MAX_GAP_Y = 0.87
+const STIFFNESS = 161
+const DAMPING = 20.5
 const INFLUENCE = 1.1
+
+// Matches Tailwind's `md` breakpoint so JS column-index math stays in sync with the
+// CSS `hidden md:block` that hides the desktop-only columns on small viewports.
+const MOBILE_QUERY = '(max-width: 767px)'
+
+const MOBILE_VISIBLE_START = COLUMNS.findIndex((c) => !c.desktopOnly)
+const MOBILE_VISIBLE_COUNT = COLUMNS.length - MOBILE_VISIBLE_START
 
 export default function CapsulesBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -43,6 +58,13 @@ export default function CapsulesBackground() {
       velocity: 0,
       target: c.setpointY
     }))
+
+    const mql = window.matchMedia(MOBILE_QUERY)
+    let isMobile = mql.matches
+    const handleMql = (e: MediaQueryListEvent) => {
+      isMobile = e.matches
+    }
+    mql.addEventListener('change', handleMql)
 
     let pointerActive = false
     let pointerX = 0
@@ -76,20 +98,24 @@ export default function CapsulesBackground() {
 
       const rect = container.getBoundingClientRect()
       const hasSize = rect.width > 0 && rect.height > 0
+      const visibleStart = isMobile ? MOBILE_VISIBLE_START : 0
+      const visibleCount = isMobile ? MOBILE_VISIBLE_COUNT : COLUMNS.length
       const relY = pointerY - rect.top
       const pointerInRange = pointerActive && hasSize && relY >= 0 && relY <= rect.height
-      const colWidth = hasSize ? rect.width / COLUMNS.length : 0
+      const colWidth = hasSize ? rect.width / visibleCount : 0
       const cursorNorm = pointerInRange
         ? Math.max(MIN_GAP_Y, Math.min(MAX_GAP_Y, relY / rect.height))
         : 0
-      const cursorCol = pointerInRange ? (pointerX - rect.left) / colWidth : 0
+      const cursorColVis = pointerInRange ? (pointerX - rect.left) / colWidth : 0
 
       for (let i = 0; i < state.length; i++) {
         const s = state[i]
         const c = COLUMNS[i]
         let target = c.setpointY
-        if (pointerInRange) {
-          const dist = Math.abs(i + 0.5 - cursorCol)
+        const visible = i >= visibleStart
+        if (visible && pointerInRange) {
+          const iVis = i - visibleStart
+          const dist = Math.abs(iVis + 0.5 - cursorColVis)
           const w = dist >= INFLUENCE ? 0 : 0.5 + 0.5 * Math.cos((Math.PI * dist) / INFLUENCE)
           target = c.setpointY * (1 - w) + cursorNorm * w
         }
@@ -108,6 +134,7 @@ export default function CapsulesBackground() {
 
     return () => {
       cancelAnimationFrame(raf)
+      mql.removeEventListener('change', handleMql)
       window.removeEventListener('mousemove', handleMouse)
       window.removeEventListener('touchmove', handleTouch)
       window.removeEventListener('touchend', handleTouchEnd)
@@ -120,7 +147,8 @@ export default function CapsulesBackground() {
 
       <div
         ref={containerRef}
-        className="absolute top-[-8%] left-[-8%] flex h-[116%] w-[116%] gap-[1.5%] md:left-[40%] md:w-[76%]"
+        className="absolute top-[-8%] bottom-[-8%] left-[45%] flex gap-[1.5%] md:right-auto md:bottom-auto md:left-[40%] md:h-[116%] md:w-[76%]"
+        style={{ right: '-8%' }}
       >
         {COLUMNS.map((c, i) => (
           <div
@@ -128,7 +156,7 @@ export default function CapsulesBackground() {
             ref={(el) => {
               columnRefs.current[i] = el
             }}
-            className="relative h-full flex-1"
+            className={`relative h-full flex-1 ${c.desktopOnly ? 'hidden md:block' : ''}`}
             style={
               {
                 '--gap-y': c.setpointY,
@@ -167,7 +195,7 @@ export default function CapsulesBackground() {
         className="absolute inset-0 md:hidden"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(232, 232, 232, 0.85) 0%, rgba(232, 232, 232, 0.3) 35%, rgba(232, 232, 232, 0.3) 65%, rgba(232, 232, 232, 0.85) 100%)'
+            'linear-gradient(to right, rgba(232, 232, 232, 1) 0%, rgba(232, 232, 232, 0.95) 35%, rgba(232, 232, 232, 0.3) 55%, transparent 70%)'
         }}
       />
     </div>
