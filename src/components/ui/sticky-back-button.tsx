@@ -50,7 +50,13 @@ export function StickyBackButton() {
         ) : (
           // SSR fallback: plain link without Radix SheetClose
           <Button asChild variant="ghost" size="lg" className={buttonClassName}>
-            <Link to="/" startTransition viewTransition data-umami-event="Back to Home Clicked">
+            <Link
+              to="/"
+              search={{}}
+              startTransition
+              viewTransition
+              data-umami-event="Back to Home Clicked"
+            >
               <ChevronLeft className="h-4 w-4" />
               <span className="font-semibold">Back to Home</span>
             </Link>

@@ -11,7 +11,11 @@ export default defineConfig({
     tsConfigPaths(),
     nitro({
       preset: 'aws-lambda',
-      awsLambda: { streaming: true }
+      awsLambda: { streaming: true },
+      routeRules: {
+        '/about': { redirect: { to: '/?sheet=about', statusCode: 302 } },
+        '/cv': { redirect: { to: '/?sheet=cv', statusCode: 302 } }
+      }
     }),
     tanstackStart({
       customViteReactPlugin: true,

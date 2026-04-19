@@ -16,7 +16,8 @@ export default function HomePage() {
         {/* Navigation Links */}
         <nav className="mb-8 flex flex-col gap-4">
           <Link
-            to="/about"
+            to="/"
+            search={{ sheet: 'about' }}
             preload="intent"
             startTransition
             viewTransition
@@ -26,7 +27,8 @@ export default function HomePage() {
             ABOUT
           </Link>
           <Link
-            to="/cv"
+            to="/"
+            search={{ sheet: 'cv' }}
             preload="intent"
             startTransition
             viewTransition

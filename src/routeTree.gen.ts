@@ -11,8 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as HomeRouteRouteImport } from './routes/_home/route'
 import { Route as HomeIndexRouteImport } from './routes/_home/index'
-import { Route as HomeCvRouteImport } from './routes/_home/cv'
-import { Route as HomeAboutRouteImport } from './routes/_home/about'
 
 const HomeRouteRoute = HomeRouteRouteImport.update({
   id: '/_home',
@@ -23,40 +21,24 @@ const HomeIndexRoute = HomeIndexRouteImport.update({
   path: '/',
   getParentRoute: () => HomeRouteRoute,
 } as any)
-const HomeCvRoute = HomeCvRouteImport.update({
-  id: '/cv',
-  path: '/cv',
-  getParentRoute: () => HomeRouteRoute,
-} as any)
-const HomeAboutRoute = HomeAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => HomeRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
-  '/about': typeof HomeAboutRoute
-  '/cv': typeof HomeCvRoute
   '/': typeof HomeIndexRoute
 }
 export interface FileRoutesByTo {
-  '/about': typeof HomeAboutRoute
-  '/cv': typeof HomeCvRoute
   '/': typeof HomeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_home': typeof HomeRouteRouteWithChildren
-  '/_home/about': typeof HomeAboutRoute
-  '/_home/cv': typeof HomeCvRoute
   '/_home/': typeof HomeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about' | '/cv' | '/'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/cv' | '/'
-  id: '__root__' | '/_home' | '/_home/about' | '/_home/cv' | '/_home/'
+  to: '/'
+  id: '__root__' | '/_home' | '/_home/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -79,32 +61,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeIndexRouteImport
       parentRoute: typeof HomeRouteRoute
     }
-    '/_home/cv': {
-      id: '/_home/cv'
-      path: '/cv'
-      fullPath: '/cv'
-      preLoaderRoute: typeof HomeCvRouteImport
-      parentRoute: typeof HomeRouteRoute
-    }
-    '/_home/about': {
-      id: '/_home/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof HomeAboutRouteImport
-      parentRoute: typeof HomeRouteRoute
-    }
   }
 }
 
 interface HomeRouteRouteChildren {
-  HomeAboutRoute: typeof HomeAboutRoute
-  HomeCvRoute: typeof HomeCvRoute
   HomeIndexRoute: typeof HomeIndexRoute
 }
 
 const HomeRouteRouteChildren: HomeRouteRouteChildren = {
-  HomeAboutRoute: HomeAboutRoute,
-  HomeCvRoute: HomeCvRoute,
   HomeIndexRoute: HomeIndexRoute,
 }
 
