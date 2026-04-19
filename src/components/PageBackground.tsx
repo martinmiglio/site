@@ -2,9 +2,23 @@ import { useEffect, useRef } from 'react'
 import noise from '@/assets/noise.webp'
 
 const SPOTLIGHT_RADIUS = 512
+const NOISE_INTERVAL_MS = 100
+const NOISE_RANGE = 10
 
 export default function PageBackground() {
   const spotlightRef = useRef<HTMLDivElement>(null)
+  const noiseRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = noiseRef.current
+    if (!el) return
+    const id = window.setInterval(() => {
+      const x = Math.floor(Math.random() * (NOISE_RANGE * 2 + 1)) - NOISE_RANGE
+      const y = Math.floor(Math.random() * (NOISE_RANGE * 2 + 1)) - NOISE_RANGE
+      el.style.transform = `translate(${x}%, ${y}%)`
+    }, NOISE_INTERVAL_MS)
+    return () => window.clearInterval(id)
+  }, [])
 
   useEffect(() => {
     const el = spotlightRef.current
@@ -36,7 +50,8 @@ export default function PageBackground() {
   return (
     <div className="-z-50 fixed inset-0 h-full w-screen" aria-hidden="true">
       <div
-        className="-z-40 absolute inset-[-200%] h-[400%] w-[400%] animate-noise-jitter opacity-[0.16]"
+        ref={noiseRef}
+        className="-z-40 noise-jitter absolute inset-[-200%] h-[400%] w-[400%] opacity-[0.16]"
         style={{ background: `url('${noise}')` }}
       />
       <div className="-z-30 absolute top-0 left-0 h-[100vh] w-[50vw] translate-x-[-10%] translate-y-[-30%] rounded-r-full bg-theme-50 blur-[64px]" />
