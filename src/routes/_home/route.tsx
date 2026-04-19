@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet, useLocation, useNavigate } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
+import { Suspense, useDeferredValue, useEffect, useState } from 'react'
 import { SheetPage } from '@/components/layout/SheetPage'
 import { Sheet } from '@/components/ui/sheet'
 import HomePage from '@/pages/home'
@@ -11,8 +11,9 @@ export const Route = createFileRoute('/_home')({
 function RouteComponent() {
   const [mounted, setMounted] = useState(false)
   const { pathname } = useLocation()
+  const deferredPathname = useDeferredValue(pathname)
 
-  const sheetIsOpen = pathname !== '/'
+  const sheetIsOpen = deferredPathname !== '/'
 
   const navigate = useNavigate()
 
@@ -25,7 +26,7 @@ function RouteComponent() {
   }
 
   const getSheetTitle = () => {
-    switch (pathname) {
+    switch (deferredPathname) {
       case '/about':
         return 'About'
       case '/cv':
@@ -42,7 +43,9 @@ function RouteComponent() {
         (mounted ? (
           <Sheet open={true} onOpenChange={onSheetOpenChange}>
             <SheetPage title={getSheetTitle()}>
-              <Outlet />
+              <Suspense fallback={null}>
+                <Outlet />
+              </Suspense>
             </SheetPage>
           </Sheet>
         ) : (
