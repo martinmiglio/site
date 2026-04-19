@@ -20,7 +20,7 @@ function RouteComponent() {
 
   const onSheetOpenChange = (open: boolean) => {
     if (!open) {
-      navigate({ to: '/' })
+      navigate({ to: '/', startTransition: true, viewTransition: true })
     }
   }
 
