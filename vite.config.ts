@@ -5,7 +5,6 @@ import viteReact from '@vitejs/plugin-react'
 import { nitro } from 'nitro/vite'
 import { defineConfig } from 'vite'
 import tsConfigPaths from 'vite-tsconfig-paths'
-import { noiseKeyframes } from './plugins/css/noise-keyframes'
 
 export default defineConfig({
   plugins: [
@@ -23,8 +22,7 @@ export default defineConfig({
       }
     }),
     tailwindcss(),
-    viteReact(),
-    noiseKeyframes({ range: 10 })
+    viteReact()
   ],
   resolve: {
     alias: {

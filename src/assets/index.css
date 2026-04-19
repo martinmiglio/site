@@ -165,10 +165,6 @@
   }
 }
 
-/* @keyframes noiseJitter is generated at build time by the
-   noise-jitter-keyframes Vite plugin (see vite.config.ts) and imported
-   from __root.tsx via `virtual:noise-jitter.css`. */
-
 @keyframes collapsibleSlideDown {
   0% {
     height: 0;
@@ -195,23 +191,6 @@
   .animate-shine {
     background-size: 200% 100%;
     animation: shine 9s infinite linear alternate;
-  }
-
-  .noise-jitter {
-    animation: noiseJitter 2s steps(60) infinite;
-    will-change: transform;
-  }
-
-  .mouse-spotlight {
-    opacity: 0;
-    transition: opacity 300ms ease-out;
-    will-change: transform;
-  }
-
-  @media (pointer: fine) {
-    .mouse-spotlight {
-      opacity: 1;
-    }
   }
 
   /* Collapsible animations */
