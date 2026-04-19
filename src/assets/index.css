@@ -260,7 +260,7 @@
   }
 
   .noise-jitter {
-    animation: noiseJitter 2s steps(60) infinite;
+    animation: noiseJitter 3s steps(60) infinite;
     will-change: transform;
   }
 
