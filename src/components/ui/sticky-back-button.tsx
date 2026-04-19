@@ -1,4 +1,3 @@
-import { Link } from '@tanstack/react-router'
 import { ChevronLeft } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
@@ -6,12 +5,7 @@ import { SheetClose } from '@/components/ui/sheet'
 
 export function StickyBackButton() {
   const [isSticky, setIsSticky] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const sentinelRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     const sentinel = sentinelRef.current
@@ -35,33 +29,15 @@ export function StickyBackButton() {
 
   return (
     <>
-      {/* Sentinel element for detecting sticky state */}
       <div ref={sentinelRef} className="pointer-events-none absolute top-0 h-px" />
 
-      {/* Sticky Back Button */}
       <div className="sticky top-0 z-10 mb-4 flex w-full justify-end">
-        {mounted ? (
-          <Button asChild variant="ghost" size="lg" className={buttonClassName}>
-            <SheetClose data-umami-event="Back to Home Clicked">
-              <ChevronLeft className="h-4 w-4" />
-              <span className="font-semibold">Back to Home</span>
-            </SheetClose>
-          </Button>
-        ) : (
-          // SSR fallback: plain link without Radix SheetClose
-          <Button asChild variant="ghost" size="lg" className={buttonClassName}>
-            <Link
-              to="/"
-              preload="intent"
-              startTransition
-              viewTransition
-              data-umami-event="Back to Home Clicked"
-            >
-              <ChevronLeft className="h-4 w-4" />
-              <span className="font-semibold">Back to Home</span>
-            </Link>
-          </Button>
-        )}
+        <Button asChild variant="ghost" size="lg" className={buttonClassName}>
+          <SheetClose data-umami-event="Back to Home Clicked">
+            <ChevronLeft className="h-4 w-4" />
+            <span className="font-semibold">Back to Home</span>
+          </SheetClose>
+        </Button>
       </div>
     </>
   )
