@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { socialBarData } from '@/data/social-bar'
 
+const ANIMATION_CLASSES = [
+  'animate-slide-in-1',
+  'animate-slide-in-2',
+  'animate-slide-in-3',
+  'animate-slide-in-4',
+  'animate-slide-in-5'
+]
+
 export default function ContactMenu() {
   const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => setMounted(true), [])
-
-  const animationClasses = [
-    'animate-slide-in-1',
-    'animate-slide-in-2',
-    'animate-slide-in-3',
-    'animate-slide-in-4',
-    'animate-slide-in-5'
-  ]
 
   if (!mounted) {
     return (
@@ -46,7 +46,7 @@ export default function ContactMenu() {
               rel="noopener noreferrer"
               aria-label={`${social.name} ${social.link}`}
               data-umami-event={`Contact Menu Social Link Clicked: ${social.name}`}
-              className={`flex w-fit items-center gap-3 font-medium text-lg text-theme-600 transition-colors duration-200 hover:text-theme-500 ${isOpen ? animationClasses[index] || 'animate-slide-in-5' : ''}`}
+              className={`flex w-fit items-center gap-3 font-medium text-lg text-theme-600 transition-colors duration-200 hover:text-theme-500 ${isOpen ? ANIMATION_CLASSES[index] || 'animate-slide-in-5' : ''}`}
             >
               <FontAwesomeIcon
                 icon={social.icon}
