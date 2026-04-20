@@ -255,7 +255,7 @@
 }
 @property --gap-y {
   syntax: '<number>';
-  inherits: false;
+  inherits: true;
   initial-value: 0.5;
 }
 
