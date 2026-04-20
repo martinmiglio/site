@@ -16,16 +16,16 @@ const COLUMNS: Column[] = [
   { id: 'c1', setpointY: 0.62, gapSize: 0.07, tone: 'mid', desktopOnly: true },
   { id: 'c2', setpointY: 0.38, gapSize: 0.06, tone: 'deep', desktopOnly: true },
   { id: 'c3', setpointY: 0.55, gapSize: 0.08, tone: 'accent', desktopOnly: true },
-  { id: 'c4', setpointY: 0.42, gapSize: 0.05, tone: 'deep' },
+  { id: 'c4', setpointY: 0.42, gapSize: 0.05, tone: 'light' },
   { id: 'c5', setpointY: 0.7, gapSize: 0.07, tone: 'mid' },
-  { id: 'c6', setpointY: 0.33, gapSize: 0.06, tone: 'light' }
+  { id: 'c6', setpointY: 0.33, gapSize: 0.06, tone: 'accent' }
 ]
 
 const GRADIENTS: Record<Tone, string> = {
   light: 'linear-gradient(180deg, #f4f6f2 0%, #e8eae3 45%, #d8dad3 100%)',
-  mid: 'linear-gradient(180deg, #d8dad3 0%, #b4cd9d 50%, #e8eae3 100%)',
+  mid: 'linear-gradient(180deg, #f4f6f2 0%, #cfe3bc 50%, #eaece5 100%)',
   deep: 'linear-gradient(180deg, #b4cd9d 0%, #25c922 45%, #7bce5f 80%, #f4f6f2 100%)',
-  accent: 'linear-gradient(180deg, #e8eae3 0%, #7bce5f 40%, #00a824 70%, #d8dad3 100%)'
+  accent: 'linear-gradient(180deg, #f4f6f2 0%, #a6dd8a 45%, #25c922 70%, #eaece5 100%)'
 }
 
 const PILL_SHADOW =
