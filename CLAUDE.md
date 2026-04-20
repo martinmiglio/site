@@ -1,2 +1,7 @@
 - you can run the dev server using 'bun run dev:mono'
 - always use bun over npm
+- lint: `bun run lint` (oxlint) — fix: `bun run lint:fix`
+- format: `bun run format` (oxfmt) — check only: `bun run format:check`
+- combined fmt+lint check: `bun run check`
+- typecheck: `bun run typecheck`
+- git hooks managed by lefthook (config: `lefthook.yml`); `bun install` auto-installs via the `prepare` script
