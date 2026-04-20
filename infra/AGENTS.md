@@ -2,10 +2,10 @@
 
 Two SST apps live in this repo:
 
-- `sst.config.ts` — the site (`martin-site`). CI deploys this.
-- `infra/oidc.config.ts` — one-time bootstrap (`martin-site-oidc`) that provisions the GitHub OIDC provider and deploy role. Production-only by design.
+- `sst.config.ts` — the site. CI deploys this.
+- `infra/oidc.config.ts` — one-time bootstrap for the GitHub OIDC provider and deploy role.
 
-Stage→domain mapping, runtime, DNS zone, and the trust-policy `sub` list all live in those files. Read them — don't trust a restatement here.
+Stage→domain mapping, runtime, DNS zone, trust-policy `sub` list, and SST app names all live in those files. Read them — don't trust a restatement here.
 
 ## Invariants
 
@@ -25,4 +25,4 @@ Copy the printed `deployRoleArn` into the `AWS_ROLE_ARN` GitHub secret. The conf
 
 ## Local dev auth
 
-`sst dev` uses the `martinm` AWS profile locally; CI uses OIDC (no profile). Set in `sst.config.ts`'s `providers.aws`.
+Local `sst` uses a named AWS profile; CI uses OIDC (no profile). Both paths are set in `sst.config.ts`'s `providers.aws`.
