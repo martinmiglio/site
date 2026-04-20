@@ -65,7 +65,7 @@
     "portless": "^0.10.3",
     "sst": "4.8.0",
     "typescript": "^6.0.3",
-    "vite": "^7.1.11",
+    "vite": "^8.0.8",
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.15",
     "web-vitals": "^5.1.0"
