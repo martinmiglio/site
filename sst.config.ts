@@ -55,6 +55,11 @@ export default $config({
           if (event.branch === 'master') {
             return { stage: 'production' }
           }
+          return
+        }
+
+        if (event.type === 'pull_request') {
+          return { stage: `pr-${event.number}` }
         }
       }
     }
