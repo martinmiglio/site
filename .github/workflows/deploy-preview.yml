@@ -71,7 +71,7 @@ jobs:
         id: find_comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body-includes: "Preview Deployment"
+          body-includes: 'Preview Deployment'
 
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v4

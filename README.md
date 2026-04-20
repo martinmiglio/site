@@ -4,11 +4,11 @@
 
 Three stages, two mechanisms:
 
-| Stage | Trigger | Domain | Owner |
-|---|---|---|---|
-| `production` | push to `master` | `martinmiglio.dev` | SST Console autodeploy |
-| `develop` | push to `develop` | `develop.martinmiglio.dev` | SST Console autodeploy |
-| `pr-<N>` | open/sync PR | `pr-<N>.martinmiglio.dev` | GitHub Actions (`.github/workflows/deploy-preview.yml`) |
+| Stage        | Trigger           | Domain                     | Owner                                                   |
+| ------------ | ----------------- | -------------------------- | ------------------------------------------------------- |
+| `production` | push to `master`  | `martinmiglio.dev`         | SST Console autodeploy                                  |
+| `develop`    | push to `develop` | `develop.martinmiglio.dev` | SST Console autodeploy                                  |
+| `pr-<N>`     | open/sync PR      | `pr-<N>.martinmiglio.dev`  | GitHub Actions (`.github/workflows/deploy-preview.yml`) |
 
 PR previews are torn down automatically when the PR closes (`destroy-preview.yml` runs `sst remove --stage pr-<N>`).
 
