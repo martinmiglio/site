@@ -45,20 +45,5 @@ export default $config({
       url: `https://${baseDomain}`,
       appUrl: app.url
     }
-  },
-  console: {
-    autodeploy: {
-      target(event) {
-        if (event.type === 'branch' && event.action === 'pushed') {
-          if (event.branch === 'develop') {
-            return { stage: 'develop' }
-          }
-
-          if (event.branch === 'master') {
-            return { stage: 'production' }
-          }
-        }
-      }
-    }
   }
 })
