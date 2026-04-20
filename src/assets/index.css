@@ -255,6 +255,31 @@
   inherits: true;
   initial-value: 0.5;
 }
+@property --setpoint {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.5;
+}
+@property --gap-size {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.06;
+}
+@property --column-index-desktop {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+@property --column-index-mobile {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+@property --column-index {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
 
 .capsules-stage {
   --visible-column-count: 7;
