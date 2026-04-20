@@ -20,7 +20,7 @@
   ],
   "overrides": [
     {
-      "files": ["sst.config.ts"],
+      "files": ["sst.config.ts", "infra/**/*.ts"],
       "rules": {
         "triple-slash-reference": "off"
       }

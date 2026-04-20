@@ -8,10 +8,7 @@ export default $config({
       protect: ['production'].includes(input?.stage),
       home: 'aws',
       providers: {
-        aws: {
-          profile: 'martinm',
-          region: 'us-east-1'
-        }
+        aws: process.env.CI ? { region: 'us-east-1' } : { profile: 'martinm', region: 'us-east-1' }
       }
     }
   },
@@ -33,7 +30,7 @@ export default $config({
       }
     })
 
-    new sst.aws.TanStackStart('MartinSite', {
+    const app = new sst.aws.TanStackStart('MartinSite', {
       warm: isProduction ? 1 : undefined,
       server: {
         architecture: 'arm64',
@@ -43,6 +40,11 @@ export default $config({
         instance: router
       }
     })
+
+    return {
+      url: `https://${baseDomain}`,
+      appUrl: app.url
+    }
   },
   console: {
     autodeploy: {

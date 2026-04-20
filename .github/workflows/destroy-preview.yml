@@ -1,0 +1,47 @@
+name: Destroy Preview
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-${{ github.event.pull_request.number }}
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - uses: actions/cache@v4
+        with:
+          path: .sst/platform
+          key: sst-${{ runner.os }}-${{ hashFiles('bun.lock', 'sst.config.ts') }}
+          restore-keys: |
+            sst-${{ runner.os }}-
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - run: bun install --frozen-lockfile
+
+      - name: Remove SST stage
+        run: bun sst remove --stage pr-${{ github.event.pull_request.number }}

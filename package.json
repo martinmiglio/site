@@ -61,7 +61,7 @@
     "lefthook": "^2.1.6",
     "oxfmt": "^0.45.0",
     "oxlint": "^1.60.0",
-    "sst": "3.17.25",
+    "sst": "4.8.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.11",
     "vite-tsconfig-paths": "^5.1.4",
