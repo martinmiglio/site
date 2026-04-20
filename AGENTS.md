@@ -17,9 +17,9 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 
 ## Opinions (non-obvious, don't second-guess)
 
-- **`bun`, not `npm`/`pnpm`/`yarn`.** `bunx` over `npx`.
+- **Use `bun` + `bunx`.** Don't reach for `npm`/`pnpm`/`yarn`/`npx`.
 - **`oxlint` + `oxfmt` only.** Don't reach for biome, prettier, or eslint.
-- **`lefthook` for git hooks.**
+- **`lefthook` for git hooks.** Don't reach for husky.
 - **No commit co-author trailers.** Don't add Claude/Anthropic authorship.
 - **Don't bypass hooks (`--no-verify`)** unless explicitly asked.
 
