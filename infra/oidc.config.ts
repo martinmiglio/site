@@ -44,7 +44,11 @@ export default $config({
             Condition: {
               StringEquals: {
                 'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
-                'token.actions.githubusercontent.com:sub': 'repo:martinmiglio/site:pull_request'
+                'token.actions.githubusercontent.com:sub': [
+                  'repo:martinmiglio/site:pull_request',
+                  'repo:martinmiglio/site:ref:refs/heads/master',
+                  'repo:martinmiglio/site:ref:refs/heads/develop'
+                ]
               }
             }
           }

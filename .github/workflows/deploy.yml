@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master, develop]
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - uses: actions/cache@v4
+        with:
+          path: .sst/platform
+          key: sst-${{ runner.os }}-${{ hashFiles('bun.lock', 'sst.config.ts') }}
+          restore-keys: |
+            sst-${{ runner.os }}-
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - run: bun install --frozen-lockfile
+
+      - name: Resolve stage
+        id: stage
+        run: |
+          if [ "${{ github.ref_name }}" = "master" ]; then
+            echo "name=production" >> $GITHUB_OUTPUT
+          else
+            echo "name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy
+        run: bun sst deploy --stage ${{ steps.stage.outputs.name }}
