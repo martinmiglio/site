@@ -15,23 +15,13 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 - Deploy/CI behavior → `.github/workflows/`
 - Deploy internals + OIDC bootstrap → [`infra/AGENTS.md`](./infra/AGENTS.md)
 
-## Opinions (non-obvious, don't second-guess)
+## Opinions
 
 - **Use `bun` + `bunx`.** Don't reach for `npm`/`pnpm`/`yarn`/`npx`.
 - **`oxlint` + `oxfmt` only.** Don't reach for biome, prettier, or eslint.
-- **`lefthook` for git hooks.** Don't reach for husky.
 - **No commit co-author trailers.** Don't add Claude/Anthropic authorship.
 - **Don't bypass hooks (`--no-verify`)** unless explicitly asked.
 
-## Invariants
-
-- CI owns `production` and `develop` deploys. Local `sst deploy` to them is fine for recovery or one-offs but shouldn't be the habit.
-- `src/routeTree.gen.ts` is generated; don't hand-edit.
-
 ## Editing this doc
 
-When something changes, **sharpen an existing rule before adding a new one.** Merge, tighten, or delete — don't append. If a rule no longer bites, remove it. Terse and strong beats thorough and soft.
-
-Add a new rule only when it's genuinely orthogonal to every existing one _and_ names a trap that code/configs can't express.
-
-**Describe current state, not history.** No "replaced X", "migrated from Y", "don't add back" — those read like a changelog and rot the moment the old thing is forgotten. Applies to all agent docs in this repo.
+**Sharpen existing rules, don't append.** Add a new rule only when it's orthogonal to every existing one _and_ names a trap that code/configs can't express. Describe current state, never history or diffs (no "replaced", "migrated", "don't add back" — that rots the moment the old thing is forgotten). Terse and strong beats thorough and soft. Applies to all agent docs in this repo.
