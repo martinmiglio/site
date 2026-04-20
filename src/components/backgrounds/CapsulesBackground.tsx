@@ -42,8 +42,12 @@ const INFLUENCE = 1.1
 // CSS `hidden md:block` that hides the desktop-only columns on small viewports.
 const MOBILE_QUERY = '(max-width: 767px)'
 
-const MOBILE_VISIBLE_START = COLUMNS.findIndex((c) => !c.desktopOnly)
-const MOBILE_VISIBLE_COUNT = COLUMNS.length - MOBILE_VISIBLE_START
+const MOBILE_VISIBLE_INDEX: number[] = (() => {
+  let v = 0
+  return COLUMNS.map((c) => (c.desktopOnly ? -1 : v++))
+})()
+const MOBILE_VISIBLE_COUNT = MOBILE_VISIBLE_INDEX.filter((i) => i >= 0).length
+const DESKTOP_VISIBLE_INDEX: number[] = COLUMNS.map((_, i) => i)
 
 export default function CapsulesBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -99,7 +103,7 @@ export default function CapsulesBackground() {
 
       const rect = container.getBoundingClientRect()
       const hasSize = rect.width > 0 && rect.height > 0
-      const visibleStart = isMobile ? MOBILE_VISIBLE_START : 0
+      const visibleMap = isMobile ? MOBILE_VISIBLE_INDEX : DESKTOP_VISIBLE_INDEX
       const visibleCount = isMobile ? MOBILE_VISIBLE_COUNT : COLUMNS.length
       const relY = pointerY - rect.top
       const pointerInRange = pointerActive && hasSize && relY >= 0 && relY <= rect.height
@@ -113,9 +117,8 @@ export default function CapsulesBackground() {
         const s = state[i]
         const c = COLUMNS[i]
         let target = c.setpointY
-        const visible = i >= visibleStart
-        if (visible && pointerInRange) {
-          const iVis = i - visibleStart
+        const iVis = visibleMap[i]
+        if (iVis >= 0 && pointerInRange) {
           const dist = Math.abs(iVis + 0.5 - cursorColVis)
           const w = dist >= INFLUENCE ? 0 : 0.5 + 0.5 * Math.cos((Math.PI * dist) / INFLUENCE)
           target = c.setpointY * (1 - w) + cursorNorm * w
