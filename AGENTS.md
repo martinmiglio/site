@@ -25,7 +25,7 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 
 ## Invariants
 
-- `production` and `develop` deploy only from CI — never `sst deploy` to them from a laptop.
+- CI owns `production` and `develop` deploys. Local `sst deploy` to them is fine for recovery or one-offs but shouldn't be the habit.
 - `src/routeTree.gen.ts` is generated; don't hand-edit.
 
 ## Editing this doc

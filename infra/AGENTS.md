@@ -9,7 +9,7 @@ Stage→domain mapping, runtime, DNS zone, trust-policy `sub` list, and SST app 
 
 ## Invariants
 
-- **Never deploy `production` or `develop` from a laptop.** CI owns them. Local `sst deploy` is for throwaway stages only.
+- **CI owns `production` and `develop` deploys.** Local `sst deploy` to them works for recovery or one-offs; routine deploys should go through a PR.
 - **`oidc.config.ts` rejects non-`production` stages** by design — keeps bootstrap resources in one place.
 - **The deploy role's broad IAM scope is intentional** for a personal site. Don't scope it down unprompted — revisit if this ever gets collaborators or real user data.
 
