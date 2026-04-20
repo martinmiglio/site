@@ -50,9 +50,6 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
-      - name: Refresh state (AWS provider v6→v7 migration)
-        run: bun sst refresh --stage ${{ env.STAGE_NAME }}
-
       - name: Deploy
         run: bun sst deploy --stage ${{ env.STAGE_NAME }}
 
