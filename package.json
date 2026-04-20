@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "portless run vite dev",
-    "dev:mono": "sst dev --mode mono --verbose",
+    "dev:sst": "sst dev --mode mono --verbose",
     "start": "portless run vite dev",
     "build": "vite build",
     "sst": "sst",
