@@ -1,5 +1,4 @@
 import type React from 'react'
-import { useEffect, useRef } from 'react'
 
 type Tone = 'light' | 'mid' | 'deep' | 'accent'
 type Column = {
@@ -29,91 +28,100 @@ const COLUMN_INDICES: { desktopIndex: number; mobileIndex: number }[] = (() => {
   }))
 })()
 
+const attachStage = (stage: HTMLDivElement | null) => {
+  if (!stage) return
+
+  let rafHandle = 0
+  let updatePending = false
+  let pointerClientX = 0
+  let pointerClientY = 0
+  // The stage is positioned in viewport percentages, so its rect only shifts on resize.
+  let stageRect = stage.getBoundingClientRect()
+  let lastActive = ''
+  let lastX = Number.NaN
+  let lastY = Number.NaN
+
+  const refreshStageRect = () => {
+    stageRect = stage.getBoundingClientRect()
+  }
+
+  const commit = () => {
+    updatePending = false
+    if (stageRect.width === 0 || stageRect.height === 0) return
+    const relX = (pointerClientX - stageRect.left) / stageRect.width
+    const relY = (pointerClientY - stageRect.top) / stageRect.height
+    const inRange = relY >= 0 && relY <= 1
+    if (inRange) {
+      const nextX = Math.round(relX * 1000) / 1000
+      const nextY = Math.round(Math.max(0.01, Math.min(0.87, relY)) * 1000) / 1000
+      if (nextX !== lastX) {
+        lastX = nextX
+        stage.style.setProperty('--pointer-x', String(nextX))
+      }
+      if (nextY !== lastY) {
+        lastY = nextY
+        stage.style.setProperty('--pointer-y', String(nextY))
+      }
+    }
+    const nextActive = inRange ? '1' : '0'
+    if (nextActive !== lastActive) {
+      lastActive = nextActive
+      stage.style.setProperty('--active', nextActive)
+    }
+  }
+
+  const scheduleCommit = () => {
+    if (!updatePending) {
+      updatePending = true
+      rafHandle = requestAnimationFrame(commit)
+    }
+  }
+
+  const onPointerMove = (e: PointerEvent) => {
+    pointerClientX = e.clientX
+    pointerClientY = e.clientY
+    scheduleCommit()
+  }
+
+  const deactivate = () => {
+    if (lastActive !== '0') {
+      lastActive = '0'
+      stage.style.setProperty('--active', '0')
+    }
+  }
+
+  // Mouse button release leaves the cursor in place; only touch/pen lift deactivates.
+  const deactivateOnTouchOrPenRelease = (e: PointerEvent) => {
+    if (e.pointerType !== 'mouse') deactivate()
+  }
+
+  window.addEventListener('pointermove', onPointerMove, { passive: true })
+  window.addEventListener('pointerup', deactivateOnTouchOrPenRelease, { passive: true })
+  window.addEventListener('pointercancel', deactivateOnTouchOrPenRelease, { passive: true })
+  window.addEventListener('resize', refreshStageRect)
+  document.documentElement.addEventListener('pointerleave', deactivate, { passive: true })
+  document.addEventListener('visibilitychange', deactivate, { passive: true })
+  window.addEventListener('blur', deactivate, { passive: true })
+
+  return () => {
+    cancelAnimationFrame(rafHandle)
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', deactivateOnTouchOrPenRelease)
+    window.removeEventListener('pointercancel', deactivateOnTouchOrPenRelease)
+    window.removeEventListener('resize', refreshStageRect)
+    document.documentElement.removeEventListener('pointerleave', deactivate)
+    document.removeEventListener('visibilitychange', deactivate)
+    window.removeEventListener('blur', deactivate)
+  }
+}
+
 export default function CapsulesBackground() {
-  const stageRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const stage = stageRef.current
-    if (!stage) return
-
-    let updatePending = false
-    let pointerClientX = 0
-    let pointerClientY = 0
-    // The stage is positioned in viewport percentages, so its rect only shifts on resize.
-    let stageRect = stage.getBoundingClientRect()
-    let lastActive = ''
-
-    const refreshStageRect = () => {
-      stageRect = stage.getBoundingClientRect()
-    }
-
-    const commit = () => {
-      updatePending = false
-      if (stageRect.width === 0 || stageRect.height === 0) return
-      const relX = (pointerClientX - stageRect.left) / stageRect.width
-      const relY = (pointerClientY - stageRect.top) / stageRect.height
-      const inRange = relY >= 0 && relY <= 1
-      if (inRange) {
-        stage.style.setProperty('--pointer-x', String(relX))
-        stage.style.setProperty('--pointer-y', String(Math.max(0.01, Math.min(0.87, relY))))
-      }
-      const nextActive = inRange ? '1' : '0'
-      if (nextActive !== lastActive) {
-        lastActive = nextActive
-        stage.style.setProperty('--active', nextActive)
-      }
-    }
-
-    const scheduleCommit = () => {
-      if (!updatePending) {
-        updatePending = true
-        requestAnimationFrame(commit)
-      }
-    }
-
-    const onPointerMove = (e: PointerEvent) => {
-      pointerClientX = e.clientX
-      pointerClientY = e.clientY
-      scheduleCommit()
-    }
-
-    const deactivate = () => {
-      if (lastActive !== '0') {
-        lastActive = '0'
-        stage.style.setProperty('--active', '0')
-      }
-    }
-
-    // Mouse button release leaves the cursor in place; only touch/pen lift deactivates.
-    const deactivateOnTouchOrPenRelease = (e: PointerEvent) => {
-      if (e.pointerType !== 'mouse') deactivate()
-    }
-
-    window.addEventListener('pointermove', onPointerMove, { passive: true })
-    window.addEventListener('pointerup', deactivateOnTouchOrPenRelease, { passive: true })
-    window.addEventListener('pointercancel', deactivateOnTouchOrPenRelease, { passive: true })
-    window.addEventListener('resize', refreshStageRect, { passive: true })
-    document.documentElement.addEventListener('pointerleave', deactivate, { passive: true })
-    document.addEventListener('visibilitychange', deactivate)
-    window.addEventListener('blur', deactivate)
-
-    return () => {
-      window.removeEventListener('pointermove', onPointerMove)
-      window.removeEventListener('pointerup', deactivateOnTouchOrPenRelease)
-      window.removeEventListener('pointercancel', deactivateOnTouchOrPenRelease)
-      window.removeEventListener('resize', refreshStageRect)
-      document.documentElement.removeEventListener('pointerleave', deactivate)
-      document.removeEventListener('visibilitychange', deactivate)
-      window.removeEventListener('blur', deactivate)
-    }
-  }, [])
-
   return (
     <div className="-z-50 pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
       <div className="absolute inset-0 bg-theme-50" />
 
       <div
-        ref={stageRef}
+        ref={attachStage}
         className="capsules-stage absolute top-[-8%] right-[-8%] bottom-[-8%] left-[45%] flex gap-[1.5%] md:right-auto md:bottom-auto md:left-[40%] md:h-[116%] md:w-[76%]"
       >
         {COLUMNS.map((c, i) => {
@@ -122,7 +130,7 @@ export default function CapsulesBackground() {
             <div
               key={c.id}
               data-tone={c.tone}
-              className={`capsules-col relative h-full flex-1 ${c.desktopOnly ? 'hidden md:block' : ''}`}
+              className={`capsules-col ${c.desktopOnly ? 'hidden md:block' : ''}`}
               style={
                 {
                   '--column-index-desktop': desktopIndex,
@@ -139,20 +147,8 @@ export default function CapsulesBackground() {
         })}
       </div>
 
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(120% 80% at 100% 50%, transparent 0%, transparent 35%, rgba(232, 232, 232, 0.92) 70%, rgba(232, 232, 232, 1) 100%)'
-        }}
-      />
-      <div
-        className="absolute inset-0 md:hidden"
-        style={{
-          background:
-            'linear-gradient(to right, rgba(232, 232, 232, 1) 0%, rgba(232, 232, 232, 0.95) 35%, rgba(232, 232, 232, 0.3) 55%, transparent 70%)'
-        }}
-      />
+      <div className="capsules-wash capsules-wash--desktop" />
+      <div className="capsules-wash capsules-wash--mobile md:hidden" />
     </div>
   )
 }
