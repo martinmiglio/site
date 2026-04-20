@@ -18,8 +18,8 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 ## Opinions (non-obvious, don't second-guess)
 
 - **`bun`, not `npm`/`pnpm`/`yarn`.** `bunx` over `npx`.
-- **`oxlint` + `oxfmt`, not biome/prettier/eslint.** Don't add them back.
-- **`lefthook`, not husky.**
+- **`oxlint` + `oxfmt` only.** Don't reach for biome, prettier, or eslint.
+- **`lefthook` for git hooks.**
 - **No commit co-author trailers.** Don't add Claude/Anthropic authorship.
 - **Don't bypass hooks (`--no-verify`)** unless explicitly asked.
 
@@ -32,4 +32,6 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 
 When something changes, **sharpen an existing rule before adding a new one.** Merge, tighten, or delete — don't append. If a rule no longer bites, remove it. Terse and strong beats thorough and soft.
 
-Add a new rule only when it's genuinely orthogonal to every existing one _and_ names a trap that code/configs can't express. Applies to all agent docs in this repo.
+Add a new rule only when it's genuinely orthogonal to every existing one _and_ names a trap that code/configs can't express.
+
+**Describe current state, not history.** No "replaced X", "migrated from Y", "don't add back" — those read like a changelog and rot the moment the old thing is forgotten. Applies to all agent docs in this repo.
