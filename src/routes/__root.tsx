@@ -8,8 +8,10 @@ import NotFoundPage from '@/pages/404'
 
 export const Route = createRootRoute({
   head: () => ({
-    title: 'Martin Miglio',
     meta: [
+      {
+        title: 'Martin Miglio'
+      },
       {
         charSet: 'utf-8'
       },
