@@ -32,7 +32,7 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 
 When something changes, **sharpen an existing rule before adding a new one.** Merge, tighten, or delete — don't append. If a rule no longer bites, remove it. Terse and strong beats thorough and soft.
 
-Add a new rule only when it's genuinely orthogonal to every existing one _and_ names a trap that code/configs can't express. Same applies to `infra/AGENTS.md`.
+Add a new rule only when it's genuinely orthogonal to every existing one _and_ names a trap that code/configs can't express. Applies to all agent docs in this repo.
 
 ## Starting points
 
