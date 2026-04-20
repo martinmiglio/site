@@ -3,7 +3,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 import appCss from '@/assets/index.css?url'
-import PageBackground from '@/components/PageBackground'
+import CapsulesBackground from '@/components/backgrounds/CapsulesBackground'
 import NotFoundPage from '@/pages/404'
 
 export const Route = createRootRoute({
@@ -126,7 +126,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <HeadContent />
       </head>
       <body className="bg-theme-50 font-sans antialiased">
-        <PageBackground />
+        <CapsulesBackground />
         {children}
         <Scripts />
       </body>
