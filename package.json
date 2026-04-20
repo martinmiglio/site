@@ -64,7 +64,7 @@
     "oxlint": "^1.60.0",
     "portless": "^0.10.3",
     "sst": "4.8.0",
-    "typescript": "^5.9.2",
+    "typescript": "^6.0.3",
     "vite": "^7.1.11",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.0.15",
