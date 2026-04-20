@@ -21,130 +21,74 @@ const COLUMNS: Column[] = [
   { id: 'c6', setpointY: 0.33, gapSize: 0.06, tone: 'accent' }
 ]
 
-const GRADIENTS: Record<Tone, string> = {
-  light: 'linear-gradient(180deg, #f4f6f2 0%, #e8eae3 45%, #d8dad3 100%)',
-  mid: 'linear-gradient(180deg, #f4f6f2 0%, #cfe3bc 50%, #eaece5 100%)',
-  deep: 'linear-gradient(180deg, #b4cd9d 0%, #25c922 45%, #7bce5f 80%, #f4f6f2 100%)',
-  accent: 'linear-gradient(180deg, #f4f6f2 0%, #a6dd8a 45%, #25c922 70%, #eaece5 100%)'
-}
-
-const PILL_SHADOW =
-  '18px 18px 30px rgba(209, 217, 230, 0.9), -18px -18px 30px rgba(255, 255, 255, 0.95), inset 6px 6px 14px rgba(255, 255, 255, 0.55), inset -6px -6px 14px rgba(120, 138, 120, 0.18)'
-
-const GAP_SCALE = 0.6
-const MIN_GAP_Y = 0.01
-const MAX_GAP_Y = 0.87
-const STIFFNESS = 161
-const DAMPING = 20.5
-const INFLUENCE = 1.1
-
-// Matches Tailwind's `md` breakpoint so JS column-index math stays in sync with the
-// CSS `hidden md:block` that hides the desktop-only columns on small viewports.
-const MOBILE_QUERY = '(max-width: 767px)'
-
-const MOBILE_VISIBLE_INDEX: number[] = (() => {
-  let v = 0
-  return COLUMNS.map((c) => (c.desktopOnly ? -1 : v++))
+// Per-column indices: desktop (all 7) and mobile (only non-desktopOnly, in DOM order).
+// Mobile-hidden columns get -1 because the `@media` swap picks `--i-md` on desktop.
+const COLUMN_INDICES: { iMd: number; iSm: number }[] = (() => {
+  let sm = 0
+  return COLUMNS.map((c, i) => ({ iMd: i, iSm: c.desktopOnly ? -1 : sm++ }))
 })()
-const MOBILE_VISIBLE_COUNT = MOBILE_VISIBLE_INDEX.filter((i) => i >= 0).length
-const DESKTOP_VISIBLE_INDEX: number[] = COLUMNS.map((_, i) => i)
 
 export default function CapsulesBackground() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const columnRefs = useRef<(HTMLDivElement | null)[]>([])
+  const stageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const stage = stageRef.current
+    if (!stage) return
 
-    const state = COLUMNS.map((c) => ({
-      current: c.setpointY,
-      velocity: 0,
-      target: c.setpointY,
-      lastWritten: Number.NaN
-    }))
+    let rafPending = false
+    let clientX = 0
+    let clientY = 0
 
-    const mql = window.matchMedia(MOBILE_QUERY)
-    let isMobile = mql.matches
-    const handleMql = (e: MediaQueryListEvent) => {
-      isMobile = e.matches
-    }
-    mql.addEventListener('change', handleMql)
-
-    let pointerActive = false
-    let pointerX = 0
-    let pointerY = 0
-
-    const handleMouse = (e: MouseEvent) => {
-      pointerActive = true
-      pointerX = e.clientX
-      pointerY = e.clientY
-    }
-    const handleTouch = (e: TouchEvent) => {
-      const t = e.touches[0]
-      if (!t) return
-      pointerActive = true
-      pointerX = t.clientX
-      pointerY = t.clientY
-    }
-    const handleTouchEnd = () => {
-      pointerActive = false
-    }
-
-    window.addEventListener('mousemove', handleMouse, { passive: true })
-    window.addEventListener('touchmove', handleTouch, { passive: true })
-    window.addEventListener('touchend', handleTouchEnd)
-
-    let last = performance.now()
-    let raf = 0
-    const tick = (now: number) => {
-      const dt = Math.min(0.05, (now - last) / 1000)
-      last = now
-
-      const rect = container.getBoundingClientRect()
-      const hasSize = rect.width > 0 && rect.height > 0
-      const visibleMap = isMobile ? MOBILE_VISIBLE_INDEX : DESKTOP_VISIBLE_INDEX
-      const visibleCount = isMobile ? MOBILE_VISIBLE_COUNT : COLUMNS.length
-      const relY = pointerY - rect.top
-      const pointerInRange = pointerActive && hasSize && relY >= 0 && relY <= rect.height
-      const colWidth = hasSize ? rect.width / visibleCount : 0
-      const cursorNorm = pointerInRange
-        ? Math.max(MIN_GAP_Y, Math.min(MAX_GAP_Y, relY / rect.height))
-        : 0
-      const cursorColVis = pointerInRange ? (pointerX - rect.left) / colWidth : 0
-
-      for (let i = 0; i < state.length; i++) {
-        const s = state[i]
-        const c = COLUMNS[i]
-        let target = c.setpointY
-        const iVis = visibleMap[i]
-        if (iVis >= 0 && pointerInRange) {
-          const dist = Math.abs(iVis + 0.5 - cursorColVis)
-          const w = dist >= INFLUENCE ? 0 : 0.5 + 0.5 * Math.cos((Math.PI * dist) / INFLUENCE)
-          target = c.setpointY * (1 - w) + cursorNorm * w
-        }
-        s.target = target
-
-        const force = STIFFNESS * (s.target - s.current)
-        s.velocity = (s.velocity + force * dt) / (1 + DAMPING * dt)
-        s.current += s.velocity * dt
-
-        const rounded = Math.round(s.current * 10000) / 10000
-        if (rounded !== s.lastWritten) {
-          s.lastWritten = rounded
-          columnRefs.current[i]?.style.setProperty('--gap-y', String(rounded))
-        }
+    const commit = () => {
+      rafPending = false
+      const rect = stage.getBoundingClientRect()
+      if (rect.width === 0 || rect.height === 0) return
+      const relX = (clientX - rect.left) / rect.width
+      const relY = (clientY - rect.top) / rect.height
+      const inRange = relY >= 0 && relY <= 1
+      if (inRange) {
+        stage.style.setProperty('--px', String(relX))
+        stage.style.setProperty('--py', String(Math.max(0.01, Math.min(0.87, relY))))
       }
-      raf = requestAnimationFrame(tick)
+      stage.style.setProperty('--active', inRange ? '1' : '0')
     }
-    raf = requestAnimationFrame(tick)
+
+    const schedule = () => {
+      if (!rafPending) {
+        rafPending = true
+        requestAnimationFrame(commit)
+      }
+    }
+
+    const onMove = (e: PointerEvent) => {
+      clientX = e.clientX
+      clientY = e.clientY
+      schedule()
+    }
+
+    const deactivate = () => {
+      stage.style.setProperty('--active', '0')
+    }
+
+    // Touch/pen release returns columns to setpoint; mouse button release should not.
+    const onRelease = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') deactivate()
+    }
+
+    window.addEventListener('pointermove', onMove, { passive: true })
+    window.addEventListener('pointerup', onRelease, { passive: true })
+    window.addEventListener('pointercancel', onRelease, { passive: true })
+    document.documentElement.addEventListener('pointerleave', deactivate, { passive: true })
+    document.addEventListener('visibilitychange', deactivate)
+    window.addEventListener('blur', deactivate)
 
     return () => {
-      cancelAnimationFrame(raf)
-      mql.removeEventListener('change', handleMql)
-      window.removeEventListener('mousemove', handleMouse)
-      window.removeEventListener('touchmove', handleTouch)
-      window.removeEventListener('touchend', handleTouchEnd)
+      window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('pointerup', onRelease)
+      window.removeEventListener('pointercancel', onRelease)
+      document.documentElement.removeEventListener('pointerleave', deactivate)
+      document.removeEventListener('visibilitychange', deactivate)
+      window.removeEventListener('blur', deactivate)
     }
   }, [])
 
@@ -153,42 +97,31 @@ export default function CapsulesBackground() {
       <div className="absolute inset-0 bg-theme-50" />
 
       <div
-        ref={containerRef}
-        className="absolute top-[-8%] bottom-[-8%] left-[45%] flex gap-[1.5%] md:right-auto md:bottom-auto md:left-[40%] md:h-[116%] md:w-[76%]"
+        ref={stageRef}
+        className="capsules-stage absolute top-[-8%] bottom-[-8%] left-[45%] flex gap-[1.5%] md:right-auto md:bottom-auto md:left-[40%] md:h-[116%] md:w-[76%]"
         style={{ right: '-8%' }}
       >
-        {COLUMNS.map((c, i) => (
-          <div
-            key={c.id}
-            ref={(el) => {
-              columnRefs.current[i] = el
-            }}
-            className={`relative h-full flex-1 ${c.desktopOnly ? 'hidden md:block' : ''}`}
-            style={
-              {
-                '--gap-y': c.setpointY,
-                '--gap-size': c.gapSize * GAP_SCALE
-              } as React.CSSProperties
-            }
-          >
+        {COLUMNS.map((c, i) => {
+          const { iMd, iSm } = COLUMN_INDICES[i]
+          return (
             <div
-              className="absolute inset-x-0 top-0 rounded-full"
-              style={{
-                height: 'calc((var(--gap-y) - var(--gap-size) / 2) * 100%)',
-                background: GRADIENTS[c.tone],
-                boxShadow: PILL_SHADOW
-              }}
-            />
-            <div
-              className="absolute inset-x-0 bottom-0 rounded-full"
-              style={{
-                top: 'calc((var(--gap-y) + var(--gap-size) / 2) * 100%)',
-                background: GRADIENTS[c.tone],
-                boxShadow: PILL_SHADOW
-              }}
-            />
-          </div>
-        ))}
+              key={c.id}
+              data-tone={c.tone}
+              className={`capsules-col relative h-full flex-1 ${c.desktopOnly ? 'hidden md:block' : ''}`}
+              style={
+                {
+                  '--i-md': iMd,
+                  '--i-sm': iSm,
+                  '--setpoint': c.setpointY,
+                  '--gap-size': c.gapSize
+                } as React.CSSProperties
+              }
+            >
+              <div className="capsules-pill capsules-pill--top" />
+              <div className="capsules-pill capsules-pill--bottom" />
+            </div>
+          )
+        })}
       </div>
 
       <div
