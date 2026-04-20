@@ -1,0 +1,87 @@
+name: Deploy Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+env:
+  STAGE_NAME: pr-${{ github.event.pull_request.number }}
+
+concurrency:
+  group: deploy-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04-arm
+    outputs:
+      preview_url: ${{ steps.get_url.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - uses: actions/cache@v4
+        with:
+          path: .sst/platform
+          key: sst-${{ runner.os }}-${{ hashFiles('bun.lock', 'sst.config.ts') }}
+          restore-keys: |
+            sst-${{ runner.os }}-
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - run: bun install --frozen-lockfile
+
+      - name: Deploy
+        run: bun sst deploy --stage ${{ env.STAGE_NAME }}
+
+      - name: Get preview URL
+        id: get_url
+        run: |
+          URL=$(jq -r '.url' .sst/outputs.json)
+          echo "url=$URL" >> $GITHUB_OUTPUT
+
+  comment:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v3
+        id: find_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: "Preview Deployment"
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ### Preview Deployment
+
+            | | |
+            |---|---|
+            | **Status** | Deployed |
+            | **Stage** | `pr-${{ github.event.pull_request.number }}` |
+            | **URL** | ${{ needs.deploy.outputs.preview_url }} |
+            | **Commit** | `${{ github.event.pull_request.head.sha }}` |
