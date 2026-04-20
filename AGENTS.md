@@ -22,6 +22,12 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 - **No commit co-author trailers.** Don't add Claude/Anthropic authorship.
 - **Don't bypass hooks (`--no-verify`)** unless explicitly asked.
 
+## Dev & deploys
+
+- Local dev is `bun run dev` (portless + vite). No SST or AWS needed.
+- `bun run dev:sst` is the escape hatch for SST-integration debugging. Pass an explicit `--stage <name>` — the default collides with `production` / `develop` / `pr-<N>` / other devs.
+- Deploys are CI-driven: master → `production`, develop → `develop`, PRs → `pr-<N>` (auto-destroyed on close).
+
 ## Editing this doc
 
 **Sharpen existing rules, don't append.** Add a new rule only when it's orthogonal to every existing one _and_ names a trap that code/configs can't express. Describe current state, never history or diffs (no "replaced", "migrated", "don't add back" — that rots the moment the old thing is forgotten). Terse and strong beats thorough and soft. Applies to all agent docs in this repo.

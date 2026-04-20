@@ -1,1 +1,8 @@
-@AGENTS.md
+- you can run the dev server using 'bun run dev:mono'
+- always use bun over npm
+- `bun run dev` now serves via portless at https://site.localhost (stable hostname, random PORT 4000-4999); `dev:mono` still binds :3000 pending SST PORT-forwarding investigation
+- lint: `bun run lint` (oxlint) — fix: `bun run lint:fix`
+- format: `bun run format` (oxfmt) — check only: `bun run format:check`
+- combined fmt+lint check: `bun run check`
+- typecheck: `bun run typecheck`
+- git hooks managed by lefthook (config: `lefthook.yml`); `bun install` auto-installs via the `prepare` script
