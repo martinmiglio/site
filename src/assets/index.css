@@ -232,3 +232,110 @@
 [data-state='closed'] > .collapsible-content {
   animation: collapsibleSlideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* CapsulesBackground — pointer-reactive neumorphic pill grid.
+   Physics moved to CSS: JS writes --px, --py, --active on the stage;
+   per-column --gap-y is a calc() chain with triangular falloff, smoothed
+   by a linear() spring (sampled from the prior JS integrator:
+   stiffness 161, damping 20.5, ζ≈0.81, so slight overshoot is expected). */
+@property --px {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0.5;
+}
+@property --py {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0.5;
+}
+@property --active {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+@property --gap-y {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.5;
+}
+
+.capsules-stage {
+  --n: 7;
+  --influence: 1.1;
+  --gap-scale: 0.6;
+  --capsules-spring: linear(
+    0,
+    0.244,
+    0.598,
+    0.841,
+    0.961,
+    1.005,
+    1.014,
+    1.01,
+    1.005,
+    1.002,
+    1
+  );
+  transition:
+    --px 700ms var(--capsules-spring),
+    --py 700ms var(--capsules-spring),
+    --active 120ms linear;
+}
+
+@media (max-width: 767px) {
+  .capsules-stage {
+    --n: 3;
+  }
+}
+
+.capsules-col {
+  --i: var(--i-md);
+  --dist: max(
+    calc(var(--i) + 0.5 - var(--px) * var(--n)),
+    calc(var(--px) * var(--n) - var(--i) - 0.5)
+  );
+  --w: max(0, calc((1 - var(--dist) / var(--influence)) * var(--active)));
+  --gap-y: calc(var(--setpoint) * (1 - var(--w)) + var(--py) * var(--w));
+}
+
+@media (max-width: 767px) {
+  .capsules-col {
+    --i: var(--i-sm);
+  }
+}
+
+.capsules-col[data-tone='light'] {
+  --grad: linear-gradient(180deg, #f4f6f2 0%, #e8eae3 45%, #d8dad3 100%);
+}
+.capsules-col[data-tone='mid'] {
+  --grad: linear-gradient(180deg, #f4f6f2 0%, #cfe3bc 50%, #eaece5 100%);
+}
+.capsules-col[data-tone='deep'] {
+  --grad: linear-gradient(180deg, #b4cd9d 0%, #25c922 45%, #7bce5f 80%, #f4f6f2 100%);
+}
+.capsules-col[data-tone='accent'] {
+  --grad: linear-gradient(180deg, #f4f6f2 0%, #a6dd8a 45%, #25c922 70%, #eaece5 100%);
+}
+
+.capsules-pill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-radius: 9999px;
+  background: var(--grad);
+  box-shadow:
+    18px 18px 30px rgba(209, 217, 230, 0.9),
+    -18px -18px 30px rgba(255, 255, 255, 0.95),
+    inset 6px 6px 14px rgba(255, 255, 255, 0.55),
+    inset -6px -6px 14px rgba(120, 138, 120, 0.18);
+}
+
+.capsules-pill--top {
+  top: 0;
+  height: calc((var(--gap-y) - (var(--gap-size) * var(--gap-scale)) / 2) * 100%);
+}
+
+.capsules-pill--bottom {
+  bottom: 0;
+  top: calc((var(--gap-y) + (var(--gap-size) * var(--gap-scale)) / 2) * 100%);
+}
