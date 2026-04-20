@@ -33,7 +33,7 @@ export default $config({
     }
 
     const deployRole = new aws.iam.Role('GithubActionsDeployRole', {
-      name: 'github-actions-sst-deploy',
+      name: 'github-actions-sst-deploy-site',
       assumeRolePolicy: $jsonStringify({
         Version: '2012-10-17',
         Statement: [
