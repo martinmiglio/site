@@ -35,9 +35,9 @@ const HomeAboutRoute = HomeAboutRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof HomeIndexRoute
   '/about': typeof HomeAboutRoute
   '/cv': typeof HomeCvRoute
-  '/': typeof HomeIndexRoute
 }
 export interface FileRoutesByTo {
   '/about': typeof HomeAboutRoute
@@ -53,7 +53,7 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about' | '/cv' | '/'
+  fullPaths: '/' | '/about' | '/cv'
   fileRoutesByTo: FileRoutesByTo
   to: '/about' | '/cv' | '/'
   id: '__root__' | '/_home' | '/_home/about' | '/_home/cv' | '/_home/'
@@ -68,7 +68,7 @@ declare module '@tanstack/react-router' {
     '/_home': {
       id: '/_home'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof HomeRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
