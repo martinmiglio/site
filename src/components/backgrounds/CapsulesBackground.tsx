@@ -56,7 +56,8 @@ export default function CapsulesBackground() {
     const state = COLUMNS.map((c) => ({
       current: c.setpointY,
       velocity: 0,
-      target: c.setpointY
+      target: c.setpointY,
+      lastWritten: Number.NaN
     }))
 
     const mql = window.matchMedia(MOBILE_QUERY)
@@ -125,8 +126,11 @@ export default function CapsulesBackground() {
         s.velocity = (s.velocity + force * dt) / (1 + DAMPING * dt)
         s.current += s.velocity * dt
 
-        const el = columnRefs.current[i]
-        if (el) el.style.setProperty('--gap-y', String(s.current))
+        const rounded = Math.round(s.current * 10000) / 10000
+        if (rounded !== s.lastWritten) {
+          s.lastWritten = rounded
+          columnRefs.current[i]?.style.setProperty('--gap-y', String(rounded))
+        }
       }
       raf = requestAnimationFrame(tick)
     }
