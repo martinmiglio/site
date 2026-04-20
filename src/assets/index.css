@@ -233,17 +233,14 @@
   animation: collapsibleSlideUp 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* CapsulesBackground — pointer-reactive neumorphic pill grid.
-   Physics moved to CSS: JS writes --px, --py, --active on the stage;
-   per-column --gap-y is a calc() chain with triangular falloff, smoothed
-   by a linear() spring (sampled from the prior JS integrator:
-   stiffness 161, damping 20.5, ζ≈0.81, so slight overshoot is expected). */
-@property --px {
+/* CapsulesBackground spring is sampled from a prior JS integrator with
+   stiffness 161, damping 20.5, ζ≈0.81 — a tiny overshoot is expected. */
+@property --pointer-x {
   syntax: '<number>';
   inherits: true;
   initial-value: 0.5;
 }
-@property --py {
+@property --pointer-y {
   syntax: '<number>';
   inherits: true;
   initial-value: 0.5;
@@ -260,7 +257,7 @@
 }
 
 .capsules-stage {
-  --n: 7;
+  --visible-column-count: 7;
   --influence: 1.1;
   --gap-scale: 0.6;
   --capsules-spring: linear(
@@ -277,30 +274,37 @@
     1
   );
   transition:
-    --px 700ms var(--capsules-spring),
-    --py 700ms var(--capsules-spring),
+    --pointer-x 700ms var(--capsules-spring),
+    --pointer-y 700ms var(--capsules-spring),
     --active 120ms linear;
 }
 
 @media (max-width: 767px) {
   .capsules-stage {
-    --n: 3;
+    --visible-column-count: 3;
   }
 }
 
 .capsules-col {
-  --i: var(--i-md);
-  --dist: max(
-    calc(var(--i) + 0.5 - var(--px) * var(--n)),
-    calc(var(--px) * var(--n) - var(--i) - 0.5)
+  --column-index: var(--column-index-desktop);
+  /* abs(column-center - cursor-column), via the max(x, -x) idiom. */
+  --cursor-column-distance: max(
+    calc(var(--column-index) + 0.5 - var(--pointer-x) * var(--visible-column-count)),
+    calc(var(--pointer-x) * var(--visible-column-count) - var(--column-index) - 0.5)
   );
-  --w: max(0, calc((1 - var(--dist) / var(--influence)) * var(--active)));
-  --gap-y: calc(var(--setpoint) * (1 - var(--w)) + var(--py) * var(--w));
+  --influence-weight: max(
+    0,
+    calc((1 - var(--cursor-column-distance) / var(--influence)) * var(--active))
+  );
+  --gap-y: calc(
+    var(--setpoint) * (1 - var(--influence-weight)) + var(--pointer-y) *
+      var(--influence-weight)
+  );
 }
 
 @media (max-width: 767px) {
   .capsules-col {
-    --i: var(--i-sm);
+    --column-index: var(--column-index-mobile);
   }
 }
 

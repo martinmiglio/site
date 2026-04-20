@@ -7,7 +7,6 @@ type Column = {
   setpointY: number
   gapSize: number
   tone: Tone
-  /** hidden on mobile — column is only rendered at md+ breakpoints */
   desktopOnly?: boolean
 }
 
@@ -21,11 +20,13 @@ const COLUMNS: Column[] = [
   { id: 'c6', setpointY: 0.33, gapSize: 0.06, tone: 'accent' }
 ]
 
-// Per-column indices: desktop (all 7) and mobile (only non-desktopOnly, in DOM order).
-// Mobile-hidden columns get -1 because the `@media` swap picks `--i-md` on desktop.
-const COLUMN_INDICES: { iMd: number; iSm: number }[] = (() => {
-  let sm = 0
-  return COLUMNS.map((c, i) => ({ iMd: i, iSm: c.desktopOnly ? -1 : sm++ }))
+// Desktop-only columns are display:none on mobile, so their -1 mobile index is never read.
+const COLUMN_INDICES: { desktopIndex: number; mobileIndex: number }[] = (() => {
+  let mobile = 0
+  return COLUMNS.map((c, i) => ({
+    desktopIndex: i,
+    mobileIndex: c.desktopOnly ? -1 : mobile++
+  }))
 })()
 
 export default function CapsulesBackground() {
@@ -35,57 +36,72 @@ export default function CapsulesBackground() {
     const stage = stageRef.current
     if (!stage) return
 
-    let rafPending = false
-    let clientX = 0
-    let clientY = 0
+    let updatePending = false
+    let pointerClientX = 0
+    let pointerClientY = 0
+    // The stage is positioned in viewport percentages, so its rect only shifts on resize.
+    let stageRect = stage.getBoundingClientRect()
+    let lastActive = ''
 
-    const commit = () => {
-      rafPending = false
-      const rect = stage.getBoundingClientRect()
-      if (rect.width === 0 || rect.height === 0) return
-      const relX = (clientX - rect.left) / rect.width
-      const relY = (clientY - rect.top) / rect.height
-      const inRange = relY >= 0 && relY <= 1
-      if (inRange) {
-        stage.style.setProperty('--px', String(relX))
-        stage.style.setProperty('--py', String(Math.max(0.01, Math.min(0.87, relY))))
-      }
-      stage.style.setProperty('--active', inRange ? '1' : '0')
+    const refreshStageRect = () => {
+      stageRect = stage.getBoundingClientRect()
     }
 
-    const schedule = () => {
-      if (!rafPending) {
-        rafPending = true
+    const commit = () => {
+      updatePending = false
+      if (stageRect.width === 0 || stageRect.height === 0) return
+      const relX = (pointerClientX - stageRect.left) / stageRect.width
+      const relY = (pointerClientY - stageRect.top) / stageRect.height
+      const inRange = relY >= 0 && relY <= 1
+      if (inRange) {
+        stage.style.setProperty('--pointer-x', String(relX))
+        stage.style.setProperty('--pointer-y', String(Math.max(0.01, Math.min(0.87, relY))))
+      }
+      const nextActive = inRange ? '1' : '0'
+      if (nextActive !== lastActive) {
+        lastActive = nextActive
+        stage.style.setProperty('--active', nextActive)
+      }
+    }
+
+    const scheduleCommit = () => {
+      if (!updatePending) {
+        updatePending = true
         requestAnimationFrame(commit)
       }
     }
 
-    const onMove = (e: PointerEvent) => {
-      clientX = e.clientX
-      clientY = e.clientY
-      schedule()
+    const onPointerMove = (e: PointerEvent) => {
+      pointerClientX = e.clientX
+      pointerClientY = e.clientY
+      scheduleCommit()
     }
 
     const deactivate = () => {
-      stage.style.setProperty('--active', '0')
+      if (lastActive !== '0') {
+        lastActive = '0'
+        stage.style.setProperty('--active', '0')
+      }
     }
 
-    // Touch/pen release returns columns to setpoint; mouse button release should not.
-    const onRelease = (e: PointerEvent) => {
+    // Mouse button release leaves the cursor in place; only touch/pen lift deactivates.
+    const deactivateOnTouchOrPenRelease = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse') deactivate()
     }
 
-    window.addEventListener('pointermove', onMove, { passive: true })
-    window.addEventListener('pointerup', onRelease, { passive: true })
-    window.addEventListener('pointercancel', onRelease, { passive: true })
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+    window.addEventListener('pointerup', deactivateOnTouchOrPenRelease, { passive: true })
+    window.addEventListener('pointercancel', deactivateOnTouchOrPenRelease, { passive: true })
+    window.addEventListener('resize', refreshStageRect, { passive: true })
     document.documentElement.addEventListener('pointerleave', deactivate, { passive: true })
     document.addEventListener('visibilitychange', deactivate)
     window.addEventListener('blur', deactivate)
 
     return () => {
-      window.removeEventListener('pointermove', onMove)
-      window.removeEventListener('pointerup', onRelease)
-      window.removeEventListener('pointercancel', onRelease)
+      window.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('pointerup', deactivateOnTouchOrPenRelease)
+      window.removeEventListener('pointercancel', deactivateOnTouchOrPenRelease)
+      window.removeEventListener('resize', refreshStageRect)
       document.documentElement.removeEventListener('pointerleave', deactivate)
       document.removeEventListener('visibilitychange', deactivate)
       window.removeEventListener('blur', deactivate)
@@ -98,11 +114,10 @@ export default function CapsulesBackground() {
 
       <div
         ref={stageRef}
-        className="capsules-stage absolute top-[-8%] bottom-[-8%] left-[45%] flex gap-[1.5%] md:right-auto md:bottom-auto md:left-[40%] md:h-[116%] md:w-[76%]"
-        style={{ right: '-8%' }}
+        className="capsules-stage absolute top-[-8%] right-[-8%] bottom-[-8%] left-[45%] flex gap-[1.5%] md:right-auto md:bottom-auto md:left-[40%] md:h-[116%] md:w-[76%]"
       >
         {COLUMNS.map((c, i) => {
-          const { iMd, iSm } = COLUMN_INDICES[i]
+          const { desktopIndex, mobileIndex } = COLUMN_INDICES[i]
           return (
             <div
               key={c.id}
@@ -110,8 +125,8 @@ export default function CapsulesBackground() {
               className={`capsules-col relative h-full flex-1 ${c.desktopOnly ? 'hidden md:block' : ''}`}
               style={
                 {
-                  '--i-md': iMd,
-                  '--i-sm': iSm,
+                  '--column-index-desktop': desktopIndex,
+                  '--column-index-mobile': mobileIndex,
                   '--setpoint': c.setpointY,
                   '--gap-size': c.gapSize
                 } as React.CSSProperties
