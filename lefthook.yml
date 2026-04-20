@@ -1,0 +1,23 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: oxfmt
+      glob: '*.{js,jsx,ts,tsx,cjs,mjs,json,jsonc,md,mdx,yml,yaml,css,html}'
+      run: bunx oxfmt {staged_files}
+      stage_fixed: true
+    - name: oxlint
+      glob: '*.{js,jsx,ts,tsx,cjs,mjs}'
+      run: bunx oxlint --fix {staged_files}
+      stage_fixed: true
+    - name: typecheck
+      glob: '*.{ts,tsx}'
+      run: bun run typecheck
+
+pre-push:
+  jobs:
+    - name: oxfmt
+      run: bunx oxfmt --check .
+    - name: oxlint
+      run: bunx oxlint
+    - name: typecheck
+      run: bun run typecheck

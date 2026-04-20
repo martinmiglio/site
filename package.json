@@ -1,13 +1,10 @@
 {
   "name": "site",
-  "homepage": "https://martinmiglio.dev/",
-  "author": "Martin Miglio",
   "version": "0.0.0",
   "private": true,
+  "homepage": "https://martinmiglio.dev/",
+  "author": "Martin Miglio",
   "type": "module",
-  "engines": {
-    "node": ">=22.0.0"
-  },
   "scripts": {
     "dev": "vite dev --port 3000",
     "dev:mono": "sst dev --mode mono --verbose",
@@ -17,10 +14,12 @@
     "serve": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "format": "biome format --write .",
-    "lint": "biome lint .",
-    "check": "biome check .",
-    "prepare": "husky"
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "check": "oxfmt --check . && oxlint",
+    "prepare": "lefthook install --reset-hooks-path"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^7.0.1",
@@ -51,7 +50,6 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.8",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.0",
     "@types/aws-lambda": "8.10.161",
@@ -59,14 +57,19 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
-    "husky": "^9.1.7",
     "jsdom": "^27.3.0",
+    "lefthook": "^2.1.6",
+    "oxfmt": "^0.45.0",
+    "oxlint": "^1.60.0",
     "sst": "3.17.25",
     "typescript": "^5.9.2",
     "vite": "^7.1.11",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.0.15",
     "web-vitals": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   },
   "packageManager": "bun@1.2.17"
 }
