@@ -28,6 +28,10 @@ Personal site for Martin Miglio. Single app, not a monorepo. TanStack Start rend
 - `production` and `develop` deploy only from CI — never `sst deploy` to them from a laptop.
 - `src/routeTree.gen.ts` is generated; don't hand-edit.
 
+## Editing this doc
+
+When something changes, **sharpen an existing rule before adding a new one.** Merge, tighten, or delete — don't append. If a rule no longer bites, remove it. Terse and strong beats thorough and soft. Same applies to `infra/AGENTS.md`.
+
 ## Starting points
 
 - App code: `src/`
