@@ -36,7 +36,6 @@ export function SheetPage({ title, description, children }: SheetPageProps) {
     >
       <SheetTitle className="sr-only">{title}</SheetTitle>
       {description && <SheetDescription className="sr-only">{description}</SheetDescription>}
-      {isMobile && <span aria-hidden="true" className="sheet-grab-handle" />}
       {children}
     </SheetContent>
   )
