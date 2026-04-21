@@ -30,7 +30,7 @@ export function SheetPage({ title, description, children }: SheetPageProps) {
 
   return (
     <SheetContent
-      className={cn(className, scrollbarStyles, 'sm:max-w-none')}
+      className={cn(className, scrollbarStyles, 'sm:max-w-none', 'sheet-vt-target')}
       side={side}
       aria-describedby={description ? undefined : undefined}
     >

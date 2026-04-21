@@ -408,3 +408,50 @@
     inset 3px 3px 8px rgba(120, 138, 120, 0.28),
     inset -3px -3px 8px rgba(255, 255, 255, 0.85);
 }
+
+@supports (view-transition-name: sheet) {
+  .sheet-vt-target {
+    view-transition-name: sheet;
+    /* Disable Radix's CSS slides so View Transitions owns the motion. */
+    animation: none !important;
+  }
+
+  ::view-transition-old(sheet) {
+    animation: sheet-vt-out 320ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+  ::view-transition-new(sheet) {
+    animation: sheet-vt-in 480ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes sheet-vt-out {
+    to {
+      transform: translateX(100%);
+      opacity: 0.4;
+    }
+  }
+  @keyframes sheet-vt-in {
+    from {
+      transform: translateX(100%);
+      opacity: 0.4;
+    }
+  }
+
+  @media (max-width: 768px) {
+    ::view-transition-old(sheet) {
+      animation: sheet-vt-out-bottom 320ms cubic-bezier(0.4, 0, 1, 1) forwards;
+    }
+    ::view-transition-new(sheet) {
+      animation: sheet-vt-in-bottom 480ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes sheet-vt-out-bottom {
+      to {
+        transform: translateY(100%);
+      }
+    }
+    @keyframes sheet-vt-in-bottom {
+      from {
+        transform: translateY(100%);
+      }
+    }
+  }
+}
