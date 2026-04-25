@@ -19,7 +19,7 @@ export function RouteSheet({ open, title, description, onClosed, children }: Rou
   useEffect(() => {
     if (!isClosing) return
     const ac = new AbortController()
-    waitForExitAnimation(contentRef.current, ac.signal).then(() => {
+    waitForExitAnimation(contentRef.current).then(() => {
       if (ac.signal.aborted) return
       onClosed()
       setIsClosing(false)
@@ -40,21 +40,9 @@ export function RouteSheet({ open, title, description, onClosed, children }: Rou
   )
 }
 
-/**
- * Awaits two frames so React commits open=false and Radix flips
- * data-state="closed" before sampling the running animations.
- */
-async function waitForExitAnimation(el: HTMLElement | null, signal: AbortSignal): Promise<void> {
+async function waitForExitAnimation(el: HTMLElement | null): Promise<void> {
   if (!el) return
-  await nextFrame()
-  if (signal.aborted) return
-  await nextFrame()
-  if (signal.aborted) return
   const anims = el.getAnimations({ subtree: true }).filter((a) => a.playState === 'running')
   if (anims.length === 0) return
   await Promise.all(anims.map((a) => a.finished.catch(() => {})))
-}
-
-function nextFrame(): Promise<void> {
-  return new Promise((resolve) => requestAnimationFrame(() => resolve()))
 }
