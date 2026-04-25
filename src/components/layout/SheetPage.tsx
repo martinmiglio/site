@@ -34,7 +34,6 @@ export function SheetPage({ title, description, children, contentRef }: SheetPag
       ref={contentRef}
       className={cn(className, scrollbarStyles, 'sm:max-w-none')}
       side={side}
-      aria-describedby={description ? undefined : undefined}
     >
       <SheetTitle className="sr-only">{title}</SheetTitle>
       {description && <SheetDescription className="sr-only">{description}</SheetDescription>}

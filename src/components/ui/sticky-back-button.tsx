@@ -1,11 +1,6 @@
 import { ArrowLeft } from 'lucide-react'
 import { SheetClose } from '@/components/ui/sheet'
 
-/**
- * Variant: Neumorphic Pebble.
- * A floating pill anchored to the top-left of the sheet that matches the
- * capsules background aesthetic. Compact at rest; expands on hover/focus.
- */
 export function StickyBackButton() {
   return (
     <div className="sticky top-0 z-20 -mx-8 -mt-10 mb-8 flex h-14 items-center px-5">
