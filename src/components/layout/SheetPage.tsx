@@ -6,9 +6,10 @@ interface SheetPageProps {
   title: string
   description?: string
   children: React.ReactNode
+  contentRef?: React.Ref<HTMLDivElement>
 }
 
-export function SheetPage({ title, description, children }: SheetPageProps) {
+export function SheetPage({ title, description, children, contentRef }: SheetPageProps) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const sheetOptions = {
     mobile: {
@@ -30,9 +31,9 @@ export function SheetPage({ title, description, children }: SheetPageProps) {
 
   return (
     <SheetContent
+      ref={contentRef}
       className={cn(className, scrollbarStyles, 'sm:max-w-none')}
       side={side}
-      aria-describedby={description ? undefined : undefined}
     >
       <SheetTitle className="sr-only">{title}</SheetTitle>
       {description && <SheetDescription className="sr-only">{description}</SheetDescription>}

@@ -1,7 +1,6 @@
 import { createFileRoute, Outlet, useLocation, useNavigate } from '@tanstack/react-router'
-import { Suspense, useDeferredValue } from 'react'
-import { SheetPage } from '@/components/layout/SheetPage'
-import { Sheet } from '@/components/ui/sheet'
+import { Suspense, useCallback } from 'react'
+import { RouteSheet } from '@/components/layout/RouteSheet'
 import HomePage from '@/pages/home'
 
 const SHEET_TITLES: Record<string, string> = {
@@ -15,31 +14,24 @@ export const Route = createFileRoute('/_home')({
 
 function RouteComponent() {
   const { pathname } = useLocation()
-  const deferredPathname = useDeferredValue(pathname)
-
-  const sheetIsOpen = deferredPathname !== '/'
-  const sheetTitle = SHEET_TITLES[deferredPathname] ?? 'Page'
-
   const navigate = useNavigate()
 
-  const onSheetOpenChange = (open: boolean) => {
-    if (!open) {
-      navigate({ to: '/', startTransition: true, viewTransition: true })
-    }
-  }
+  const onClosed = useCallback(() => {
+    navigate({ to: '/', startTransition: true })
+  }, [navigate])
 
   return (
     <>
       <HomePage />
-      {sheetIsOpen && (
-        <Sheet open={true} onOpenChange={onSheetOpenChange}>
-          <SheetPage title={sheetTitle}>
-            <Suspense fallback={null}>
-              <Outlet />
-            </Suspense>
-          </SheetPage>
-        </Sheet>
-      )}
+      <RouteSheet
+        open={pathname !== '/'}
+        title={SHEET_TITLES[pathname] ?? 'Page'}
+        onClosed={onClosed}
+      >
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+      </RouteSheet>
     </>
   )
 }

@@ -385,3 +385,26 @@
     transparent 70%
   );
 }
+
+.pebble-back {
+  background: linear-gradient(155deg, #f6f8f3 0%, #e4e6dd 100%);
+  box-shadow:
+    8px 8px 18px rgba(160, 175, 160, 0.28),
+    -6px -6px 14px rgba(255, 255, 255, 0.9),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.7),
+    inset -2px -2px 5px rgba(120, 138, 120, 0.14);
+}
+.pebble-back:hover,
+.pebble-back:focus-visible {
+  background: linear-gradient(155deg, #ffffff 0%, #e8eae3 100%);
+  box-shadow:
+    10px 10px 22px rgba(120, 138, 120, 0.32),
+    -8px -8px 18px rgba(255, 255, 255, 1),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 6px rgba(37, 201, 34, 0.08);
+}
+.pebble-back:active {
+  box-shadow:
+    inset 3px 3px 8px rgba(120, 138, 120, 0.28),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.85);
+}
