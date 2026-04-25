@@ -27,6 +27,23 @@ export default $config({
         name: baseDomain,
         aliases: isProduction ? [`www.${baseDomain}`] : undefined,
         dns
+      },
+      transform: {
+        // Forward `Accept` to the origin and key the cache on it so the
+        // markdown content-negotiation middleware in src/start.ts sees the
+        // header and CloudFront doesn't conflate HTML and markdown variants.
+        cachePolicy: {
+          parametersInCacheKeyAndForwardedToOrigin: {
+            cookiesConfig: { cookieBehavior: 'none' },
+            queryStringsConfig: { queryStringBehavior: 'all' },
+            enableAcceptEncodingBrotli: true,
+            enableAcceptEncodingGzip: true,
+            headersConfig: {
+              headerBehavior: 'whitelist',
+              headers: { items: ['x-open-next-cache-key', 'x-forwarded-host', 'accept'] }
+            }
+          }
+        }
       }
     })
 
