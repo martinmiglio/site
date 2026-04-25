@@ -14,12 +14,11 @@ export default defineConfig({
       awsLambda: { streaming: true }
     }),
     tanstackStart({
-      customViteReactPlugin: true,
-      prerender: {
-        enabled: true,
-        autoSubfolderIndex: true,
-        crawlLinks: true
-      }
+      customViteReactPlugin: true
+      // Prerendering is intentionally off: page routes must flow through the
+      // lambda so the Accept/Markdown middleware in src/start.ts can see the
+      // request. The site is tiny and CloudFront still edge-caches each
+      // variant.
     }),
     tailwindcss(),
     viteReact()
