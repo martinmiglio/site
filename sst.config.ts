@@ -53,6 +53,14 @@ export default $config({
         architecture: 'arm64',
         runtime: 'nodejs22.x'
       },
+      // Purge stale assets so files removed from the build (e.g. the
+      // prerendered /index.html shell, now disabled in vite.config.ts) are
+      // dropped from the bucket and KV. Without this, `/` keeps being served
+      // from a stale shell and bypasses the markdown content-negotiation
+      // middleware.
+      assets: {
+        purge: true
+      },
       router: {
         instance: router
       }
