@@ -22,6 +22,10 @@ export default defineConfig({
         autoSubfolderIndex: true,
         crawlLinks: true,
         filter: (page) => !/\.(pdf|png|jpg|jpeg|svg|ico|webp)$/i.test(page.path)
+      },
+      sitemap: {
+        enabled: true,
+        host: 'https://martinmiglio.dev'
       }
     }),
     tailwindcss(),
