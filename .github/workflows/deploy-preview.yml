@@ -22,27 +22,27 @@ jobs:
     outputs:
       preview_url: ${{ steps.get_url.outputs.url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ~/.bun/install/cache
           key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
           restore-keys: |
             bun-${{ runner.os }}-
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: .sst/platform
           key: sst-${{ runner.os }}-${{ hashFiles('bun.lock', 'sst.config.ts') }}
           restore-keys: |
             sst-${{ runner.os }}-
 
-      - uses: astral-sh/setup-uv@v4
+      - uses: astral-sh/setup-uv@v8.1.0
         with:
           enable-cache: true
           cache-dependency-glob: resume/uv.lock
@@ -51,7 +51,7 @@ jobs:
         run: uv sync --project resume --frozen
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
@@ -72,14 +72,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Find existing comment
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@v4
         id: find_comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body-includes: 'Preview Deployment'
 
       - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
