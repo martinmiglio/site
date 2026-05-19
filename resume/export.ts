@@ -4,37 +4,22 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { stringify } from 'yaml'
 import { RESUME_DATA } from '../src/data/resume-data'
-import { socialBarData } from '../src/data/social-bar'
+import { CONTACT } from '../src/data/social-bar'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DEFAULT_OUT = resolve(__dirname, 'cv.yaml')
 
-function findSocial(name: string): string | undefined {
-  const hit = socialBarData.find((s) => s.name.toLowerCase() === name.toLowerCase())
-  return hit?.link
-}
-
-function usernameFromUrl(url: string | undefined): string | undefined {
-  if (!url) return undefined
-  const u = url.replace(/\/$/, '')
-  return u.slice(u.lastIndexOf('/') + 1)
-}
-
 function buildCv() {
-  const email = findSocial('Email')?.replace(/^mailto:/, '')
-  const github = usernameFromUrl(findSocial('Github'))
-  const linkedin = usernameFromUrl(findSocial('LinkedIn'))
-
   return {
     cv: {
       name: RESUME_DATA.name,
       location: RESUME_DATA.location,
-      email,
+      email: CONTACT.email,
       website: RESUME_DATA.personalWebsiteUrl,
       social_networks: [
-        github && { network: 'GitHub', username: github },
-        linkedin && { network: 'LinkedIn', username: linkedin }
-      ].filter(Boolean),
+        { network: 'GitHub', username: CONTACT.github },
+        { network: 'LinkedIn', username: CONTACT.linkedin }
+      ],
       sections: {
         summary: [RESUME_DATA.summary],
         experience: RESUME_DATA.work.map((w) => ({
