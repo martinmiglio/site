@@ -6,6 +6,18 @@ import { StickyBackButton } from '@/components/ui/sticky-back-button'
 import { StickyDownloadButton } from '@/components/ui/sticky-download-button'
 import { RESUME_DATA } from '@/data/resume-data'
 
+const MONTH_YEAR_FORMAT = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC'
+})
+
+function formatMonthYear(s: string): string {
+  if (s === 'present') return 'Present'
+  if (/^\d{4}$/.test(s)) return s
+  return MONTH_YEAR_FORMAT.format(new Date(s))
+}
+
 export default function CVPage() {
   return (
     <div id="page">
@@ -76,7 +88,7 @@ export default function CVPage() {
                     </div>
                     <div className="mt-2 text-left sm:mt-0 sm:text-right">
                       <div className="font-medium text-sm text-theme-600 tabular-nums">
-                        {work.start} - {work.end}
+                        {formatMonthYear(work.start)} - {formatMonthYear(work.end)}
                       </div>
                     </div>
                   </div>
@@ -95,7 +107,11 @@ export default function CVPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="px-0 pt-2 text-theme-600 leading-relaxed">
-                  {work.description}
+                  <ul className="list-disc space-y-1 pl-5">
+                    {work.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             ))}
@@ -111,7 +127,7 @@ export default function CVPage() {
                   <div className="flex flex-col gap-x-2 border-theme-300 border-b pb-4 text-base sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="font-bold text-theme-800 leading-none">{education.school}</h3>
                     <div className="mt-1 font-medium text-sm text-theme-600 tabular-nums sm:mt-0">
-                      {education.start} - {education.end}
+                      {formatMonthYear(education.start)} - {formatMonthYear(education.end)}
                     </div>
                   </div>
                 </CardHeader>
@@ -123,16 +139,14 @@ export default function CVPage() {
           </section>
           <section className="flex min-h-0 flex-col gap-y-4">
             <h2 className="font-bold text-2xl text-theme-800">Skills</h2>
-            <div className="flex flex-wrap gap-2">
+            <dl className="space-y-2">
               {RESUME_DATA.skills.map((skill) => (
-                <Badge
-                  key={skill}
-                  className="border border-theme-200 bg-theme-100 px-3 py-1 font-medium text-sm text-theme-700"
-                >
-                  {skill}
-                </Badge>
+                <div key={skill.label} className="flex flex-col gap-x-3 sm:flex-row">
+                  <dt className="font-semibold text-theme-800 sm:min-w-28">{skill.label}</dt>
+                  <dd className="text-theme-600">{skill.details}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </section>
           <section className="print-force-new-page flex min-h-0 scroll-mb-16 flex-col gap-y-4">
             <h2 className="font-bold text-2xl text-theme-800">Projects</h2>
