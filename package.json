@@ -20,8 +20,8 @@
     "lint:fix": "oxlint --fix",
     "check": "oxfmt --check . && oxlint",
     "prepare": "lefthook install --reset-hooks-path",
-    "resume:export": "bun run scripts/export-rendercv.ts",
-    "resume:render": "bun run scripts/export-rendercv.ts && cd resume && rendercv render cv.yaml -o output"
+    "resume:export": "bun run resume/export.ts",
+    "resume:render": "bun run resume/export.ts && cd resume && rendercv render cv.yaml -o output"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^7.0.1",

@@ -6,7 +6,7 @@ import { RESUME_DATA } from '../src/data/resume-data'
 import { socialBarData } from '../src/data/social-bar'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT = resolve(__dirname, '..', 'resume', 'cv.yaml')
+const DEFAULT_OUT = resolve(__dirname, 'cv.yaml')
 
 const MONTHS: Record<string, string> = {
   january: '01',
@@ -55,75 +55,77 @@ function usernameFromUrl(url: string | undefined): string | undefined {
   return u.slice(u.lastIndexOf('/') + 1)
 }
 
-const email = findSocial('Email')?.replace(/^mailto:/, '')
-const github = usernameFromUrl(findSocial('Github'))
-const linkedin = usernameFromUrl(findSocial('LinkedIn'))
+function buildCv() {
+  const email = findSocial('Email')?.replace(/^mailto:/, '')
+  const github = usernameFromUrl(findSocial('Github'))
+  const linkedin = usernameFromUrl(findSocial('LinkedIn'))
 
-const cv = {
-  cv: {
-    name: RESUME_DATA.name,
-    location: RESUME_DATA.location,
-    email,
-    website: RESUME_DATA.personalWebsiteUrl,
-    social_networks: [
-      github && { network: 'GitHub', username: github },
-      linkedin && { network: 'LinkedIn', username: linkedin }
-    ].filter(Boolean),
-    sections: {
-      summary: [RESUME_DATA.summary],
-      experience: RESUME_DATA.work.map((w) => ({
-        company: w.company,
-        position: w.badges.length > 0 ? `${w.title} (${w.badges.join(', ')})` : w.title,
-        start_date: normalizeDate(w.start),
-        end_date: normalizeDate(w.end),
-        highlights: splitHighlights(w.description)
-      })),
-      education: RESUME_DATA.education.map((e) => ({
-        institution: e.school,
-        area: e.degree,
-        start_date: normalizeDate(e.start),
-        end_date: normalizeDate(e.end)
-      })),
-      projects: RESUME_DATA.projects.map((p) => {
-        const META_TAGS = new Set(['Side Project', 'Open Source', 'Contract Work'])
-        const tech = p.techStack.filter((t) => !META_TAGS.has(t))
-        return {
-          name: `[${p.title}](${p.link.href})`,
-          summary: `${p.description}. *${tech.join(', ')}*`,
-          highlights: []
-        }
-      }),
-      skills: [
-        { label: 'Languages', details: 'TypeScript, JavaScript, Python, SQL' },
-        {
-          label: 'Stack',
-          details:
-            'React, Next.js, Node.js, Vue.js, Django, Hono, AWS, GCP, Docker, PostgreSQL, REST, GraphQL'
-        },
-        {
-          label: 'AI Tooling',
-          details: 'Claude Code, MCP, LLM application development'
-        }
-      ]
-    }
-  },
-  design: {
-    theme: 'engineeringresumes',
-    page: {
-      size: 'us-letter',
-      top_margin: '0.4in',
-      bottom_margin: '0.4in',
-      left_margin: '0.55in',
-      right_margin: '0.55in',
-      show_top_note: false
+  return {
+    cv: {
+      name: RESUME_DATA.name,
+      location: RESUME_DATA.location,
+      email,
+      website: RESUME_DATA.personalWebsiteUrl,
+      social_networks: [
+        github && { network: 'GitHub', username: github },
+        linkedin && { network: 'LinkedIn', username: linkedin }
+      ].filter(Boolean),
+      sections: {
+        summary: [RESUME_DATA.summary],
+        experience: RESUME_DATA.work.map((w) => ({
+          company: w.company,
+          position: w.badges.length > 0 ? `${w.title} (${w.badges.join(', ')})` : w.title,
+          start_date: normalizeDate(w.start),
+          end_date: normalizeDate(w.end),
+          highlights: splitHighlights(w.description)
+        })),
+        education: RESUME_DATA.education.map((e) => ({
+          institution: e.school,
+          area: e.degree,
+          start_date: normalizeDate(e.start),
+          end_date: normalizeDate(e.end)
+        })),
+        projects: RESUME_DATA.projects.map((p) => {
+          const META_TAGS = new Set(['Side Project', 'Open Source', 'Contract Work'])
+          const tech = p.techStack.filter((t) => !META_TAGS.has(t))
+          return {
+            name: `[${p.title}](${p.link.href})`,
+            summary: `${p.description}. *${tech.join(', ')}*`,
+            highlights: []
+          }
+        }),
+        skills: [
+          { label: 'Languages', details: 'TypeScript, JavaScript, Python, SQL' },
+          {
+            label: 'Stack',
+            details:
+              'React, Next.js, Node.js, Vue.js, Django, Hono, AWS, GCP, Docker, PostgreSQL, REST, GraphQL'
+          },
+          {
+            label: 'AI Tooling',
+            details: 'Claude Code, MCP, LLM application development'
+          }
+        ]
+      }
     },
-    section_titles: {
-      space_above: '0.25cm',
-      space_below: '0.1cm'
-    },
-    sections: {
-      space_between_regular_entries: '0.1cm',
-      space_between_text_based_entries: '0.05cm'
+    design: {
+      theme: 'engineeringresumes',
+      page: {
+        size: 'us-letter',
+        top_margin: '0.4in',
+        bottom_margin: '0.4in',
+        left_margin: '0.55in',
+        right_margin: '0.55in',
+        show_top_note: false
+      },
+      section_titles: {
+        space_above: '0.25cm',
+        space_below: '0.1cm'
+      },
+      sections: {
+        space_between_regular_entries: '0.1cm',
+        space_between_text_based_entries: '0.05cm'
+      }
     }
   }
 }
@@ -172,8 +174,18 @@ function toYaml(value: unknown, indent = 0): string {
   return JSON.stringify(value)
 }
 
-const yaml = `# Generated by scripts/export-rendercv.ts — edit the source data, not this file.\n${toYaml(cv)}\n`
+export function buildResumeYaml(): string {
+  return `# Generated by resume/export.ts — edit the source data, not this file.\n${toYaml(buildCv())}\n`
+}
 
-mkdirSync(dirname(OUT), { recursive: true })
-writeFileSync(OUT, yaml)
-console.log(`wrote ${OUT}`)
+export function exportResumeYaml(outPath: string = DEFAULT_OUT): string {
+  const yaml = buildResumeYaml()
+  mkdirSync(dirname(outPath), { recursive: true })
+  writeFileSync(outPath, yaml)
+  return outPath
+}
+
+if (import.meta.main) {
+  const out = exportResumeYaml()
+  console.log(`wrote ${out}`)
+}

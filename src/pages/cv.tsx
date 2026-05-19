@@ -1,56 +1,17 @@
 import { faExternalLink, faGlobe } from '@fortawesome/free-solid-svg-icons'
-// import { renderHTML2PDF } from '@/lib/pdf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { StickyBackButton } from '@/components/ui/sticky-back-button'
+import { StickyDownloadButton } from '@/components/ui/sticky-download-button'
 import { RESUME_DATA } from '@/data/resume-data'
 
 export default function CVPage() {
-  const pdfElementId = 'to-pdf'
-
-  // TODO: Add PDF export functionality
-  // const exportToPdf = async () => {
-  //   const today = new Date()
-  //   const element = document.getElementById('page')
-
-  //   if (!element) {
-  //     console.error('Element not found')
-  //     return
-  //   }
-
-  //   const dateString = today.toLocaleString('default', { month: 'long' }) + ' ' + today.getFullYear()
-
-  //   renderHTML2PDF(element, `${RESUME_DATA.name} - ${dateString} Resume.pdf`, {
-  //     width: 1050,
-  //     scale: 0.53,
-  //     xMargin: 15,
-  //     yMargin: 10,
-  //     documentModifier: (clonedDoc) => {
-  //       const badges = clonedDoc.querySelectorAll('#shadcn-badge')
-  //       badges?.forEach((badge) => {
-  //         badge.classList.add('pb-3')
-  //       })
-
-  //       // Make card backgrounds transparent for PDF export
-  //       const cards = clonedDoc.querySelectorAll('.rounded-lg.border')
-  //       cards?.forEach((card) => {
-  //         card.classList.remove('bg-theme-50')
-  //         card.classList.add('bg-transparent')
-  //       })
-  //     },
-  //     ignoreElements: (element) => {
-  //       return element.id === 'print-ignore'
-  //     }
-  //   })
-  // }
-
   return (
     <div id="page">
       <div className="mx-auto w-full max-w-4xl px-4 py-16 sm:px-8">
-        {/* Sticky Back Button */}
         <StickyBackButton />
-        <section className="space-y-8 print:space-y-6" id={pdfElementId}>
+        <section className="space-y-8 print:space-y-6" id="to-pdf">
           {/* Page Title */}
           <h1 className="mb-8 font-extrabold text-4xl text-theme-950 sm:text-5xl md:text-6xl">
             <span
@@ -213,17 +174,8 @@ export default function CVPage() {
               ))}
             </div>
           </section>
-
-          {/* PDF Export Button
-          <div className="mt-8" id="print-ignore">
-            <Button
-              onClick={exportToPdf}
-              data-umami-event="CV Exported to PDF"
-            >
-              Export to PDF
-            </Button>
-          </div> */}
         </section>
+        <StickyDownloadButton href="/resume.pdf" filename="Martin_Miglio_Resume.pdf" />
       </div>
     </div>
   )

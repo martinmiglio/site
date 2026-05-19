@@ -36,6 +36,14 @@ jobs:
           restore-keys: |
             sst-${{ runner.os }}-
 
+      - uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+          cache-dependency-glob: resume/uv.lock
+
+      - name: Sync resume Python env (rendercv)
+        run: uv sync --project resume --frozen
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:

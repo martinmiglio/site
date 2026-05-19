@@ -5,10 +5,12 @@ import viteReact from '@vitejs/plugin-react'
 import { nitro } from 'nitro/vite'
 import { defineConfig } from 'vite'
 import tsConfigPaths from 'vite-tsconfig-paths'
+import { resumePdfPlugin } from './resume/vite-plugin'
 
 export default defineConfig({
   plugins: [
     tsConfigPaths(),
+    resumePdfPlugin(),
     nitro({
       preset: 'aws-lambda',
       awsLambda: { streaming: true }
@@ -18,7 +20,8 @@ export default defineConfig({
       prerender: {
         enabled: true,
         autoSubfolderIndex: true,
-        crawlLinks: true
+        crawlLinks: true,
+        filter: (page) => !/\.(pdf|png|jpg|jpeg|svg|ico|webp)$/i.test(page.path)
       }
     }),
     tailwindcss(),

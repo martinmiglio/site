@@ -438,6 +438,5 @@ count.txt
 # sst
 .sst
 
-# rendercv build output
-/resume/rendercv_output/
-/resume/output/
+# build-time generated resume PDF (vite plugin writes here)
+/public/resume.pdf
