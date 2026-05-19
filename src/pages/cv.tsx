@@ -1,56 +1,29 @@
 import { faExternalLink, faGlobe } from '@fortawesome/free-solid-svg-icons'
-// import { renderHTML2PDF } from '@/lib/pdf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { StickyBackButton } from '@/components/ui/sticky-back-button'
+import { StickyDownloadButton } from '@/components/ui/sticky-download-button'
 import { RESUME_DATA } from '@/data/resume-data'
 
+const MONTH_YEAR_FORMAT = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC'
+})
+
+function formatMonthYear(s: string): string {
+  if (s === 'present') return 'Present'
+  if (/^\d{4}$/.test(s)) return s
+  return MONTH_YEAR_FORMAT.format(new Date(s))
+}
+
 export default function CVPage() {
-  const pdfElementId = 'to-pdf'
-
-  // TODO: Add PDF export functionality
-  // const exportToPdf = async () => {
-  //   const today = new Date()
-  //   const element = document.getElementById('page')
-
-  //   if (!element) {
-  //     console.error('Element not found')
-  //     return
-  //   }
-
-  //   const dateString = today.toLocaleString('default', { month: 'long' }) + ' ' + today.getFullYear()
-
-  //   renderHTML2PDF(element, `${RESUME_DATA.name} - ${dateString} Resume.pdf`, {
-  //     width: 1050,
-  //     scale: 0.53,
-  //     xMargin: 15,
-  //     yMargin: 10,
-  //     documentModifier: (clonedDoc) => {
-  //       const badges = clonedDoc.querySelectorAll('#shadcn-badge')
-  //       badges?.forEach((badge) => {
-  //         badge.classList.add('pb-3')
-  //       })
-
-  //       // Make card backgrounds transparent for PDF export
-  //       const cards = clonedDoc.querySelectorAll('.rounded-lg.border')
-  //       cards?.forEach((card) => {
-  //         card.classList.remove('bg-theme-50')
-  //         card.classList.add('bg-transparent')
-  //       })
-  //     },
-  //     ignoreElements: (element) => {
-  //       return element.id === 'print-ignore'
-  //     }
-  //   })
-  // }
-
   return (
     <div id="page">
       <div className="mx-auto w-full max-w-4xl px-4 py-16 sm:px-8">
-        {/* Sticky Back Button */}
         <StickyBackButton />
-        <section className="space-y-8 print:space-y-6" id={pdfElementId}>
+        <section className="space-y-8 print:space-y-6" id="to-pdf">
           {/* Page Title */}
           <h1 className="mb-8 font-extrabold text-4xl text-theme-950 sm:text-5xl md:text-6xl">
             <span
@@ -115,7 +88,7 @@ export default function CVPage() {
                     </div>
                     <div className="mt-2 text-left sm:mt-0 sm:text-right">
                       <div className="font-medium text-sm text-theme-600 tabular-nums">
-                        {work.start} - {work.end}
+                        {formatMonthYear(work.start)} - {formatMonthYear(work.end)}
                       </div>
                     </div>
                   </div>
@@ -134,7 +107,11 @@ export default function CVPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="px-0 pt-2 text-theme-600 leading-relaxed">
-                  {work.description}
+                  <ul className="list-disc space-y-1 pl-5">
+                    {work.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             ))}
@@ -150,7 +127,7 @@ export default function CVPage() {
                   <div className="flex flex-col gap-x-2 border-theme-300 border-b pb-4 text-base sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="font-bold text-theme-800 leading-none">{education.school}</h3>
                     <div className="mt-1 font-medium text-sm text-theme-600 tabular-nums sm:mt-0">
-                      {education.start} - {education.end}
+                      {formatMonthYear(education.start)} - {formatMonthYear(education.end)}
                     </div>
                   </div>
                 </CardHeader>
@@ -162,16 +139,14 @@ export default function CVPage() {
           </section>
           <section className="flex min-h-0 flex-col gap-y-4">
             <h2 className="font-bold text-2xl text-theme-800">Skills</h2>
-            <div className="flex flex-wrap gap-2">
+            <dl className="space-y-2">
               {RESUME_DATA.skills.map((skill) => (
-                <Badge
-                  key={skill}
-                  className="border border-theme-200 bg-theme-100 px-3 py-1 font-medium text-sm text-theme-700"
-                >
-                  {skill}
-                </Badge>
+                <div key={skill.label} className="flex flex-col gap-x-3 sm:flex-row">
+                  <dt className="font-semibold text-theme-800 sm:min-w-28">{skill.label}</dt>
+                  <dd className="text-theme-600">{skill.details}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </section>
           <section className="print-force-new-page flex min-h-0 scroll-mb-16 flex-col gap-y-4">
             <h2 className="font-bold text-2xl text-theme-800">Projects</h2>
@@ -213,17 +188,8 @@ export default function CVPage() {
               ))}
             </div>
           </section>
-
-          {/* PDF Export Button
-          <div className="mt-8" id="print-ignore">
-            <Button
-              onClick={exportToPdf}
-              data-umami-event="CV Exported to PDF"
-            >
-              Export to PDF
-            </Button>
-          </div> */}
         </section>
+        <StickyDownloadButton href="/resume.pdf" filename="Martin_Miglio_Resume.pdf" />
       </div>
     </div>
   )

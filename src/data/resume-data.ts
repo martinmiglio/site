@@ -6,7 +6,7 @@ export const RESUME_DATA = {
   about:
     'Full-stack software developer with a knack for crafting web applications from the ground, up.',
   summary:
-    'A versatile developer with a strong background in both web development and system integration, I specialize in building efficient, impactful solutions across diverse industries. My experience spans creating intuitive user interfaces, optimizing back-end systems, and developing tools that improve business operations. I thrive in dynamic environments, continually expanding my skills and adapting to new challenges. Passionate about delivering high-quality, user-centric products, I collaborate effectively with cross-functional teams to achieve project goals and drive business growth.',
+    'Frontend-leaning product engineer in React and TypeScript who owns features end-to-end, from scoping and design decisions through ship. Comfortable across the full stack and fluent in AI-assisted development.',
   personalWebsiteUrl: 'https://martinmiglio.dev',
   education: [
     {
@@ -21,92 +21,62 @@ export const RESUME_DATA = {
       company: 'Vitable Health',
       link: 'https://vitablehealth.com/',
       badges: ['Full-time'],
-      title: 'Software Engineer',
-      start: 'April 2025',
-      end: 'Present',
-      description:
-        'Delivering impactful, scalable software for a health-tech environment, blending modern web stacks with cloud-native practices. Focused on maintainable architecture and business-aligned engineering outcomes.'
+      title: 'Product Engineer',
+      start: '2025-04',
+      end: 'present',
+      highlights: [
+        'Designed and shipped the ICHRA Quoting Tool, a self-serve product used by 45 brokers and employers across 900 sessions, 34K employees, and 6.3M plans',
+        "Collapsed industry-standard 1–3 week quote turnarounds to under a minute and cut the revenue team's SLA from 72 hours to under 3",
+        'Built an LLM-driven plan recommender in the member enrollment flow; 4.79 CSAT, +8% enrollment, and meaningfully faster time-to-complete',
+        'Drove team adoption of Claude Code and MCP; built review and ticket-handling workflows now standard across engineering'
+      ]
     },
     {
       company: 'Revv',
       link: 'https://revvhq.com/',
       badges: ['Contract'],
       title: 'Web Developer - Marketing',
-      start: 'October 2024',
-      end: 'July 2025',
-      description:
-        'Integrated engineering and marketing to drive measurable growth. Built scalable systems and data-driven tools to boost engagement, conversion, and retention.'
+      start: '2024-10',
+      end: '2025-07',
+      highlights: [
+        'Lifted funnel conversion by shipping A/B-tested landing pages and funnel improvements in React and Next.js',
+        'Connected siloed marketing and growth tools into a single pipeline, eliminating manual handoffs and surfacing data the team had been flying blind on'
+      ]
     },
     {
-      company: 'martinmiglio.dev',
+      company: 'Independent / Freelance',
       link: 'https://www.martinmiglio.dev/',
       badges: ['Freelance'],
       title: 'Software Engineering Consultant',
-      start: 'January 2025',
-      end: 'July 2025',
-      description:
-        'Partnered with startups to rapidly design, build, and launch products. Balanced technical decisions with business constraints to accelerate go-to-market.'
+      start: '2025-01',
+      end: '2025-07',
+      highlights: [
+        'Lead engineer and technical partner to an early-stage founder',
+        'Shipped concept-to-MVP on time across AWS, Hono, and a Tauri + React app for web and mobile',
+        'Ran market validation that produced a decisive no-go and closed the engagement cleanly'
+      ]
     },
     {
       company: 'I Play Texas',
       link: 'https://opencorporates.com/companies/us_tx/0801291571',
       badges: ['Internship'],
       title: 'Full Stack Developer',
-      start: 'April 2019',
-      end: 'December 2019',
-      description:
-        'Developed and maintained software for slot machines and related applications using WPF, WCF, IIS, and MSSQL. Designed internal tools to improve process efficiency, including a casino floor management system sold to a client, enabling graphical analysis of slot machine performance, hot/cold zones, and revenue metrics. Built mobile product demo apps with Xamarin and maintained web-based offerings using PHP and JavaScript.'
-    },
-    {
-      company: 'GroupGolfer.com',
-      link: 'https://GroupGolfer.com',
-      badges: ['Internship'],
-      title: 'Software Developer Intern',
-      start: 'October 2018',
-      end: 'January 2019',
-      description:
-        'Automated Geospatial Information Systems (GIS) tasks, generating marketing map imagery with Python and GIS database integrations. Managed GIS database operations and implementations, improving efficiency for marketing campaigns. Performed a successful website migration to WordPress, streamlining content management and hosting reliability.'
-    },
-    {
-      company: 'Integrated System Specialists',
-      link: 'https://www.isysp.net/',
-      badges: [],
-      title: 'Information Technology Specialist',
-      start: 'April 2016',
-      end: 'August 2017',
-      description:
-        'Implemented network infrastructure projects, including installing Cisco routers, switches, and firewalls across offices, schools, and township buildings. Supported large-scale deployments with small teams under tight deadlines, ensuring robust and secure connectivity. Collaborated with engineers and cable technicians to deliver solutions tailored to client needs.'
+      start: '2019-04',
+      end: '2019-12',
+      highlights: [
+        'Built and sold a casino floor management system with visual analytics for slot performance, hot/cold zones, and revenue',
+        'Shipped supporting slot machine software and mobile product demos across WPF, MSSQL, and Xamarin'
+      ]
     }
   ],
   skills: [
-    'JavaScript',
-    'TypeScript',
-    'Node.js',
-    'React',
-    'Next.js',
-    'Vue.js',
-    'Python',
-    'C# .NET',
-    'SQL',
-    'Docker',
-    'AWS',
-    'GCP',
-    'Rest API',
-    'GraphQL',
-    'Django',
-    'Cloud Computing',
-    'Web Development',
-    'Version Control',
-    'Database Design',
-    'Marketo',
-    'Google Analytics',
-    'Google Tag Manager',
-    'Visual Studio',
-    '.NET Framework',
-    'Windows Presentation Foundation (WPF)',
-    'Xamarin',
-    'Network Administration',
-    'Computer Networking'
+    { label: 'Languages', details: 'TypeScript, JavaScript, Python, SQL' },
+    {
+      label: 'Stack',
+      details:
+        'React, Next.js, Node.js, Vue.js, Django, Hono, AWS, GCP, Docker, PostgreSQL, REST, GraphQL'
+    },
+    { label: 'AI Tooling', details: 'Claude Code, MCP, LLM application development' }
   ],
   projects: [
     {
@@ -121,11 +91,31 @@ export const RESUME_DATA = {
     },
     {
       title: 'TixTrend',
-      techStack: ['Side Project', 'TypeScript', 'Next.js', 'Rest API', 'AWS'],
+      techStack: ['Side Project', 'TypeScript', 'Next.js', 'REST', 'AWS'],
       description: 'A platform to track TicketMaster ticket prices over time',
       link: {
         label: 'tixtrend.martinmiglio.dev',
         href: 'https://tixtrend.martinmiglio.dev/'
+      }
+    },
+    {
+      title: 'brasa',
+      techStack: ['Open Source', 'Python', 'MicroPython', 'CLI'],
+      description:
+        'MicroPython developer tooling; flash, deploy, watch, and monitor embedded devices from a single CLI',
+      link: {
+        label: 'brasa on GitHub',
+        href: 'https://github.com/martinmiglio/brasa'
+      }
+    },
+    {
+      title: 'tarkov-mcp',
+      techStack: ['Open Source', 'Python', 'MCP', 'LLM Tooling'],
+      description:
+        'A Model Context Protocol server exposing Escape from Tarkov game data (items, markets, maps, quests) for LLM agents',
+      link: {
+        label: 'tarkov-mcp on GitHub',
+        href: 'https://github.com/martinmiglio/tarkov-mcp'
       }
     },
     {
@@ -135,34 +125,6 @@ export const RESUME_DATA = {
       link: {
         label: 'pymemuc on GitHub',
         href: 'https://github.com/pyclashbot/pymemuc'
-      }
-    },
-
-    {
-      title: 'Atlas Oak Advisory',
-      techStack: ['Contract Work', 'Next.js'],
-      description: 'A point of contact site for Atlas Oak Advisory',
-      link: {
-        label: 'atlasoakadvisory.com',
-        href: 'https://atlasoakadvisory.com/'
-      }
-    },
-    {
-      title: 'Around the World Blog',
-      techStack: ['Side Project', 'Next.js', 'AWS'],
-      description: 'A travel blog built for Hogan Milam. Hosted on AWS and Vercel',
-      link: {
-        label: 'hoganmilam.site',
-        href: 'https://hoganmilam.site/'
-      }
-    },
-    {
-      title: 'martinmiglio.dev',
-      techStack: ['Side Project', 'Vue.js', 'AWS'],
-      description: 'My personal website. Built with Vue.js and TypeScript hosted on AWS',
-      link: {
-        label: 'martinmiglio.dev',
-        href: 'https://martinmiglio.dev/'
       }
     }
   ]

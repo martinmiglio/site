@@ -20,6 +20,14 @@ jobs:
         with:
           bun-version: latest
 
+      - uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+          cache-dependency-glob: resume/uv.lock
+
+      - name: Sync resume Python env (rendercv)
+        run: uv sync --project resume --frozen
+
       - run: bun install --frozen-lockfile
 
       - name: Format check (oxfmt)

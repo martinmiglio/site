@@ -437,3 +437,6 @@ count.txt
 
 # sst
 .sst
+
+# build-time generated resume PDF (vite plugin writes here)
+/public/resume.pdf

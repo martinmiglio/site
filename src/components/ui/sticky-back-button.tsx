@@ -7,7 +7,7 @@ export function StickyBackButton() {
       <SheetClose
         data-umami-event="Back to Home Clicked"
         aria-label="Back to Home"
-        className="pebble-back group flex h-12 w-12 items-center overflow-hidden rounded-full pr-4 pl-[14px] font-semibold text-[12px] text-theme-800 uppercase tracking-[0.22em] outline-none transition-[width,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:w-36 focus-visible:w-36 active:scale-[0.96]"
+        className="pebble group flex h-12 w-12 items-center overflow-hidden rounded-full pr-4 pl-[14px] font-semibold text-[12px] text-theme-800 uppercase tracking-[0.22em] outline-none transition-[width,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:w-36 focus-visible:w-36 active:scale-[0.96]"
       >
         <ArrowLeft
           strokeWidth={2.25}
