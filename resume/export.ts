@@ -4,10 +4,28 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { stringify } from 'yaml'
 import { RESUME_DATA } from '../src/data/resume-data'
+import {
+  groupBadges,
+  groupConsecutiveRoles,
+  groupSpan,
+  type WorkGroup
+} from '../src/data/resume-groups'
 import { CONTACT } from '../src/data/social-bar'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DEFAULT_OUT = resolve(__dirname, 'cv.yaml')
+
+/**
+ * One position line for a group. A lone role reads as its title; a run of roles
+ * reads as a progression, oldest to newest, so the arrow points the way the
+ * career went.
+ */
+function groupPosition(group: WorkGroup): string {
+  return [...group.roles]
+    .sort((a, b) => a.start.localeCompare(b.start))
+    .map((role) => role.title)
+    .join(' → ')
+}
 
 function buildCv() {
   return {
@@ -22,13 +40,19 @@ function buildCv() {
       ],
       sections: {
         summary: [RESUME_DATA.summary],
-        experience: RESUME_DATA.work.map((w) => ({
-          company: w.company,
-          position: w.badges.length > 0 ? `${w.title} (${w.badges.join(', ')})` : w.title,
-          start_date: w.start,
-          end_date: w.end,
-          highlights: w.highlights
-        })),
+        experience: groupConsecutiveRoles(RESUME_DATA.work).map((group) => {
+          const badges = groupBadges(group)
+          const position = groupPosition(group)
+          const span = groupSpan(group)
+
+          return {
+            company: group.company,
+            position: badges.length > 0 ? `${position} (${badges.join(', ')})` : position,
+            start_date: span.start,
+            end_date: span.end,
+            highlights: group.roles.flatMap((role) => role.highlights)
+          }
+        }),
         education: RESUME_DATA.education.map((e) => ({
           institution: e.school,
           area: e.degree,

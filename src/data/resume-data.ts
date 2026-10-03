@@ -21,15 +21,19 @@ export const RESUME_DATA = {
       company: 'Vitable Health',
       link: 'https://vitablehealth.com/',
       badges: ['Full-time'],
-      title: 'Product Engineer',
-      start: '2025-04',
+      title: 'Product Engineer II',
+      start: '2026-10',
       end: 'present',
-      highlights: [
-        'Designed and shipped the ICHRA Quoting Tool, a self-serve product used by 45 brokers and employers across 900 sessions, 34K employees, and 6.3M plans',
-        "Collapsed industry-standard 1–3 week quote turnarounds to under a minute and cut the revenue team's SLA from 72 hours to under 3",
-        'Built an LLM-driven plan recommender in the member enrollment flow; 4.79 CSAT, +8% enrollment, and meaningfully faster time-to-complete',
-        'Drove team adoption of Claude Code and MCP; built review and ticket-handling workflows now standard across engineering'
-      ]
+      highlights: []
+    },
+    {
+      company: 'Vitable Health',
+      link: 'https://vitablehealth.com/',
+      badges: ['Full-time'],
+      title: 'Product Engineer I',
+      start: '2025-04',
+      end: '2026-09',
+      highlights: []
     },
     {
       company: 'Revv',
