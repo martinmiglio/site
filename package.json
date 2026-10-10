@@ -40,7 +40,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jspdf": "^4.2.1",
-    "lucide-react": "^1.8.0",
+    "lucide-react": "^1.16.0",
     "mini-svg-data-uri": "^1.4.4",
     "nitro": "^3.0.1-alpha.1",
     "react": "^19.2.3",
